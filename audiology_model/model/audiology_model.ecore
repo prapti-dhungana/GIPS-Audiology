@@ -1,0 +1,130 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ecore:EPackage xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" name="audiology_model" nsURI="http://www.example.org/audiology_model"
+    nsPrefix="audiology_model">
+  <eClassifiers xsi:type="ecore:EClass" name="AudiologyBooking">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="slotLength" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="planningStartDate" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="planningEndDate" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="appointments" upperBound="-1"
+        eType="#//Appointement" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="staff" upperBound="-1"
+        eType="#//Staff" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="rooms" upperBound="-1"
+        eType="#//Room" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="days" upperBound="-1" eType="#//day"
+        containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="timeslots" upperBound="-1"
+        eType="#//timeslot" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="weights" upperBound="-1"
+        eType="#//Weights" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="appointmentAssignment"
+        upperBound="-1" eType="#//AppointementAssinment" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="staffroomdayassignment"
+        upperBound="-1" eType="#//StaffRoomDayAssignment" containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Appointement">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="number" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="roomRequirement" eType="#//RoomRequirement"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="staffBandRequirement" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="appointmentType" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="dateIdeallyBookedBy" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="dateToBookFrom" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="duration" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="artsFlag" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="status" eType="#//AppointmentStatus"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="appointementassinment"
+        eType="#//AppointementAssinment" eOpposite="#//AppointementAssinment/appointement"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Staff">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="number" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="band" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="weeklyHours" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="artsFlag" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="appointementassinment"
+        upperBound="-1" eType="#//AppointementAssinment" eOpposite="#//AppointementAssinment/staff"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="staffroomdayassignment"
+        upperBound="-1" eType="#//StaffRoomDayAssignment" eOpposite="#//StaffRoomDayAssignment/staff"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="workingdDays" upperBound="-1"
+        eType="#//day" eOpposite="#//day/staff"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Room">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="number" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="roomType" eType="#//RoomType"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="appointementassinment"
+        upperBound="-1" eType="#//AppointementAssinment" eOpposite="#//AppointementAssinment/room"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="staffroomdayassignment"
+        upperBound="-1" eType="#//StaffRoomDayAssignment" eOpposite="#//StaffRoomDayAssignment/room"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="day" upperBound="-1" eType="#//day"
+        eOpposite="#//day/room"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="day">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="date" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="dayOfWeek" eType="#//Days"
+        defaultValueLiteral="MONDAY"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="staffroomdayassignment"
+        upperBound="-1" eType="#//StaffRoomDayAssignment"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="timeslot" upperBound="-1"
+        eType="#//timeslot" eOpposite="#//timeslot/day"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="staff" upperBound="-1"
+        eType="#//Staff" eOpposite="#//Staff/workingdDays"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="room" upperBound="-1" eType="#//Room"
+        eOpposite="#//Room/day"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="timeslot">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="id" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="Start" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="End" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="appointementassinment"
+        upperBound="-1" eType="#//AppointementAssinment" eOpposite="#//AppointementAssinment/timeslot"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="day" eType="#//day" eOpposite="#//day/timeslot"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Weights">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="appointmentDelay" lowerBound="1"
+        eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="StaffRoomDayAssignment">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="Selected" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="staff" eType="#//Staff"
+        eOpposite="#//Staff/staffroomdayassignment"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="room" eType="#//Room" eOpposite="#//Room/staffroomdayassignment"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EEnum" name="Days">
+    <eLiterals name="MONDAY"/>
+    <eLiterals name="TUESDAY" value="1"/>
+    <eLiterals name="WEDNESDAY" value="2"/>
+    <eLiterals name="THURSDAY" value="3"/>
+    <eLiterals name="FRIDAY" value="4"/>
+    <eLiterals name="FIRDAY" value="5"/>
+    <eLiterals name="SAUTRDAY" value="6"/>
+    <eLiterals name="SUNDAY" value="7"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EEnum" name="RoomType">
+    <eLiterals name="BOOTH"/>
+    <eLiterals name="ROOM" value="1"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EEnum" name="RoomRequirement">
+    <eLiterals name="BOOTH"/>
+    <eLiterals name="ROOM" value="1"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EEnum" name="AppointmentStatus">
+    <eLiterals name="UNSCHEDULED"/>
+    <eLiterals name="SCHEDULED" value="1"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="NamedElements" abstract="true">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="AppointementAssinment">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="scheduledStartTime" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="scheduledEndTIme" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="latenessPenelty" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="day" eType="#//day"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="appointement" eType="#//Appointement"
+        eOpposite="#//Appointement/appointementassinment"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="staff" eType="#//Staff"
+        eOpposite="#//Staff/appointementassinment"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="room" eType="#//Room" eOpposite="#//Room/appointementassinment"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="timeslot" eType="#//timeslot"
+        eOpposite="#//timeslot/appointementassinment"/>
+  </eClassifiers>
+</ecore:EPackage>
