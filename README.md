@@ -1,6 +1,6 @@
 # GIPS Audiology
 This repository holds an audiology based implementation of GIPS and has been created for the ESPRC Summer Research Internship Programme.
-GIPS is an open-source framework for Graph-Based (M)ILP Problem Specification. This implementation is trying to see how it would solve a scheduling problem in the an Audiology ward.
+GIPS is an open-source framework for Graph-Based (M)ILP Problem Specification. This implementation is trying to see how it would solve a scheduling problem in the Audiology ward.
 
 The setup below is based on the [gips-examples repository](https://github.com/Echtzeitsysteme/gips-examples).
 
