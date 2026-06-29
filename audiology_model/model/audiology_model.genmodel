@@ -95,8 +95,8 @@
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference audiology_model.ecore#//StaffRoomDayAssignment/staff"/>
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference audiology_model.ecore#//StaffRoomDayAssignment/room"/>
     </genClasses>
-    <genClasses ecoreClass="audiology_model.ecore#//NamedElements">
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute audiology_model.ecore#//NamedElements/name"/>
+    <genClasses ecoreClass="audiology_model.ecore#//">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute audiology_model.ecore#///name"/>
     </genClasses>
     <genClasses ecoreClass="audiology_model.ecore#//AppointementAssinment">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute audiology_model.ecore#//AppointementAssinment/scheduledStartTime"/>

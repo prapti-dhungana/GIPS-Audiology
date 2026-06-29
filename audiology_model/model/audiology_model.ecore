@@ -111,7 +111,7 @@
     <eLiterals name="UNSCHEDULED"/>
     <eLiterals name="SCHEDULED" value="1"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="NamedElements" abstract="true">
+  <eClassifiers xsi:type="ecore:EClass" name="" abstract="true">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="AppointementAssinment">
