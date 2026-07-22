@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<genmodel:GenModel xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore"
+    xmlns:genmodel="http://www.eclipse.org/emf/2002/GenModel" modelDirectory="audiologymodel/gen/" modelPluginID="audiologymodel"
+    modelName="Audiologymodel" generateSchema="true" rootExtendsClass="org.eclipse.emf.ecore.impl.MinimalEObjectImpl$Container"
+    importerID="org.eclipse.emf.importer.ecore" complianceLevel="21.0" copyrightFields="false"
+    operationReflection="true" importOrganizing="true">
+  <foreignModel>audiologymodel.ecore</foreignModel>
+  <genPackages prefix="Audiologymodel" disposableProviderFactory="true" ecorePackage="audiologymodel.ecore#/">
+    <genEnums typeSafeEnumCompatible="false" ecoreEnum="audiologymodel.ecore#//Days">
+      <genEnumLiterals ecoreEnumLiteral="audiologymodel.ecore#//Days/MONDAY"/>
+      <genEnumLiterals ecoreEnumLiteral="audiologymodel.ecore#//Days/TUESDAY"/>
+      <genEnumLiterals ecoreEnumLiteral="audiologymodel.ecore#//Days/WEDNESDAY"/>
+      <genEnumLiterals ecoreEnumLiteral="audiologymodel.ecore#//Days/THURSDAY"/>
+      <genEnumLiterals ecoreEnumLiteral="audiologymodel.ecore#//Days/FRIDAY"/>
+    </genEnums>
+    <genEnums typeSafeEnumCompatible="false" ecoreEnum="audiologymodel.ecore#//RoomType">
+      <genEnumLiterals ecoreEnumLiteral="audiologymodel.ecore#//RoomType/ROOM"/>
+      <genEnumLiterals ecoreEnumLiteral="audiologymodel.ecore#//RoomType/BOOTH"/>
+    </genEnums>
+    <genClasses ecoreClass="audiologymodel.ecore#//AudiologyBooking">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference audiologymodel.ecore#//AudiologyBooking/waitingList"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference audiologymodel.ecore#//AudiologyBooking/staff"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference audiologymodel.ecore#//AudiologyBooking/rooms"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference audiologymodel.ecore#//AudiologyBooking/days"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference audiologymodel.ecore#//AudiologyBooking/timeslots"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference audiologymodel.ecore#//AudiologyBooking/appointmentAssignments"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference audiologymodel.ecore#//AudiologyBooking/weeks"/>
+    </genClasses>
+    <genClasses ecoreClass="audiologymodel.ecore#//AppointmentRequest">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute audiologymodel.ecore#//AppointmentRequest/number"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute audiologymodel.ecore#//AppointmentRequest/roomRequirement"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute audiologymodel.ecore#//AppointmentRequest/staffBandRequirement"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute audiologymodel.ecore#//AppointmentRequest/appointmentType"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute audiologymodel.ecore#//AppointmentRequest/durationSlots"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute audiologymodel.ecore#//AppointmentRequest/artsFlag"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute audiologymodel.ecore#//AppointmentRequest/bookFromDayIndex"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute audiologymodel.ecore#//AppointmentRequest/idealDayIndex"/>
+    </genClasses>
+    <genClasses ecoreClass="audiologymodel.ecore#//StaffMember">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute audiologymodel.ecore#//StaffMember/number"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute audiologymodel.ecore#//StaffMember/band"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute audiologymodel.ecore#//StaffMember/weeklyHours"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute audiologymodel.ecore#//StaffMember/artsFlag"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference audiologymodel.ecore#//StaffMember/workingDays"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute audiologymodel.ecore#//StaffMember/availableFromSlot"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute audiologymodel.ecore#//StaffMember/availableToSlot"/>
+    </genClasses>
+    <genClasses ecoreClass="audiologymodel.ecore#//Room">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute audiologymodel.ecore#//Room/number"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute audiologymodel.ecore#//Room/roomType"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference audiologymodel.ecore#//Room/openDays"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute audiologymodel.ecore#//Room/availableFromSlot"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute audiologymodel.ecore#//Room/availableToSlot"/>
+    </genClasses>
+    <genClasses ecoreClass="audiologymodel.ecore#//PlanningDay">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute audiologymodel.ecore#//PlanningDay/dayIndex"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute audiologymodel.ecore#//PlanningDay/dayOfWeek"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference audiologymodel.ecore#//PlanningDay/week"/>
+    </genClasses>
+    <genClasses ecoreClass="audiologymodel.ecore#//PlanningWeek">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute audiologymodel.ecore#//PlanningWeek/weekIndex"/>
+    </genClasses>
+    <genClasses ecoreClass="audiologymodel.ecore#//Timeslot">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute audiologymodel.ecore#//Timeslot/startIndex"/>
+    </genClasses>
+    <genClasses ecoreClass="audiologymodel.ecore#//AppointmentAssignment">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference audiologymodel.ecore#//AppointmentAssignment/startSlot"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference audiologymodel.ecore#//AppointmentAssignment/staffMember"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference audiologymodel.ecore#//AppointmentAssignment/room"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference audiologymodel.ecore#//AppointmentAssignment/planningDay"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference audiologymodel.ecore#//AppointmentAssignment/request"/>
+    </genClasses>
+  </genPackages>
+</genmodel:GenModel>

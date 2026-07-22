@@ -1,0 +1,128 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<xsd:schema xmlns:audiologymodel="http://www.example.org/audiologymodel" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsd="http://www.w3.org/2001/XMLSchema" targetNamespace="http://www.example.org/audiologymodel">
+  <xsd:import namespace="http://www.omg.org/XMI" schemaLocation="platform:/plugin/org.eclipse.emf.ecore/model/XMI.xsd"/>
+  <xsd:simpleType name="Days">
+    <xsd:restriction base="xsd:NCName">
+      <xsd:enumeration value="MONDAY"/>
+      <xsd:enumeration value="TUESDAY"/>
+      <xsd:enumeration value="WEDNESDAY"/>
+      <xsd:enumeration value="THURSDAY"/>
+      <xsd:enumeration value="FRIDAY"/>
+    </xsd:restriction>
+  </xsd:simpleType>
+  <xsd:simpleType name="RoomType">
+    <xsd:restriction base="xsd:NCName">
+      <xsd:enumeration value="ROOM"/>
+      <xsd:enumeration value="BOOTH"/>
+    </xsd:restriction>
+  </xsd:simpleType>
+  <xsd:complexType name="AudiologyBooking">
+    <xsd:choice maxOccurs="unbounded" minOccurs="0">
+      <xsd:element name="waitingList" type="audiologymodel:AppointmentRequest"/>
+      <xsd:element name="staff" type="audiologymodel:StaffMember"/>
+      <xsd:element name="rooms" type="audiologymodel:Room"/>
+      <xsd:element name="days" type="audiologymodel:PlanningDay"/>
+      <xsd:element name="timeslots" type="audiologymodel:Timeslot"/>
+      <xsd:element name="appointmentAssignments" type="audiologymodel:AppointmentAssignment"/>
+      <xsd:element name="weeks" type="audiologymodel:PlanningWeek"/>
+      <xsd:element ref="xmi:Extension"/>
+    </xsd:choice>
+    <xsd:attribute ref="xmi:id"/>
+    <xsd:attributeGroup ref="xmi:ObjectAttribs"/>
+  </xsd:complexType>
+  <xsd:element name="AudiologyBooking" type="audiologymodel:AudiologyBooking"/>
+  <xsd:complexType name="AppointmentRequest">
+    <xsd:choice maxOccurs="unbounded" minOccurs="0">
+      <xsd:element ref="xmi:Extension"/>
+    </xsd:choice>
+    <xsd:attribute ref="xmi:id"/>
+    <xsd:attributeGroup ref="xmi:ObjectAttribs"/>
+    <xsd:attribute name="number" type="xsd:int"/>
+    <xsd:attribute name="roomRequirement" type="audiologymodel:RoomType"/>
+    <xsd:attribute name="staffBandRequirement" type="xsd:int"/>
+    <xsd:attribute name="appointmentType" type="xsd:int"/>
+    <xsd:attribute name="durationSlots" type="xsd:int"/>
+    <xsd:attribute name="artsFlag" type="xsd:boolean"/>
+    <xsd:attribute name="bookFromDayIndex" type="xsd:int"/>
+    <xsd:attribute name="idealDayIndex" type="xsd:int"/>
+  </xsd:complexType>
+  <xsd:element name="AppointmentRequest" type="audiologymodel:AppointmentRequest"/>
+  <xsd:complexType name="StaffMember">
+    <xsd:choice maxOccurs="unbounded" minOccurs="0">
+      <xsd:element name="workingDays" type="audiologymodel:PlanningDay"/>
+      <xsd:element ref="xmi:Extension"/>
+    </xsd:choice>
+    <xsd:attribute ref="xmi:id"/>
+    <xsd:attributeGroup ref="xmi:ObjectAttribs"/>
+    <xsd:attribute name="number" type="xsd:int"/>
+    <xsd:attribute name="band" type="xsd:int"/>
+    <xsd:attribute name="weeklyHours" type="xsd:int"/>
+    <xsd:attribute name="artsFlag" type="xsd:boolean"/>
+    <xsd:attribute name="availableFromSlot" type="xsd:int"/>
+    <xsd:attribute name="availableToSlot" type="xsd:int"/>
+    <xsd:attribute name="workingDays" type="xsd:string"/>
+  </xsd:complexType>
+  <xsd:element name="StaffMember" type="audiologymodel:StaffMember"/>
+  <xsd:complexType name="Room">
+    <xsd:choice maxOccurs="unbounded" minOccurs="0">
+      <xsd:element name="openDays" type="audiologymodel:PlanningDay"/>
+      <xsd:element ref="xmi:Extension"/>
+    </xsd:choice>
+    <xsd:attribute ref="xmi:id"/>
+    <xsd:attributeGroup ref="xmi:ObjectAttribs"/>
+    <xsd:attribute name="number" type="xsd:int"/>
+    <xsd:attribute name="roomType" type="audiologymodel:RoomType"/>
+    <xsd:attribute name="availableFromSlot" type="xsd:int"/>
+    <xsd:attribute name="availableToSlot" type="xsd:int"/>
+    <xsd:attribute name="openDays" type="xsd:string"/>
+  </xsd:complexType>
+  <xsd:element name="Room" type="audiologymodel:Room"/>
+  <xsd:complexType name="PlanningDay">
+    <xsd:choice maxOccurs="unbounded" minOccurs="0">
+      <xsd:element name="week" type="audiologymodel:PlanningWeek"/>
+      <xsd:element ref="xmi:Extension"/>
+    </xsd:choice>
+    <xsd:attribute ref="xmi:id"/>
+    <xsd:attributeGroup ref="xmi:ObjectAttribs"/>
+    <xsd:attribute name="dayIndex" type="xsd:int"/>
+    <xsd:attribute name="dayOfWeek" type="audiologymodel:Days"/>
+    <xsd:attribute name="week" type="xsd:string"/>
+  </xsd:complexType>
+  <xsd:element name="PlanningDay" type="audiologymodel:PlanningDay"/>
+  <xsd:complexType name="PlanningWeek">
+    <xsd:choice maxOccurs="unbounded" minOccurs="0">
+      <xsd:element ref="xmi:Extension"/>
+    </xsd:choice>
+    <xsd:attribute ref="xmi:id"/>
+    <xsd:attributeGroup ref="xmi:ObjectAttribs"/>
+    <xsd:attribute name="weekIndex" type="xsd:int"/>
+  </xsd:complexType>
+  <xsd:element name="PlanningWeek" type="audiologymodel:PlanningWeek"/>
+  <xsd:complexType name="Timeslot">
+    <xsd:choice maxOccurs="unbounded" minOccurs="0">
+      <xsd:element ref="xmi:Extension"/>
+    </xsd:choice>
+    <xsd:attribute ref="xmi:id"/>
+    <xsd:attributeGroup ref="xmi:ObjectAttribs"/>
+    <xsd:attribute name="startIndex" type="xsd:int"/>
+  </xsd:complexType>
+  <xsd:element name="Timeslot" type="audiologymodel:Timeslot"/>
+  <xsd:complexType name="AppointmentAssignment">
+    <xsd:choice maxOccurs="unbounded" minOccurs="0">
+      <xsd:element name="startSlot" type="audiologymodel:Timeslot"/>
+      <xsd:element name="staffMember" type="audiologymodel:StaffMember"/>
+      <xsd:element name="room" type="audiologymodel:Room"/>
+      <xsd:element name="planningDay" type="audiologymodel:PlanningDay"/>
+      <xsd:element name="request" type="audiologymodel:AppointmentRequest"/>
+      <xsd:element ref="xmi:Extension"/>
+    </xsd:choice>
+    <xsd:attribute ref="xmi:id"/>
+    <xsd:attributeGroup ref="xmi:ObjectAttribs"/>
+    <xsd:attribute name="startSlot" type="xsd:string"/>
+    <xsd:attribute name="staffMember" type="xsd:string"/>
+    <xsd:attribute name="room" type="xsd:string"/>
+    <xsd:attribute name="planningDay" type="xsd:string"/>
+    <xsd:attribute name="request" type="xsd:string"/>
+  </xsd:complexType>
+  <xsd:element name="AppointmentAssignment" type="audiologymodel:AppointmentAssignment"/>
+</xsd:schema>

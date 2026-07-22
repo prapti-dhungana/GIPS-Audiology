@@ -1,0 +1,256 @@
+package "audiologyoptimiser"
+
+import "platform:/resource/audiologymodel/model/audiologymodel.ecore"
+
+config {
+    solver := GUROBI;
+
+    timeLimit := true [
+        value := 570.0,
+        includeInitTime := true
+    ];
+
+    randomSeed := true [value := 0];
+    presolve := auto;
+//    debugOutput := false;
+    debugOutput := true;
+
+   lpOutput := true [
+        path := "audiology.lp"
+    ];
+
+    threadCount := true [value := 4];
+}
+
+
+// One match represents one locally feasible appointment assignment.
+rule assignAppointment {
+    booking : AudiologyBooking {
+        -waitingList -> request
+        -staff -> staffMember
+        -rooms -> room
+        -days -> planningDay
+        -timeslots -> startSlot
+
+        ++ -appointmentAssignments -> assignment
+    }
+
+    request : AppointmentRequest
+
+    staffMember : StaffMember {
+        -workingDays -> planningDay
+    }
+
+    room : Room {
+        -openDays -> planningDay
+    }
+
+    planningDay : PlanningDay {
+        -week -> planningWeek
+    }
+
+    planningWeek : PlanningWeek
+    startSlot : Timeslot
+
+    ++ assignment : AppointmentAssignment {
+        ++ -request -> request
+        ++ -staffMember -> staffMember
+        ++ -room -> room
+        ++ -planningDay -> planningDay
+        ++ -startSlot -> startSlot
+    }
+
+    // Local feasibility.
+    # request.durationSlots > 0
+    # staffMember.band >= request.staffBandRequirement
+    # staffMember.artsFlag == request.artsFlag
+    # room.roomType == request.roomRequirement
+    # planningDay.dayIndex >= request.bookFromDayIndex
+
+    # startSlot.startIndex >= staffMember.availableFromSlot
+    # startSlot.startIndex + request.durationSlots
+        <= staffMember.availableToSlot
+
+    # startSlot.startIndex >= room.availableFromSlot
+    # startSlot.startIndex + request.durationSlots
+        <= room.availableToSlot
+
+    # startSlot.startIndex + request.durationSlots <= 32
+}
+
+
+// Context patterns used by the global constraints.
+pattern requestTuple {
+    booking : AudiologyBooking {
+        -waitingList -> request
+    }
+
+    request : AppointmentRequest
+}
+
+pattern staffDayTuple {
+    booking : AudiologyBooking {
+        -staff -> staffMember
+        -days -> planningDay
+    }
+
+    staffMember : StaffMember {
+        -workingDays -> planningDay
+    }
+
+    planningDay : PlanningDay
+}
+
+pattern staffRoomDayTuple {
+    booking : AudiologyBooking {
+        -staff -> staffMember
+        -rooms -> room
+        -days -> planningDay
+    }
+
+    staffMember : StaffMember {
+        -workingDays -> planningDay
+    }
+
+    room : Room {
+        -openDays -> planningDay
+    }
+
+    planningDay : PlanningDay
+}
+
+pattern staffDaySlotTuple {
+    booking : AudiologyBooking {
+        -staff -> staffMember
+        -days -> planningDay
+        -timeslots -> interval
+    }
+
+    staffMember : StaffMember {
+        -workingDays -> planningDay
+    }
+
+    planningDay : PlanningDay
+    interval : Timeslot
+}
+
+pattern roomDaySlotTuple {
+    booking : AudiologyBooking {
+        -rooms -> room
+        -days -> planningDay
+        -timeslots -> interval
+    }
+
+    room : Room {
+        -openDays -> planningDay
+    }
+
+    planningDay : PlanningDay
+    interval : Timeslot
+}
+
+pattern staffWeekTuple {
+    booking : AudiologyBooking {
+        -staff -> staffMember
+        -weeks -> planningWeek
+    }
+
+    staffMember : StaffMember
+    planningWeek : PlanningWeek
+}
+
+
+// Binary mapping variables.
+mapping assignAppt to assignAppointment;
+
+// y(staff, room, day)
+mapping roomUsedByStaff to staffRoomDayTuple;
+
+
+// Hard constraints.
+
+// Every appointment request is scheduled exactly once.
+constraint with requestTuple {
+    mappings.assignAppt->filter(
+        element.nodes.request == context.nodes.request)->sum(element.value)== 1
+}
+
+// A staff member covers at most one appointment in each 15-minute interval.
+constraint with staffDaySlotTuple {
+    mappings.assignAppt->filter(
+        element.nodes.staffMember == context.nodes.staffMember
+        & element.nodes.planningDay == context.nodes.planningDay
+        & element.nodes.startSlot.startIndex
+            <= context.nodes.interval.startIndex
+        & context.nodes.interval.startIndex
+            < element.nodes.startSlot.startIndex
+                + element.nodes.request.durationSlots
+    )->sum(element.value)
+    <= 1
+}
+
+// A room contains at most one appointment in each 15-minute interval.
+constraint with roomDaySlotTuple {
+    mappings.assignAppt->filter(
+        element.nodes.room == context.nodes.room
+        & element.nodes.planningDay == context.nodes.planningDay
+        & element.nodes.startSlot.startIndex
+            <= context.nodes.interval.startIndex
+        & context.nodes.interval.startIndex
+            < element.nodes.startSlot.startIndex
+                + element.nodes.request.durationSlots
+    )->sum(element.value)
+    <= 1
+}
+
+// roomUsedByStaff is 1 exactly when this staff/room/day tuple is used.
+constraint with roomUsedByStaff {
+    mappings.assignAppt->filter(
+        element.nodes.staffMember == context.nodes.staffMember
+        & element.nodes.room == context.nodes.room
+        & element.nodes.planningDay == context.nodes.planningDay
+    )->sum(element.value)
+    >= context.value
+
+    &
+
+    mappings.assignAppt->filter(
+        element.nodes.staffMember == context.nodes.staffMember
+        & element.nodes.room == context.nodes.room
+        & element.nodes.planningDay == context.nodes.planningDay
+    )->sum(element.value)
+    <= 100 * context.value
+}
+
+// A staff member uses at most one room during one planning day.
+constraint with staffDayTuple {
+    mappings.roomUsedByStaff->filter(
+        element.nodes.staffMember == context.nodes.staffMember
+        & element.nodes.planningDay == context.nodes.planningDay
+    )->sum(element.value)
+    <= 1
+}
+
+// Weekly patient-facing duration may not exceed StaffMember.weeklyHours.
+constraint with staffWeekTuple {
+    mappings.assignAppt->filter(
+        element.nodes.staffMember == context.nodes.staffMember
+        & element.nodes.planningWeek == context.nodes.planningWeek
+    )->sum(
+        element.nodes.request.durationSlots
+        * 15
+        * element.value
+    )
+    <= context.nodes.staffMember.weeklyHours * 60
+}
+
+
+// Objective: minimise total scheduling delay.
+function delayCostV2 with assignAppt {
+    (context.nodes.planningDay.dayIndex - context.nodes.request.idealDayIndex)
+    * context.value
+}
+
+objective : min {
+    functions.delayCostV2
+}

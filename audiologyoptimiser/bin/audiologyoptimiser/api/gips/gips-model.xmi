@@ -1,0 +1,700 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<GipsIntermediate:GipsIntermediateModel xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:GipsIntermediate="platform:/resource/org.emoflon.gips.intermediate/model/GipsIntermediate.ecore" xmlns:IBeXPatternModel="platform:/resource/org.emoflon.ibex.patternmodel/model/IBeXPatternModel.ecore" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" xsi:schemaLocation="http://www.eclipse.org/emf/2002/Ecore java://org.eclipse.emf.ecore.EcorePackage" name="Model" requiredPatterns="//@ibexModel/@patternSet/@contextPatterns.5 //@ibexModel/@patternSet/@contextPatterns.0 //@ibexModel/@patternSet/@contextPatterns.3 //@ibexModel/@patternSet/@contextPatterns.6 //@ibexModel/@patternSet/@contextPatterns.1 //@ibexModel/@patternSet/@contextPatterns.4 //@ibexModel/@patternSet/@contextPatterns.2" requiredRules="//@ibexModel/@ruleSet/@rules.0">
+  <ibexModel xmi:type="IBeXPatternModel:IBeXModel">
+    <patternSet xmi:type="IBeXPatternModel:IBeXPatternSet">
+      <contextPatterns xmi:type="IBeXPatternModel:IBeXContextPattern" name="assignAppointment" documentation="One match represents one locally feasible appointment assignment." localEdges="//@ibexModel/@edgeSet/@edges.9 //@ibexModel/@edgeSet/@edges.27 //@ibexModel/@edgeSet/@edges.17 //@ibexModel/@edgeSet/@edges.20 //@ibexModel/@edgeSet/@edges.24 //@ibexModel/@edgeSet/@edges.14 //@ibexModel/@edgeSet/@edges.25 //@ibexModel/@edgeSet/@edges.30" signatureNodes="//@ibexModel/@nodeSet/@nodes.2 //@ibexModel/@nodeSet/@nodes.11 //@ibexModel/@nodeSet/@nodes.15 //@ibexModel/@nodeSet/@nodes.17 //@ibexModel/@nodeSet/@nodes.20 //@ibexModel/@nodeSet/@nodes.23 //@ibexModel/@nodeSet/@nodes.27">
+        <attributeConstraint xmi:type="IBeXPatternModel:IBeXAttributeConstraint" relation="GREATER">
+          <lhs xmi:type="IBeXPatternModel:IBeXAttributeExpression" node="//@ibexModel/@nodeSet/@nodes.17">
+            <attribute xmi:type="ecore:EAttribute" href="platform:/resource/audiologymodel/model/audiologymodel.ecore#//AppointmentRequest/durationSlots"/>
+          </lhs>
+          <rhs xmi:type="IBeXPatternModel:IBeXConstant" value="ACED0005737200116A6176612E6C616E672E496E746567657212E2A0A4F781873802000149000576616C7565787200106A6176612E6C616E672E4E756D62657286AC951D0B94E08B020000787000000000" stringValue="0"/>
+        </attributeConstraint>
+        <attributeConstraint xmi:type="IBeXPatternModel:IBeXAttributeConstraint">
+          <lhs xmi:type="IBeXPatternModel:IBeXAttributeExpression" node="//@ibexModel/@nodeSet/@nodes.23">
+            <attribute xmi:type="ecore:EAttribute" href="platform:/resource/audiologymodel/model/audiologymodel.ecore#//StaffMember/band"/>
+          </lhs>
+          <rhs xmi:type="IBeXPatternModel:IBeXAttributeExpression" node="//@ibexModel/@nodeSet/@nodes.17">
+            <attribute xmi:type="ecore:EAttribute" href="platform:/resource/audiologymodel/model/audiologymodel.ecore#//AppointmentRequest/staffBandRequirement"/>
+          </rhs>
+        </attributeConstraint>
+        <attributeConstraint xmi:type="IBeXPatternModel:IBeXAttributeConstraint" relation="EQUAL">
+          <lhs xmi:type="IBeXPatternModel:IBeXAttributeExpression" node="//@ibexModel/@nodeSet/@nodes.23">
+            <attribute xmi:type="ecore:EAttribute" href="platform:/resource/audiologymodel/model/audiologymodel.ecore#//StaffMember/artsFlag"/>
+          </lhs>
+          <rhs xmi:type="IBeXPatternModel:IBeXAttributeExpression" node="//@ibexModel/@nodeSet/@nodes.17">
+            <attribute xmi:type="ecore:EAttribute" href="platform:/resource/audiologymodel/model/audiologymodel.ecore#//AppointmentRequest/artsFlag"/>
+          </rhs>
+        </attributeConstraint>
+        <attributeConstraint xmi:type="IBeXPatternModel:IBeXAttributeConstraint" relation="EQUAL">
+          <lhs xmi:type="IBeXPatternModel:IBeXAttributeExpression" node="//@ibexModel/@nodeSet/@nodes.20">
+            <attribute xmi:type="ecore:EAttribute" href="platform:/resource/audiologymodel/model/audiologymodel.ecore#//Room/roomType"/>
+          </lhs>
+          <rhs xmi:type="IBeXPatternModel:IBeXAttributeExpression" node="//@ibexModel/@nodeSet/@nodes.17">
+            <attribute xmi:type="ecore:EAttribute" href="platform:/resource/audiologymodel/model/audiologymodel.ecore#//AppointmentRequest/roomRequirement"/>
+          </rhs>
+        </attributeConstraint>
+        <attributeConstraint xmi:type="IBeXPatternModel:IBeXAttributeConstraint">
+          <lhs xmi:type="IBeXPatternModel:IBeXAttributeExpression" node="//@ibexModel/@nodeSet/@nodes.11">
+            <attribute xmi:type="ecore:EAttribute" href="platform:/resource/audiologymodel/model/audiologymodel.ecore#//PlanningDay/dayIndex"/>
+          </lhs>
+          <rhs xmi:type="IBeXPatternModel:IBeXAttributeExpression" node="//@ibexModel/@nodeSet/@nodes.17">
+            <attribute xmi:type="ecore:EAttribute" href="platform:/resource/audiologymodel/model/audiologymodel.ecore#//AppointmentRequest/bookFromDayIndex"/>
+          </rhs>
+        </attributeConstraint>
+        <attributeConstraint xmi:type="IBeXPatternModel:IBeXAttributeConstraint">
+          <lhs xmi:type="IBeXPatternModel:IBeXAttributeExpression" node="//@ibexModel/@nodeSet/@nodes.27">
+            <attribute xmi:type="ecore:EAttribute" href="platform:/resource/audiologymodel/model/audiologymodel.ecore#//Timeslot/startIndex"/>
+          </lhs>
+          <rhs xmi:type="IBeXPatternModel:IBeXAttributeExpression" node="//@ibexModel/@nodeSet/@nodes.23">
+            <attribute xmi:type="ecore:EAttribute" href="platform:/resource/audiologymodel/model/audiologymodel.ecore#//StaffMember/availableFromSlot"/>
+          </rhs>
+        </attributeConstraint>
+        <attributeConstraint xmi:type="IBeXPatternModel:IBeXAttributeConstraint">
+          <lhs xmi:type="IBeXPatternModel:IBeXAttributeExpression" node="//@ibexModel/@nodeSet/@nodes.27">
+            <attribute xmi:type="ecore:EAttribute" href="platform:/resource/audiologymodel/model/audiologymodel.ecore#//Timeslot/startIndex"/>
+          </lhs>
+          <rhs xmi:type="IBeXPatternModel:IBeXAttributeExpression" node="//@ibexModel/@nodeSet/@nodes.20">
+            <attribute xmi:type="ecore:EAttribute" href="platform:/resource/audiologymodel/model/audiologymodel.ecore#//Room/availableFromSlot"/>
+          </rhs>
+        </attributeConstraint>
+        <arithmeticConstraints xmi:type="IBeXPatternModel:IBeXArithmeticConstraint" relation="SMALLER_OR_EQUAL">
+          <lhs xmi:type="IBeXPatternModel:IBeXBinaryExpression">
+            <left xmi:type="IBeXPatternModel:IBeXArithmeticAttribute" name="startSlot">
+              <type xmi:type="ecore:EClass" href="platform:/resource/audiologymodel/model/audiologymodel.ecore#//Timeslot"/>
+              <attribute xmi:type="ecore:EAttribute" href="platform:/resource/audiologymodel/model/audiologymodel.ecore#//Timeslot/startIndex"/>
+            </left>
+            <right xmi:type="IBeXPatternModel:IBeXArithmeticAttribute" name="request">
+              <type xmi:type="ecore:EClass" href="platform:/resource/audiologymodel/model/audiologymodel.ecore#//AppointmentRequest"/>
+              <attribute xmi:type="ecore:EAttribute" href="platform:/resource/audiologymodel/model/audiologymodel.ecore#//AppointmentRequest/durationSlots"/>
+            </right>
+          </lhs>
+          <rhs xmi:type="IBeXPatternModel:IBeXArithmeticAttribute" name="staffMember">
+            <type xmi:type="ecore:EClass" href="platform:/resource/audiologymodel/model/audiologymodel.ecore#//StaffMember"/>
+            <attribute xmi:type="ecore:EAttribute" href="platform:/resource/audiologymodel/model/audiologymodel.ecore#//StaffMember/availableToSlot"/>
+          </rhs>
+        </arithmeticConstraints>
+        <arithmeticConstraints xmi:type="IBeXPatternModel:IBeXArithmeticConstraint" relation="SMALLER_OR_EQUAL">
+          <lhs xmi:type="IBeXPatternModel:IBeXBinaryExpression">
+            <left xmi:type="IBeXPatternModel:IBeXArithmeticAttribute" name="startSlot">
+              <type xmi:type="ecore:EClass" href="platform:/resource/audiologymodel/model/audiologymodel.ecore#//Timeslot"/>
+              <attribute xmi:type="ecore:EAttribute" href="platform:/resource/audiologymodel/model/audiologymodel.ecore#//Timeslot/startIndex"/>
+            </left>
+            <right xmi:type="IBeXPatternModel:IBeXArithmeticAttribute" name="request">
+              <type xmi:type="ecore:EClass" href="platform:/resource/audiologymodel/model/audiologymodel.ecore#//AppointmentRequest"/>
+              <attribute xmi:type="ecore:EAttribute" href="platform:/resource/audiologymodel/model/audiologymodel.ecore#//AppointmentRequest/durationSlots"/>
+            </right>
+          </lhs>
+          <rhs xmi:type="IBeXPatternModel:IBeXArithmeticAttribute" name="room">
+            <type xmi:type="ecore:EClass" href="platform:/resource/audiologymodel/model/audiologymodel.ecore#//Room"/>
+            <attribute xmi:type="ecore:EAttribute" href="platform:/resource/audiologymodel/model/audiologymodel.ecore#//Room/availableToSlot"/>
+          </rhs>
+        </arithmeticConstraints>
+        <arithmeticConstraints xmi:type="IBeXPatternModel:IBeXArithmeticConstraint" relation="SMALLER_OR_EQUAL">
+          <lhs xmi:type="IBeXPatternModel:IBeXBinaryExpression">
+            <left xmi:type="IBeXPatternModel:IBeXArithmeticAttribute" name="startSlot">
+              <type xmi:type="ecore:EClass" href="platform:/resource/audiologymodel/model/audiologymodel.ecore#//Timeslot"/>
+              <attribute xmi:type="ecore:EAttribute" href="platform:/resource/audiologymodel/model/audiologymodel.ecore#//Timeslot/startIndex"/>
+            </left>
+            <right xmi:type="IBeXPatternModel:IBeXArithmeticAttribute" name="request">
+              <type xmi:type="ecore:EClass" href="platform:/resource/audiologymodel/model/audiologymodel.ecore#//AppointmentRequest"/>
+              <attribute xmi:type="ecore:EAttribute" href="platform:/resource/audiologymodel/model/audiologymodel.ecore#//AppointmentRequest/durationSlots"/>
+            </right>
+          </lhs>
+          <rhs xmi:type="IBeXPatternModel:IBeXArithmeticValueLiteral" value="32.0"/>
+        </arithmeticConstraints>
+      </contextPatterns>
+      <contextPatterns xmi:type="IBeXPatternModel:IBeXContextPattern" name="requestTuple" documentation="Context patterns used by the global constraints." localEdges="//@ibexModel/@edgeSet/@edges.15" signatureNodes="//@ibexModel/@nodeSet/@nodes.5 //@ibexModel/@nodeSet/@nodes.18"/>
+      <contextPatterns xmi:type="IBeXPatternModel:IBeXContextPattern" name="roomDaySlotTuple" documentation="" localEdges="//@ibexModel/@edgeSet/@edges.12 //@ibexModel/@edgeSet/@edges.28 //@ibexModel/@edgeSet/@edges.18 //@ibexModel/@edgeSet/@edges.7" signatureNodes="//@ibexModel/@nodeSet/@nodes.7 //@ibexModel/@nodeSet/@nodes.9 //@ibexModel/@nodeSet/@nodes.14 //@ibexModel/@nodeSet/@nodes.21"/>
+      <contextPatterns xmi:type="IBeXPatternModel:IBeXContextPattern" name="staffDaySlotTuple" documentation="" localEdges="//@ibexModel/@edgeSet/@edges.10 //@ibexModel/@edgeSet/@edges.21 //@ibexModel/@edgeSet/@edges.6 //@ibexModel/@edgeSet/@edges.31" signatureNodes="//@ibexModel/@nodeSet/@nodes.3 //@ibexModel/@nodeSet/@nodes.8 //@ibexModel/@nodeSet/@nodes.12 //@ibexModel/@nodeSet/@nodes.24"/>
+      <contextPatterns xmi:type="IBeXPatternModel:IBeXContextPattern" name="staffDayTuple" documentation="" localEdges="//@ibexModel/@edgeSet/@edges.11 //@ibexModel/@edgeSet/@edges.23 //@ibexModel/@edgeSet/@edges.32" signatureNodes="//@ibexModel/@nodeSet/@nodes.6 //@ibexModel/@nodeSet/@nodes.13 //@ibexModel/@nodeSet/@nodes.26"/>
+      <contextPatterns xmi:type="IBeXPatternModel:IBeXContextPattern" name="staffRoomDayTuple" documentation="" localEdges="//@ibexModel/@edgeSet/@edges.8 //@ibexModel/@edgeSet/@edges.26 //@ibexModel/@edgeSet/@edges.16 //@ibexModel/@edgeSet/@edges.19 //@ibexModel/@edgeSet/@edges.29" signatureNodes="//@ibexModel/@nodeSet/@nodes.1 //@ibexModel/@nodeSet/@nodes.10 //@ibexModel/@nodeSet/@nodes.19 //@ibexModel/@nodeSet/@nodes.22"/>
+      <contextPatterns xmi:type="IBeXPatternModel:IBeXContextPattern" name="staffWeekTuple" documentation="" localEdges="//@ibexModel/@edgeSet/@edges.22 //@ibexModel/@edgeSet/@edges.13" signatureNodes="//@ibexModel/@nodeSet/@nodes.4 //@ibexModel/@nodeSet/@nodes.16 //@ibexModel/@nodeSet/@nodes.25"/>
+    </patternSet>
+    <ruleSet xmi:type="IBeXPatternModel:IBeXRuleSet">
+      <rules xmi:type="IBeXPatternModel:IBeXRule" name="assignAppointment" documentation="One match represents one locally feasible appointment assignment." lhs="//@ibexModel/@patternSet/@contextPatterns.0" arithmeticConstraints="//@ibexModel/@patternSet/@contextPatterns.0/@arithmeticConstraints.0 //@ibexModel/@patternSet/@contextPatterns.0/@arithmeticConstraints.1 //@ibexModel/@patternSet/@contextPatterns.0/@arithmeticConstraints.2">
+        <rhs xmi:type="IBeXPatternModel:IBeXContextPattern" name="assignAppointment_rhs" localEdges="//@ibexModel/@edgeSet/@edges.9 //@ibexModel/@edgeSet/@edges.27 //@ibexModel/@edgeSet/@edges.17 //@ibexModel/@edgeSet/@edges.20 //@ibexModel/@edgeSet/@edges.24 //@ibexModel/@edgeSet/@edges.14 //@ibexModel/@edgeSet/@edges.25 //@ibexModel/@edgeSet/@edges.30 //@ibexModel/@edgeSet/@edges.5 //@ibexModel/@edgeSet/@edges.0 //@ibexModel/@edgeSet/@edges.1 //@ibexModel/@edgeSet/@edges.2 //@ibexModel/@edgeSet/@edges.3 //@ibexModel/@edgeSet/@edges.4" signatureNodes="//@ibexModel/@nodeSet/@nodes.2 //@ibexModel/@nodeSet/@nodes.11 //@ibexModel/@nodeSet/@nodes.15 //@ibexModel/@nodeSet/@nodes.17 //@ibexModel/@nodeSet/@nodes.20 //@ibexModel/@nodeSet/@nodes.23 //@ibexModel/@nodeSet/@nodes.27 //@ibexModel/@nodeSet/@nodes.0"/>
+        <create xmi:type="IBeXPatternModel:IBeXCreatePattern" name="assignAppointment" createdEdges="//@ibexModel/@edgeSet/@edges.5 //@ibexModel/@edgeSet/@edges.0 //@ibexModel/@edgeSet/@edges.1 //@ibexModel/@edgeSet/@edges.2 //@ibexModel/@edgeSet/@edges.3 //@ibexModel/@edgeSet/@edges.4" createdNodes="//@ibexModel/@nodeSet/@nodes.0"/>
+        <delete xmi:type="IBeXPatternModel:IBeXDeletePattern" name="assignAppointment"/>
+      </rules>
+    </ruleSet>
+    <nodeSet xmi:type="IBeXPatternModel:IBeXNodeSet">
+      <nodes xmi:type="IBeXPatternModel:IBeXNode" name="assignment" incomingEdges="//@ibexModel/@edgeSet/@edges.5" outgoingEdges="//@ibexModel/@edgeSet/@edges.0 //@ibexModel/@edgeSet/@edges.1 //@ibexModel/@edgeSet/@edges.2 //@ibexModel/@edgeSet/@edges.3 //@ibexModel/@edgeSet/@edges.4">
+        <type xmi:type="ecore:EClass" href="platform:/resource/audiologymodel/model/audiologymodel.ecore#//AppointmentAssignment"/>
+      </nodes>
+      <nodes xmi:type="IBeXPatternModel:IBeXNode" name="booking" outgoingEdges="//@ibexModel/@edgeSet/@edges.8 //@ibexModel/@edgeSet/@edges.16 //@ibexModel/@edgeSet/@edges.19">
+        <type xmi:type="ecore:EClass" href="platform:/resource/audiologymodel/model/audiologymodel.ecore#//AudiologyBooking"/>
+      </nodes>
+      <nodes xmi:type="IBeXPatternModel:IBeXNode" name="booking" outgoingEdges="//@ibexModel/@edgeSet/@edges.9 //@ibexModel/@edgeSet/@edges.17 //@ibexModel/@edgeSet/@edges.20 //@ibexModel/@edgeSet/@edges.24 //@ibexModel/@edgeSet/@edges.14 //@ibexModel/@edgeSet/@edges.5">
+        <type xmi:type="ecore:EClass" href="platform:/resource/audiologymodel/model/audiologymodel.ecore#//AudiologyBooking"/>
+      </nodes>
+      <nodes xmi:type="IBeXPatternModel:IBeXNode" name="booking" outgoingEdges="//@ibexModel/@edgeSet/@edges.10 //@ibexModel/@edgeSet/@edges.21 //@ibexModel/@edgeSet/@edges.6">
+        <type xmi:type="ecore:EClass" href="platform:/resource/audiologymodel/model/audiologymodel.ecore#//AudiologyBooking"/>
+      </nodes>
+      <nodes xmi:type="IBeXPatternModel:IBeXNode" name="booking" outgoingEdges="//@ibexModel/@edgeSet/@edges.22 //@ibexModel/@edgeSet/@edges.13">
+        <type xmi:type="ecore:EClass" href="platform:/resource/audiologymodel/model/audiologymodel.ecore#//AudiologyBooking"/>
+      </nodes>
+      <nodes xmi:type="IBeXPatternModel:IBeXNode" name="booking" outgoingEdges="//@ibexModel/@edgeSet/@edges.15">
+        <type xmi:type="ecore:EClass" href="platform:/resource/audiologymodel/model/audiologymodel.ecore#//AudiologyBooking"/>
+      </nodes>
+      <nodes xmi:type="IBeXPatternModel:IBeXNode" name="booking" outgoingEdges="//@ibexModel/@edgeSet/@edges.11 //@ibexModel/@edgeSet/@edges.23">
+        <type xmi:type="ecore:EClass" href="platform:/resource/audiologymodel/model/audiologymodel.ecore#//AudiologyBooking"/>
+      </nodes>
+      <nodes xmi:type="IBeXPatternModel:IBeXNode" name="booking" outgoingEdges="//@ibexModel/@edgeSet/@edges.12 //@ibexModel/@edgeSet/@edges.18 //@ibexModel/@edgeSet/@edges.7">
+        <type xmi:type="ecore:EClass" href="platform:/resource/audiologymodel/model/audiologymodel.ecore#//AudiologyBooking"/>
+      </nodes>
+      <nodes xmi:type="IBeXPatternModel:IBeXNode" name="interval" incomingEdges="//@ibexModel/@edgeSet/@edges.6">
+        <type xmi:type="ecore:EClass" href="platform:/resource/audiologymodel/model/audiologymodel.ecore#//Timeslot"/>
+      </nodes>
+      <nodes xmi:type="IBeXPatternModel:IBeXNode" name="interval" incomingEdges="//@ibexModel/@edgeSet/@edges.7">
+        <type xmi:type="ecore:EClass" href="platform:/resource/audiologymodel/model/audiologymodel.ecore#//Timeslot"/>
+      </nodes>
+      <nodes xmi:type="IBeXPatternModel:IBeXNode" name="planningDay" incomingEdges="//@ibexModel/@edgeSet/@edges.8 //@ibexModel/@edgeSet/@edges.26 //@ibexModel/@edgeSet/@edges.29">
+        <type xmi:type="ecore:EClass" href="platform:/resource/audiologymodel/model/audiologymodel.ecore#//PlanningDay"/>
+      </nodes>
+      <nodes xmi:type="IBeXPatternModel:IBeXNode" name="planningDay" incomingEdges="//@ibexModel/@edgeSet/@edges.9 //@ibexModel/@edgeSet/@edges.27 //@ibexModel/@edgeSet/@edges.30 //@ibexModel/@edgeSet/@edges.0" outgoingEdges="//@ibexModel/@edgeSet/@edges.25">
+        <type xmi:type="ecore:EClass" href="platform:/resource/audiologymodel/model/audiologymodel.ecore#//PlanningDay"/>
+      </nodes>
+      <nodes xmi:type="IBeXPatternModel:IBeXNode" name="planningDay" incomingEdges="//@ibexModel/@edgeSet/@edges.10 //@ibexModel/@edgeSet/@edges.31">
+        <type xmi:type="ecore:EClass" href="platform:/resource/audiologymodel/model/audiologymodel.ecore#//PlanningDay"/>
+      </nodes>
+      <nodes xmi:type="IBeXPatternModel:IBeXNode" name="planningDay" incomingEdges="//@ibexModel/@edgeSet/@edges.11 //@ibexModel/@edgeSet/@edges.32">
+        <type xmi:type="ecore:EClass" href="platform:/resource/audiologymodel/model/audiologymodel.ecore#//PlanningDay"/>
+      </nodes>
+      <nodes xmi:type="IBeXPatternModel:IBeXNode" name="planningDay" incomingEdges="//@ibexModel/@edgeSet/@edges.12 //@ibexModel/@edgeSet/@edges.28">
+        <type xmi:type="ecore:EClass" href="platform:/resource/audiologymodel/model/audiologymodel.ecore#//PlanningDay"/>
+      </nodes>
+      <nodes xmi:type="IBeXPatternModel:IBeXNode" name="planningWeek" incomingEdges="//@ibexModel/@edgeSet/@edges.25">
+        <type xmi:type="ecore:EClass" href="platform:/resource/audiologymodel/model/audiologymodel.ecore#//PlanningWeek"/>
+      </nodes>
+      <nodes xmi:type="IBeXPatternModel:IBeXNode" name="planningWeek" incomingEdges="//@ibexModel/@edgeSet/@edges.13">
+        <type xmi:type="ecore:EClass" href="platform:/resource/audiologymodel/model/audiologymodel.ecore#//PlanningWeek"/>
+      </nodes>
+      <nodes xmi:type="IBeXPatternModel:IBeXNode" name="request" incomingEdges="//@ibexModel/@edgeSet/@edges.14 //@ibexModel/@edgeSet/@edges.1">
+        <type xmi:type="ecore:EClass" href="platform:/resource/audiologymodel/model/audiologymodel.ecore#//AppointmentRequest"/>
+      </nodes>
+      <nodes xmi:type="IBeXPatternModel:IBeXNode" name="request" incomingEdges="//@ibexModel/@edgeSet/@edges.15">
+        <type xmi:type="ecore:EClass" href="platform:/resource/audiologymodel/model/audiologymodel.ecore#//AppointmentRequest"/>
+      </nodes>
+      <nodes xmi:type="IBeXPatternModel:IBeXNode" name="room" incomingEdges="//@ibexModel/@edgeSet/@edges.16" outgoingEdges="//@ibexModel/@edgeSet/@edges.26">
+        <type xmi:type="ecore:EClass" href="platform:/resource/audiologymodel/model/audiologymodel.ecore#//Room"/>
+      </nodes>
+      <nodes xmi:type="IBeXPatternModel:IBeXNode" name="room" incomingEdges="//@ibexModel/@edgeSet/@edges.17 //@ibexModel/@edgeSet/@edges.2" outgoingEdges="//@ibexModel/@edgeSet/@edges.27">
+        <type xmi:type="ecore:EClass" href="platform:/resource/audiologymodel/model/audiologymodel.ecore#//Room"/>
+      </nodes>
+      <nodes xmi:type="IBeXPatternModel:IBeXNode" name="room" incomingEdges="//@ibexModel/@edgeSet/@edges.18" outgoingEdges="//@ibexModel/@edgeSet/@edges.28">
+        <type xmi:type="ecore:EClass" href="platform:/resource/audiologymodel/model/audiologymodel.ecore#//Room"/>
+      </nodes>
+      <nodes xmi:type="IBeXPatternModel:IBeXNode" name="staffMember" incomingEdges="//@ibexModel/@edgeSet/@edges.19" outgoingEdges="//@ibexModel/@edgeSet/@edges.29">
+        <type xmi:type="ecore:EClass" href="platform:/resource/audiologymodel/model/audiologymodel.ecore#//StaffMember"/>
+      </nodes>
+      <nodes xmi:type="IBeXPatternModel:IBeXNode" name="staffMember" incomingEdges="//@ibexModel/@edgeSet/@edges.20 //@ibexModel/@edgeSet/@edges.3" outgoingEdges="//@ibexModel/@edgeSet/@edges.30">
+        <type xmi:type="ecore:EClass" href="platform:/resource/audiologymodel/model/audiologymodel.ecore#//StaffMember"/>
+      </nodes>
+      <nodes xmi:type="IBeXPatternModel:IBeXNode" name="staffMember" incomingEdges="//@ibexModel/@edgeSet/@edges.21" outgoingEdges="//@ibexModel/@edgeSet/@edges.31">
+        <type xmi:type="ecore:EClass" href="platform:/resource/audiologymodel/model/audiologymodel.ecore#//StaffMember"/>
+      </nodes>
+      <nodes xmi:type="IBeXPatternModel:IBeXNode" name="staffMember" incomingEdges="//@ibexModel/@edgeSet/@edges.22">
+        <type xmi:type="ecore:EClass" href="platform:/resource/audiologymodel/model/audiologymodel.ecore#//StaffMember"/>
+      </nodes>
+      <nodes xmi:type="IBeXPatternModel:IBeXNode" name="staffMember" incomingEdges="//@ibexModel/@edgeSet/@edges.23" outgoingEdges="//@ibexModel/@edgeSet/@edges.32">
+        <type xmi:type="ecore:EClass" href="platform:/resource/audiologymodel/model/audiologymodel.ecore#//StaffMember"/>
+      </nodes>
+      <nodes xmi:type="IBeXPatternModel:IBeXNode" name="startSlot" incomingEdges="//@ibexModel/@edgeSet/@edges.24 //@ibexModel/@edgeSet/@edges.4">
+        <type xmi:type="ecore:EClass" href="platform:/resource/audiologymodel/model/audiologymodel.ecore#//Timeslot"/>
+      </nodes>
+    </nodeSet>
+    <edgeSet xmi:type="IBeXPatternModel:IBeXEdgeSet">
+      <edges xmi:type="IBeXPatternModel:IBeXEdge" name="assignment->planningDay" sourceNode="//@ibexModel/@nodeSet/@nodes.0" targetNode="//@ibexModel/@nodeSet/@nodes.11">
+        <type xmi:type="ecore:EReference" href="platform:/resource/audiologymodel/model/audiologymodel.ecore#//AppointmentAssignment/planningDay"/>
+      </edges>
+      <edges xmi:type="IBeXPatternModel:IBeXEdge" name="assignment->request" sourceNode="//@ibexModel/@nodeSet/@nodes.0" targetNode="//@ibexModel/@nodeSet/@nodes.17">
+        <type xmi:type="ecore:EReference" href="platform:/resource/audiologymodel/model/audiologymodel.ecore#//AppointmentAssignment/request"/>
+      </edges>
+      <edges xmi:type="IBeXPatternModel:IBeXEdge" name="assignment->room" sourceNode="//@ibexModel/@nodeSet/@nodes.0" targetNode="//@ibexModel/@nodeSet/@nodes.20">
+        <type xmi:type="ecore:EReference" href="platform:/resource/audiologymodel/model/audiologymodel.ecore#//AppointmentAssignment/room"/>
+      </edges>
+      <edges xmi:type="IBeXPatternModel:IBeXEdge" name="assignment->staffMember" sourceNode="//@ibexModel/@nodeSet/@nodes.0" targetNode="//@ibexModel/@nodeSet/@nodes.23">
+        <type xmi:type="ecore:EReference" href="platform:/resource/audiologymodel/model/audiologymodel.ecore#//AppointmentAssignment/staffMember"/>
+      </edges>
+      <edges xmi:type="IBeXPatternModel:IBeXEdge" name="assignment->startSlot" sourceNode="//@ibexModel/@nodeSet/@nodes.0" targetNode="//@ibexModel/@nodeSet/@nodes.27">
+        <type xmi:type="ecore:EReference" href="platform:/resource/audiologymodel/model/audiologymodel.ecore#//AppointmentAssignment/startSlot"/>
+      </edges>
+      <edges xmi:type="IBeXPatternModel:IBeXEdge" name="booking->assignment" sourceNode="//@ibexModel/@nodeSet/@nodes.2" targetNode="//@ibexModel/@nodeSet/@nodes.0">
+        <type xmi:type="ecore:EReference" href="platform:/resource/audiologymodel/model/audiologymodel.ecore#//AudiologyBooking/appointmentAssignments"/>
+      </edges>
+      <edges xmi:type="IBeXPatternModel:IBeXEdge" name="booking->interval" sourceNode="//@ibexModel/@nodeSet/@nodes.3" targetNode="//@ibexModel/@nodeSet/@nodes.8">
+        <type xmi:type="ecore:EReference" href="platform:/resource/audiologymodel/model/audiologymodel.ecore#//AudiologyBooking/timeslots"/>
+      </edges>
+      <edges xmi:type="IBeXPatternModel:IBeXEdge" name="booking->interval" sourceNode="//@ibexModel/@nodeSet/@nodes.7" targetNode="//@ibexModel/@nodeSet/@nodes.9">
+        <type xmi:type="ecore:EReference" href="platform:/resource/audiologymodel/model/audiologymodel.ecore#//AudiologyBooking/timeslots"/>
+      </edges>
+      <edges xmi:type="IBeXPatternModel:IBeXEdge" name="booking->planningDay" sourceNode="//@ibexModel/@nodeSet/@nodes.1" targetNode="//@ibexModel/@nodeSet/@nodes.10">
+        <type xmi:type="ecore:EReference" href="platform:/resource/audiologymodel/model/audiologymodel.ecore#//AudiologyBooking/days"/>
+      </edges>
+      <edges xmi:type="IBeXPatternModel:IBeXEdge" name="booking->planningDay" sourceNode="//@ibexModel/@nodeSet/@nodes.2" targetNode="//@ibexModel/@nodeSet/@nodes.11">
+        <type xmi:type="ecore:EReference" href="platform:/resource/audiologymodel/model/audiologymodel.ecore#//AudiologyBooking/days"/>
+      </edges>
+      <edges xmi:type="IBeXPatternModel:IBeXEdge" name="booking->planningDay" sourceNode="//@ibexModel/@nodeSet/@nodes.3" targetNode="//@ibexModel/@nodeSet/@nodes.12">
+        <type xmi:type="ecore:EReference" href="platform:/resource/audiologymodel/model/audiologymodel.ecore#//AudiologyBooking/days"/>
+      </edges>
+      <edges xmi:type="IBeXPatternModel:IBeXEdge" name="booking->planningDay" sourceNode="//@ibexModel/@nodeSet/@nodes.6" targetNode="//@ibexModel/@nodeSet/@nodes.13">
+        <type xmi:type="ecore:EReference" href="platform:/resource/audiologymodel/model/audiologymodel.ecore#//AudiologyBooking/days"/>
+      </edges>
+      <edges xmi:type="IBeXPatternModel:IBeXEdge" name="booking->planningDay" sourceNode="//@ibexModel/@nodeSet/@nodes.7" targetNode="//@ibexModel/@nodeSet/@nodes.14">
+        <type xmi:type="ecore:EReference" href="platform:/resource/audiologymodel/model/audiologymodel.ecore#//AudiologyBooking/days"/>
+      </edges>
+      <edges xmi:type="IBeXPatternModel:IBeXEdge" name="booking->planningWeek" sourceNode="//@ibexModel/@nodeSet/@nodes.4" targetNode="//@ibexModel/@nodeSet/@nodes.16">
+        <type xmi:type="ecore:EReference" href="platform:/resource/audiologymodel/model/audiologymodel.ecore#//AudiologyBooking/weeks"/>
+      </edges>
+      <edges xmi:type="IBeXPatternModel:IBeXEdge" name="booking->request" sourceNode="//@ibexModel/@nodeSet/@nodes.2" targetNode="//@ibexModel/@nodeSet/@nodes.17">
+        <type xmi:type="ecore:EReference" href="platform:/resource/audiologymodel/model/audiologymodel.ecore#//AudiologyBooking/waitingList"/>
+      </edges>
+      <edges xmi:type="IBeXPatternModel:IBeXEdge" name="booking->request" sourceNode="//@ibexModel/@nodeSet/@nodes.5" targetNode="//@ibexModel/@nodeSet/@nodes.18">
+        <type xmi:type="ecore:EReference" href="platform:/resource/audiologymodel/model/audiologymodel.ecore#//AudiologyBooking/waitingList"/>
+      </edges>
+      <edges xmi:type="IBeXPatternModel:IBeXEdge" name="booking->room" sourceNode="//@ibexModel/@nodeSet/@nodes.1" targetNode="//@ibexModel/@nodeSet/@nodes.19">
+        <type xmi:type="ecore:EReference" href="platform:/resource/audiologymodel/model/audiologymodel.ecore#//AudiologyBooking/rooms"/>
+      </edges>
+      <edges xmi:type="IBeXPatternModel:IBeXEdge" name="booking->room" sourceNode="//@ibexModel/@nodeSet/@nodes.2" targetNode="//@ibexModel/@nodeSet/@nodes.20">
+        <type xmi:type="ecore:EReference" href="platform:/resource/audiologymodel/model/audiologymodel.ecore#//AudiologyBooking/rooms"/>
+      </edges>
+      <edges xmi:type="IBeXPatternModel:IBeXEdge" name="booking->room" sourceNode="//@ibexModel/@nodeSet/@nodes.7" targetNode="//@ibexModel/@nodeSet/@nodes.21">
+        <type xmi:type="ecore:EReference" href="platform:/resource/audiologymodel/model/audiologymodel.ecore#//AudiologyBooking/rooms"/>
+      </edges>
+      <edges xmi:type="IBeXPatternModel:IBeXEdge" name="booking->staffMember" sourceNode="//@ibexModel/@nodeSet/@nodes.1" targetNode="//@ibexModel/@nodeSet/@nodes.22">
+        <type xmi:type="ecore:EReference" href="platform:/resource/audiologymodel/model/audiologymodel.ecore#//AudiologyBooking/staff"/>
+      </edges>
+      <edges xmi:type="IBeXPatternModel:IBeXEdge" name="booking->staffMember" sourceNode="//@ibexModel/@nodeSet/@nodes.2" targetNode="//@ibexModel/@nodeSet/@nodes.23">
+        <type xmi:type="ecore:EReference" href="platform:/resource/audiologymodel/model/audiologymodel.ecore#//AudiologyBooking/staff"/>
+      </edges>
+      <edges xmi:type="IBeXPatternModel:IBeXEdge" name="booking->staffMember" sourceNode="//@ibexModel/@nodeSet/@nodes.3" targetNode="//@ibexModel/@nodeSet/@nodes.24">
+        <type xmi:type="ecore:EReference" href="platform:/resource/audiologymodel/model/audiologymodel.ecore#//AudiologyBooking/staff"/>
+      </edges>
+      <edges xmi:type="IBeXPatternModel:IBeXEdge" name="booking->staffMember" sourceNode="//@ibexModel/@nodeSet/@nodes.4" targetNode="//@ibexModel/@nodeSet/@nodes.25">
+        <type xmi:type="ecore:EReference" href="platform:/resource/audiologymodel/model/audiologymodel.ecore#//AudiologyBooking/staff"/>
+      </edges>
+      <edges xmi:type="IBeXPatternModel:IBeXEdge" name="booking->staffMember" sourceNode="//@ibexModel/@nodeSet/@nodes.6" targetNode="//@ibexModel/@nodeSet/@nodes.26">
+        <type xmi:type="ecore:EReference" href="platform:/resource/audiologymodel/model/audiologymodel.ecore#//AudiologyBooking/staff"/>
+      </edges>
+      <edges xmi:type="IBeXPatternModel:IBeXEdge" name="booking->startSlot" sourceNode="//@ibexModel/@nodeSet/@nodes.2" targetNode="//@ibexModel/@nodeSet/@nodes.27">
+        <type xmi:type="ecore:EReference" href="platform:/resource/audiologymodel/model/audiologymodel.ecore#//AudiologyBooking/timeslots"/>
+      </edges>
+      <edges xmi:type="IBeXPatternModel:IBeXEdge" name="planningDay->planningWeek" sourceNode="//@ibexModel/@nodeSet/@nodes.11" targetNode="//@ibexModel/@nodeSet/@nodes.15">
+        <type xmi:type="ecore:EReference" href="platform:/resource/audiologymodel/model/audiologymodel.ecore#//PlanningDay/week"/>
+      </edges>
+      <edges xmi:type="IBeXPatternModel:IBeXEdge" name="room->planningDay" sourceNode="//@ibexModel/@nodeSet/@nodes.19" targetNode="//@ibexModel/@nodeSet/@nodes.10">
+        <type xmi:type="ecore:EReference" href="platform:/resource/audiologymodel/model/audiologymodel.ecore#//Room/openDays"/>
+      </edges>
+      <edges xmi:type="IBeXPatternModel:IBeXEdge" name="room->planningDay" sourceNode="//@ibexModel/@nodeSet/@nodes.20" targetNode="//@ibexModel/@nodeSet/@nodes.11">
+        <type xmi:type="ecore:EReference" href="platform:/resource/audiologymodel/model/audiologymodel.ecore#//Room/openDays"/>
+      </edges>
+      <edges xmi:type="IBeXPatternModel:IBeXEdge" name="room->planningDay" sourceNode="//@ibexModel/@nodeSet/@nodes.21" targetNode="//@ibexModel/@nodeSet/@nodes.14">
+        <type xmi:type="ecore:EReference" href="platform:/resource/audiologymodel/model/audiologymodel.ecore#//Room/openDays"/>
+      </edges>
+      <edges xmi:type="IBeXPatternModel:IBeXEdge" name="staffMember->planningDay" sourceNode="//@ibexModel/@nodeSet/@nodes.22" targetNode="//@ibexModel/@nodeSet/@nodes.10">
+        <type xmi:type="ecore:EReference" href="platform:/resource/audiologymodel/model/audiologymodel.ecore#//StaffMember/workingDays"/>
+      </edges>
+      <edges xmi:type="IBeXPatternModel:IBeXEdge" name="staffMember->planningDay" sourceNode="//@ibexModel/@nodeSet/@nodes.23" targetNode="//@ibexModel/@nodeSet/@nodes.11">
+        <type xmi:type="ecore:EReference" href="platform:/resource/audiologymodel/model/audiologymodel.ecore#//StaffMember/workingDays"/>
+      </edges>
+      <edges xmi:type="IBeXPatternModel:IBeXEdge" name="staffMember->planningDay" sourceNode="//@ibexModel/@nodeSet/@nodes.24" targetNode="//@ibexModel/@nodeSet/@nodes.12">
+        <type xmi:type="ecore:EReference" href="platform:/resource/audiologymodel/model/audiologymodel.ecore#//StaffMember/workingDays"/>
+      </edges>
+      <edges xmi:type="IBeXPatternModel:IBeXEdge" name="staffMember->planningDay" sourceNode="//@ibexModel/@nodeSet/@nodes.26" targetNode="//@ibexModel/@nodeSet/@nodes.13">
+        <type xmi:type="ecore:EReference" href="platform:/resource/audiologymodel/model/audiologymodel.ecore#//StaffMember/workingDays"/>
+      </edges>
+    </edgeSet>
+  </ibexModel>
+  <config xmi:type="GipsIntermediate:SolverConfig" enableTimeLimit="true" timeLimit="570.0" timeLimitIncludeInitTime="true" enableRndSeed="true" presolve="AUTO" enableDebugOutput="true" enableLpOutput="true" lpPath="audiology.lp" threadCountEnabled="true" threadCount="4"/>
+  <variables xmi:type="GipsIntermediate:Variable" name="assignAppt" upperBound="1.0"/>
+  <variables xmi:type="GipsIntermediate:Variable" name="roomUsedByStaff" upperBound="1.0"/>
+  <mappings xmi:type="GipsIntermediate:RuleMapping" name="assignAppt" contextPattern="//@ibexModel/@patternSet/@contextPatterns.0" mappingVariable="//@variables.0" rule="//@ibexModel/@ruleSet/@rules.0"/>
+  <mappings xmi:type="GipsIntermediate:PatternMapping" name="roomUsedByStaff" contextPattern="//@ibexModel/@patternSet/@contextPatterns.5" mappingVariable="//@variables.1" pattern="//@ibexModel/@patternSet/@contextPatterns.5"/>
+  <constraints xmi:type="GipsIntermediate:PatternConstraint" name="PatternConstraint0OnrequestTuple" pattern="//@ibexModel/@patternSet/@contextPatterns.1" contextPattern="//@ibexModel/@patternSet/@contextPatterns.1">
+    <expression xmi:type="GipsIntermediate:RelationalExpression" operator="Equal">
+      <lhs xmi:type="GipsIntermediate:MappingReference" mapping="//@mappings.0">
+        <setExpression xmi:type="GipsIntermediate:SetExpression">
+          <setOperation xmi:type="GipsIntermediate:SetFilter">
+            <expression xmi:type="GipsIntermediate:RelationalExpression" operator="Equal" requiresComparables="true">
+              <lhs xmi:type="GipsIntermediate:MemberReference">
+                <member xmi:type="GipsIntermediate:NodeExpression" node="//@ibexModel/@nodeSet/@nodes.17"/>
+              </lhs>
+              <rhs xmi:type="GipsIntermediate:MemberReference" local="true">
+                <member xmi:type="GipsIntermediate:NodeExpression" node="//@ibexModel/@nodeSet/@nodes.18"/>
+              </rhs>
+            </expression>
+          </setOperation>
+          <setReduce xmi:type="GipsIntermediate:SetSummation">
+            <expression xmi:type="GipsIntermediate:VariableReference" variable="//@variables.0"/>
+          </setReduce>
+        </setExpression>
+      </lhs>
+      <rhs xmi:type="GipsIntermediate:IntegerLiteral" literal="1"/>
+    </expression>
+  </constraints>
+  <constraints xmi:type="GipsIntermediate:PatternConstraint" name="PatternConstraint1OnstaffDaySlotTuple" pattern="//@ibexModel/@patternSet/@contextPatterns.3" contextPattern="//@ibexModel/@patternSet/@contextPatterns.3">
+    <expression xmi:type="GipsIntermediate:RelationalExpression" operator="LessOrEqual">
+      <lhs xmi:type="GipsIntermediate:MappingReference" mapping="//@mappings.0">
+        <setExpression xmi:type="GipsIntermediate:SetExpression">
+          <setOperation xmi:type="GipsIntermediate:SetFilter">
+            <expression xmi:type="GipsIntermediate:BooleanBinaryExpression">
+              <lhs xmi:type="GipsIntermediate:BooleanBinaryExpression">
+                <lhs xmi:type="GipsIntermediate:BooleanBinaryExpression">
+                  <lhs xmi:type="GipsIntermediate:RelationalExpression" operator="Equal" requiresComparables="true">
+                    <lhs xmi:type="GipsIntermediate:MemberReference">
+                      <member xmi:type="GipsIntermediate:NodeExpression" node="//@ibexModel/@nodeSet/@nodes.23"/>
+                    </lhs>
+                    <rhs xmi:type="GipsIntermediate:MemberReference" local="true">
+                      <member xmi:type="GipsIntermediate:NodeExpression" node="//@ibexModel/@nodeSet/@nodes.24"/>
+                    </rhs>
+                  </lhs>
+                  <rhs xmi:type="GipsIntermediate:RelationalExpression" operator="Equal" requiresComparables="true">
+                    <lhs xmi:type="GipsIntermediate:MemberReference">
+                      <member xmi:type="GipsIntermediate:NodeExpression" node="//@ibexModel/@nodeSet/@nodes.11"/>
+                    </lhs>
+                    <rhs xmi:type="GipsIntermediate:MemberReference" local="true">
+                      <member xmi:type="GipsIntermediate:NodeExpression" node="//@ibexModel/@nodeSet/@nodes.12"/>
+                    </rhs>
+                  </rhs>
+                </lhs>
+                <rhs xmi:type="GipsIntermediate:RelationalExpression" operator="LessOrEqual">
+                  <lhs xmi:type="GipsIntermediate:MemberReference">
+                    <member xmi:type="GipsIntermediate:NodeExpression" node="//@ibexModel/@nodeSet/@nodes.27">
+                      <next xmi:type="GipsIntermediate:AttributeExpression">
+                        <feature xmi:type="ecore:EAttribute" href="platform:/resource/audiologymodel/model/audiologymodel.ecore#//Timeslot/startIndex"/>
+                      </next>
+                    </member>
+                  </lhs>
+                  <rhs xmi:type="GipsIntermediate:MemberReference" local="true">
+                    <member xmi:type="GipsIntermediate:NodeExpression" node="//@ibexModel/@nodeSet/@nodes.8">
+                      <next xmi:type="GipsIntermediate:AttributeExpression">
+                        <feature xmi:type="ecore:EAttribute" href="platform:/resource/audiologymodel/model/audiologymodel.ecore#//Timeslot/startIndex"/>
+                      </next>
+                    </member>
+                  </rhs>
+                </rhs>
+              </lhs>
+              <rhs xmi:type="GipsIntermediate:RelationalExpression">
+                <lhs xmi:type="GipsIntermediate:MemberReference" local="true">
+                  <member xmi:type="GipsIntermediate:NodeExpression" node="//@ibexModel/@nodeSet/@nodes.8">
+                    <next xmi:type="GipsIntermediate:AttributeExpression">
+                      <feature xmi:type="ecore:EAttribute" href="platform:/resource/audiologymodel/model/audiologymodel.ecore#//Timeslot/startIndex"/>
+                    </next>
+                  </member>
+                </lhs>
+                <rhs xmi:type="GipsIntermediate:ArithmeticBinaryExpression">
+                  <lhs xmi:type="GipsIntermediate:MemberReference">
+                    <member xmi:type="GipsIntermediate:NodeExpression" node="//@ibexModel/@nodeSet/@nodes.27">
+                      <next xmi:type="GipsIntermediate:AttributeExpression">
+                        <feature xmi:type="ecore:EAttribute" href="platform:/resource/audiologymodel/model/audiologymodel.ecore#//Timeslot/startIndex"/>
+                      </next>
+                    </member>
+                  </lhs>
+                  <rhs xmi:type="GipsIntermediate:MemberReference">
+                    <member xmi:type="GipsIntermediate:NodeExpression" node="//@ibexModel/@nodeSet/@nodes.17">
+                      <next xmi:type="GipsIntermediate:AttributeExpression">
+                        <feature xmi:type="ecore:EAttribute" href="platform:/resource/audiologymodel/model/audiologymodel.ecore#//AppointmentRequest/durationSlots"/>
+                      </next>
+                    </member>
+                  </rhs>
+                </rhs>
+              </rhs>
+            </expression>
+          </setOperation>
+          <setReduce xmi:type="GipsIntermediate:SetSummation">
+            <expression xmi:type="GipsIntermediate:VariableReference" variable="//@variables.0"/>
+          </setReduce>
+        </setExpression>
+      </lhs>
+      <rhs xmi:type="GipsIntermediate:IntegerLiteral" literal="1"/>
+    </expression>
+  </constraints>
+  <constraints xmi:type="GipsIntermediate:PatternConstraint" name="PatternConstraint2OnroomDaySlotTuple" pattern="//@ibexModel/@patternSet/@contextPatterns.2" contextPattern="//@ibexModel/@patternSet/@contextPatterns.2">
+    <expression xmi:type="GipsIntermediate:RelationalExpression" operator="LessOrEqual">
+      <lhs xmi:type="GipsIntermediate:MappingReference" mapping="//@mappings.0">
+        <setExpression xmi:type="GipsIntermediate:SetExpression">
+          <setOperation xmi:type="GipsIntermediate:SetFilter">
+            <expression xmi:type="GipsIntermediate:BooleanBinaryExpression">
+              <lhs xmi:type="GipsIntermediate:BooleanBinaryExpression">
+                <lhs xmi:type="GipsIntermediate:BooleanBinaryExpression">
+                  <lhs xmi:type="GipsIntermediate:RelationalExpression" operator="Equal" requiresComparables="true">
+                    <lhs xmi:type="GipsIntermediate:MemberReference">
+                      <member xmi:type="GipsIntermediate:NodeExpression" node="//@ibexModel/@nodeSet/@nodes.20"/>
+                    </lhs>
+                    <rhs xmi:type="GipsIntermediate:MemberReference" local="true">
+                      <member xmi:type="GipsIntermediate:NodeExpression" node="//@ibexModel/@nodeSet/@nodes.21"/>
+                    </rhs>
+                  </lhs>
+                  <rhs xmi:type="GipsIntermediate:RelationalExpression" operator="Equal" requiresComparables="true">
+                    <lhs xmi:type="GipsIntermediate:MemberReference">
+                      <member xmi:type="GipsIntermediate:NodeExpression" node="//@ibexModel/@nodeSet/@nodes.11"/>
+                    </lhs>
+                    <rhs xmi:type="GipsIntermediate:MemberReference" local="true">
+                      <member xmi:type="GipsIntermediate:NodeExpression" node="//@ibexModel/@nodeSet/@nodes.14"/>
+                    </rhs>
+                  </rhs>
+                </lhs>
+                <rhs xmi:type="GipsIntermediate:RelationalExpression" operator="LessOrEqual">
+                  <lhs xmi:type="GipsIntermediate:MemberReference">
+                    <member xmi:type="GipsIntermediate:NodeExpression" node="//@ibexModel/@nodeSet/@nodes.27">
+                      <next xmi:type="GipsIntermediate:AttributeExpression">
+                        <feature xmi:type="ecore:EAttribute" href="platform:/resource/audiologymodel/model/audiologymodel.ecore#//Timeslot/startIndex"/>
+                      </next>
+                    </member>
+                  </lhs>
+                  <rhs xmi:type="GipsIntermediate:MemberReference" local="true">
+                    <member xmi:type="GipsIntermediate:NodeExpression" node="//@ibexModel/@nodeSet/@nodes.9">
+                      <next xmi:type="GipsIntermediate:AttributeExpression">
+                        <feature xmi:type="ecore:EAttribute" href="platform:/resource/audiologymodel/model/audiologymodel.ecore#//Timeslot/startIndex"/>
+                      </next>
+                    </member>
+                  </rhs>
+                </rhs>
+              </lhs>
+              <rhs xmi:type="GipsIntermediate:RelationalExpression">
+                <lhs xmi:type="GipsIntermediate:MemberReference" local="true">
+                  <member xmi:type="GipsIntermediate:NodeExpression" node="//@ibexModel/@nodeSet/@nodes.9">
+                    <next xmi:type="GipsIntermediate:AttributeExpression">
+                      <feature xmi:type="ecore:EAttribute" href="platform:/resource/audiologymodel/model/audiologymodel.ecore#//Timeslot/startIndex"/>
+                    </next>
+                  </member>
+                </lhs>
+                <rhs xmi:type="GipsIntermediate:ArithmeticBinaryExpression">
+                  <lhs xmi:type="GipsIntermediate:MemberReference">
+                    <member xmi:type="GipsIntermediate:NodeExpression" node="//@ibexModel/@nodeSet/@nodes.27">
+                      <next xmi:type="GipsIntermediate:AttributeExpression">
+                        <feature xmi:type="ecore:EAttribute" href="platform:/resource/audiologymodel/model/audiologymodel.ecore#//Timeslot/startIndex"/>
+                      </next>
+                    </member>
+                  </lhs>
+                  <rhs xmi:type="GipsIntermediate:MemberReference">
+                    <member xmi:type="GipsIntermediate:NodeExpression" node="//@ibexModel/@nodeSet/@nodes.17">
+                      <next xmi:type="GipsIntermediate:AttributeExpression">
+                        <feature xmi:type="ecore:EAttribute" href="platform:/resource/audiologymodel/model/audiologymodel.ecore#//AppointmentRequest/durationSlots"/>
+                      </next>
+                    </member>
+                  </rhs>
+                </rhs>
+              </rhs>
+            </expression>
+          </setOperation>
+          <setReduce xmi:type="GipsIntermediate:SetSummation">
+            <expression xmi:type="GipsIntermediate:VariableReference" variable="//@variables.0"/>
+          </setReduce>
+        </setExpression>
+      </lhs>
+      <rhs xmi:type="GipsIntermediate:IntegerLiteral" literal="1"/>
+    </expression>
+  </constraints>
+  <constraints xmi:type="GipsIntermediate:MappingConstraint" name="MappingConstraint3OnroomUsedByStaff" mapping="//@mappings.1">
+    <expression xmi:type="GipsIntermediate:RelationalExpression" operator="GreaterOrEqual">
+      <lhs xmi:type="GipsIntermediate:ArithmeticBinaryExpression">
+        <lhs xmi:type="GipsIntermediate:MappingReference" mapping="//@mappings.0">
+          <setExpression xmi:type="GipsIntermediate:SetExpression">
+            <setOperation xmi:type="GipsIntermediate:SetFilter">
+              <expression xmi:type="GipsIntermediate:BooleanBinaryExpression">
+                <lhs xmi:type="GipsIntermediate:BooleanBinaryExpression">
+                  <lhs xmi:type="GipsIntermediate:RelationalExpression" operator="Equal" requiresComparables="true">
+                    <lhs xmi:type="GipsIntermediate:MemberReference">
+                      <member xmi:type="GipsIntermediate:NodeExpression" node="//@ibexModel/@nodeSet/@nodes.23"/>
+                    </lhs>
+                    <rhs xmi:type="GipsIntermediate:MemberReference" local="true">
+                      <member xmi:type="GipsIntermediate:NodeExpression" node="//@ibexModel/@nodeSet/@nodes.22"/>
+                    </rhs>
+                  </lhs>
+                  <rhs xmi:type="GipsIntermediate:RelationalExpression" operator="Equal" requiresComparables="true">
+                    <lhs xmi:type="GipsIntermediate:MemberReference">
+                      <member xmi:type="GipsIntermediate:NodeExpression" node="//@ibexModel/@nodeSet/@nodes.20"/>
+                    </lhs>
+                    <rhs xmi:type="GipsIntermediate:MemberReference" local="true">
+                      <member xmi:type="GipsIntermediate:NodeExpression" node="//@ibexModel/@nodeSet/@nodes.19"/>
+                    </rhs>
+                  </rhs>
+                </lhs>
+                <rhs xmi:type="GipsIntermediate:RelationalExpression" operator="Equal" requiresComparables="true">
+                  <lhs xmi:type="GipsIntermediate:MemberReference">
+                    <member xmi:type="GipsIntermediate:NodeExpression" node="//@ibexModel/@nodeSet/@nodes.11"/>
+                  </lhs>
+                  <rhs xmi:type="GipsIntermediate:MemberReference" local="true">
+                    <member xmi:type="GipsIntermediate:NodeExpression" node="//@ibexModel/@nodeSet/@nodes.10"/>
+                  </rhs>
+                </rhs>
+              </expression>
+            </setOperation>
+            <setReduce xmi:type="GipsIntermediate:SetSummation">
+              <expression xmi:type="GipsIntermediate:VariableReference" variable="//@variables.0"/>
+            </setReduce>
+          </setExpression>
+        </lhs>
+        <rhs xmi:type="GipsIntermediate:ArithmeticBinaryExpression" operator="MULTIPLY">
+          <lhs xmi:type="GipsIntermediate:DoubleLiteral" literal="-1.0"/>
+          <rhs xmi:type="GipsIntermediate:VariableReference" local="true" variable="//@variables.1"/>
+        </rhs>
+      </lhs>
+      <rhs xmi:type="GipsIntermediate:DoubleLiteral"/>
+    </expression>
+  </constraints>
+  <constraints xmi:type="GipsIntermediate:MappingConstraint" name="MappingConstraint4OnroomUsedByStaff" mapping="//@mappings.1">
+    <expression xmi:type="GipsIntermediate:RelationalExpression" operator="LessOrEqual">
+      <lhs xmi:type="GipsIntermediate:ArithmeticBinaryExpression">
+        <lhs xmi:type="GipsIntermediate:MappingReference" mapping="//@mappings.0">
+          <setExpression xmi:type="GipsIntermediate:SetExpression">
+            <setOperation xmi:type="GipsIntermediate:SetFilter">
+              <expression xmi:type="GipsIntermediate:BooleanBinaryExpression">
+                <lhs xmi:type="GipsIntermediate:BooleanBinaryExpression">
+                  <lhs xmi:type="GipsIntermediate:RelationalExpression" operator="Equal" requiresComparables="true">
+                    <lhs xmi:type="GipsIntermediate:MemberReference">
+                      <member xmi:type="GipsIntermediate:NodeExpression" node="//@ibexModel/@nodeSet/@nodes.23"/>
+                    </lhs>
+                    <rhs xmi:type="GipsIntermediate:MemberReference" local="true">
+                      <member xmi:type="GipsIntermediate:NodeExpression" node="//@ibexModel/@nodeSet/@nodes.22"/>
+                    </rhs>
+                  </lhs>
+                  <rhs xmi:type="GipsIntermediate:RelationalExpression" operator="Equal" requiresComparables="true">
+                    <lhs xmi:type="GipsIntermediate:MemberReference">
+                      <member xmi:type="GipsIntermediate:NodeExpression" node="//@ibexModel/@nodeSet/@nodes.20"/>
+                    </lhs>
+                    <rhs xmi:type="GipsIntermediate:MemberReference" local="true">
+                      <member xmi:type="GipsIntermediate:NodeExpression" node="//@ibexModel/@nodeSet/@nodes.19"/>
+                    </rhs>
+                  </rhs>
+                </lhs>
+                <rhs xmi:type="GipsIntermediate:RelationalExpression" operator="Equal" requiresComparables="true">
+                  <lhs xmi:type="GipsIntermediate:MemberReference">
+                    <member xmi:type="GipsIntermediate:NodeExpression" node="//@ibexModel/@nodeSet/@nodes.11"/>
+                  </lhs>
+                  <rhs xmi:type="GipsIntermediate:MemberReference" local="true">
+                    <member xmi:type="GipsIntermediate:NodeExpression" node="//@ibexModel/@nodeSet/@nodes.10"/>
+                  </rhs>
+                </rhs>
+              </expression>
+            </setOperation>
+            <setReduce xmi:type="GipsIntermediate:SetSummation">
+              <expression xmi:type="GipsIntermediate:VariableReference" variable="//@variables.0"/>
+            </setReduce>
+          </setExpression>
+        </lhs>
+        <rhs xmi:type="GipsIntermediate:ArithmeticBinaryExpression" operator="MULTIPLY">
+          <lhs xmi:type="GipsIntermediate:DoubleLiteral" literal="-1.0"/>
+          <rhs xmi:type="GipsIntermediate:ArithmeticBinaryExpression" operator="MULTIPLY">
+            <lhs xmi:type="GipsIntermediate:IntegerLiteral" literal="100"/>
+            <rhs xmi:type="GipsIntermediate:VariableReference" local="true" variable="//@variables.1"/>
+          </rhs>
+        </rhs>
+      </lhs>
+      <rhs xmi:type="GipsIntermediate:DoubleLiteral"/>
+    </expression>
+  </constraints>
+  <constraints xmi:type="GipsIntermediate:PatternConstraint" name="PatternConstraint5OnstaffDayTuple" pattern="//@ibexModel/@patternSet/@contextPatterns.4" contextPattern="//@ibexModel/@patternSet/@contextPatterns.4">
+    <expression xmi:type="GipsIntermediate:RelationalExpression" operator="LessOrEqual">
+      <lhs xmi:type="GipsIntermediate:MappingReference" mapping="//@mappings.1">
+        <setExpression xmi:type="GipsIntermediate:SetExpression">
+          <setOperation xmi:type="GipsIntermediate:SetFilter">
+            <expression xmi:type="GipsIntermediate:BooleanBinaryExpression">
+              <lhs xmi:type="GipsIntermediate:RelationalExpression" operator="Equal" requiresComparables="true">
+                <lhs xmi:type="GipsIntermediate:MemberReference">
+                  <member xmi:type="GipsIntermediate:NodeExpression" node="//@ibexModel/@nodeSet/@nodes.22"/>
+                </lhs>
+                <rhs xmi:type="GipsIntermediate:MemberReference" local="true">
+                  <member xmi:type="GipsIntermediate:NodeExpression" node="//@ibexModel/@nodeSet/@nodes.26"/>
+                </rhs>
+              </lhs>
+              <rhs xmi:type="GipsIntermediate:RelationalExpression" operator="Equal" requiresComparables="true">
+                <lhs xmi:type="GipsIntermediate:MemberReference">
+                  <member xmi:type="GipsIntermediate:NodeExpression" node="//@ibexModel/@nodeSet/@nodes.10"/>
+                </lhs>
+                <rhs xmi:type="GipsIntermediate:MemberReference" local="true">
+                  <member xmi:type="GipsIntermediate:NodeExpression" node="//@ibexModel/@nodeSet/@nodes.13"/>
+                </rhs>
+              </rhs>
+            </expression>
+          </setOperation>
+          <setReduce xmi:type="GipsIntermediate:SetSummation">
+            <expression xmi:type="GipsIntermediate:VariableReference" variable="//@variables.1"/>
+          </setReduce>
+        </setExpression>
+      </lhs>
+      <rhs xmi:type="GipsIntermediate:IntegerLiteral" literal="1"/>
+    </expression>
+  </constraints>
+  <constraints xmi:type="GipsIntermediate:PatternConstraint" name="PatternConstraint6OnstaffWeekTuple" pattern="//@ibexModel/@patternSet/@contextPatterns.6" contextPattern="//@ibexModel/@patternSet/@contextPatterns.6">
+    <expression xmi:type="GipsIntermediate:RelationalExpression" operator="LessOrEqual">
+      <lhs xmi:type="GipsIntermediate:MappingReference" mapping="//@mappings.0">
+        <setExpression xmi:type="GipsIntermediate:SetExpression">
+          <setOperation xmi:type="GipsIntermediate:SetFilter">
+            <expression xmi:type="GipsIntermediate:BooleanBinaryExpression">
+              <lhs xmi:type="GipsIntermediate:RelationalExpression" operator="Equal" requiresComparables="true">
+                <lhs xmi:type="GipsIntermediate:MemberReference">
+                  <member xmi:type="GipsIntermediate:NodeExpression" node="//@ibexModel/@nodeSet/@nodes.23"/>
+                </lhs>
+                <rhs xmi:type="GipsIntermediate:MemberReference" local="true">
+                  <member xmi:type="GipsIntermediate:NodeExpression" node="//@ibexModel/@nodeSet/@nodes.25"/>
+                </rhs>
+              </lhs>
+              <rhs xmi:type="GipsIntermediate:RelationalExpression" operator="Equal" requiresComparables="true">
+                <lhs xmi:type="GipsIntermediate:MemberReference">
+                  <member xmi:type="GipsIntermediate:NodeExpression" node="//@ibexModel/@nodeSet/@nodes.15"/>
+                </lhs>
+                <rhs xmi:type="GipsIntermediate:MemberReference" local="true">
+                  <member xmi:type="GipsIntermediate:NodeExpression" node="//@ibexModel/@nodeSet/@nodes.16"/>
+                </rhs>
+              </rhs>
+            </expression>
+          </setOperation>
+          <setReduce xmi:type="GipsIntermediate:SetSummation">
+            <expression xmi:type="GipsIntermediate:ArithmeticBinaryExpression" operator="MULTIPLY">
+              <lhs xmi:type="GipsIntermediate:ArithmeticBinaryExpression" operator="MULTIPLY">
+                <lhs xmi:type="GipsIntermediate:MemberReference">
+                  <member xmi:type="GipsIntermediate:NodeExpression" node="//@ibexModel/@nodeSet/@nodes.17">
+                    <next xmi:type="GipsIntermediate:AttributeExpression">
+                      <feature xmi:type="ecore:EAttribute" href="platform:/resource/audiologymodel/model/audiologymodel.ecore#//AppointmentRequest/durationSlots"/>
+                    </next>
+                  </member>
+                </lhs>
+                <rhs xmi:type="GipsIntermediate:IntegerLiteral" literal="15"/>
+              </lhs>
+              <rhs xmi:type="GipsIntermediate:VariableReference" variable="//@variables.0"/>
+            </expression>
+          </setReduce>
+        </setExpression>
+      </lhs>
+      <rhs xmi:type="GipsIntermediate:ArithmeticBinaryExpression" operator="MULTIPLY">
+        <lhs xmi:type="GipsIntermediate:MemberReference" local="true">
+          <member xmi:type="GipsIntermediate:NodeExpression" node="//@ibexModel/@nodeSet/@nodes.25">
+            <next xmi:type="GipsIntermediate:AttributeExpression">
+              <feature xmi:type="ecore:EAttribute" href="platform:/resource/audiologymodel/model/audiologymodel.ecore#//StaffMember/weeklyHours"/>
+            </next>
+          </member>
+        </lhs>
+        <rhs xmi:type="GipsIntermediate:IntegerLiteral" literal="60"/>
+      </rhs>
+    </expression>
+  </constraints>
+  <functions xmi:type="GipsIntermediate:MappingFunction" name="delayCostV2" mapping="//@mappings.0">
+    <expression xmi:type="GipsIntermediate:ArithmeticBinaryExpression" operator="MULTIPLY">
+      <lhs xmi:type="GipsIntermediate:ArithmeticBinaryExpression">
+        <lhs xmi:type="GipsIntermediate:MemberReference" local="true">
+          <member xmi:type="GipsIntermediate:NodeExpression" node="//@ibexModel/@nodeSet/@nodes.11">
+            <next xmi:type="GipsIntermediate:AttributeExpression">
+              <feature xmi:type="ecore:EAttribute" href="platform:/resource/audiologymodel/model/audiologymodel.ecore#//PlanningDay/dayIndex"/>
+            </next>
+          </member>
+        </lhs>
+        <rhs xmi:type="GipsIntermediate:ArithmeticBinaryExpression" operator="MULTIPLY">
+          <lhs xmi:type="GipsIntermediate:DoubleLiteral" literal="-1.0"/>
+          <rhs xmi:type="GipsIntermediate:MemberReference" local="true">
+            <member xmi:type="GipsIntermediate:NodeExpression" node="//@ibexModel/@nodeSet/@nodes.17">
+              <next xmi:type="GipsIntermediate:AttributeExpression">
+                <feature xmi:type="ecore:EAttribute" href="platform:/resource/audiologymodel/model/audiologymodel.ecore#//AppointmentRequest/idealDayIndex"/>
+              </next>
+            </member>
+          </rhs>
+        </rhs>
+      </lhs>
+      <rhs xmi:type="GipsIntermediate:VariableReference" local="true" variable="//@variables.0"/>
+    </expression>
+  </functions>
+  <objective xmi:type="GipsIntermediate:Objective">
+    <expression xmi:type="GipsIntermediate:LinearFunctionReference" function="//@functions.0"/>
+  </objective>
+</GipsIntermediate:GipsIntermediateModel>

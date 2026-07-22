@@ -1,0 +1,777 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<hipe.network:HiPENetwork xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:HiPEPattern="platform:/resource/hipe.pattern/model/HiPEPattern" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" xmlns:hipe.network="platform:/resource/hipe.network/model/hiPENetwork" xsi:schemaLocation="platform:/resource/hipe.pattern/model/HiPEPattern java://hipe.pattern.HiPEPatternPackage http://www.eclipse.org/emf/2002/Ecore java://org.eclipse.emf.ecore.EcorePackage platform:/resource/hipe.network/model/hiPENetwork java://hipe.network.NetworkPackage">
+  <networknode xmi:type="hipe.network:DispatchNode" name="DispatchNode" objectNodes="//@networknode.3 //@networknode.5 //@networknode.8 //@networknode.9 //@networknode.11 //@networknode.15 //@networknode.38 //@networknode.39" notificationNode="//@networknode.1">
+    <metamodels xmi:type="ecore:EPackage" href="platform:/resource/audiologymodel/model/audiologymodel.ecore#/"/>
+  </networknode>
+  <networknode xmi:type="hipe.network:NotificationNode" name="NotificationNode" dispatchNode="//@networknode.0"/>
+  <networknode xmi:type="hipe.network:ReferenceNode" name="AudiologyBooking_timeslots_0_reference" inputPort="//@networknode.38/@ports/@port.0 //@networknode.3/@ports/@port.0" patternName="assignAppointment_4">
+    <ports xmi:type="hipe.network:Ports">
+      <port xmi:type="hipe.network:SimplePort" portTarget="//@networknode.6" patternName="assignAppointment_4" matchingNode="//@networknode.2"/>
+      <port xmi:type="hipe.network:SimplePort" portTarget="//@networknode.25" patternName="assignAppointment_4" matchingNode="//@networknode.2"/>
+      <port xmi:type="hipe.network:SimplePort" portTarget="//@networknode.28" patternName="assignAppointment_4" matchingNode="//@networknode.2"/>
+    </ports>
+    <type xmi:type="ecore:EReference" href="platform:/resource/audiologymodel/model/audiologymodel.ecore#//AudiologyBooking/timeslots"/>
+    <srcType xmi:type="ecore:EClass" href="platform:/resource/audiologymodel/model/audiologymodel.ecore#//AudiologyBooking"/>
+    <trgType xmi:type="ecore:EClass" href="platform:/resource/audiologymodel/model/audiologymodel.ecore#//Timeslot"/>
+  </networknode>
+  <networknode xmi:type="hipe.network:ObjectNode" name="Timeslot_object" patternName="assignAppointment_9" dispatchnode="//@networknode.0">
+    <ports xmi:type="hipe.network:Ports">
+      <port xmi:type="hipe.network:SimplePort" portSlot="RIGHT" portTarget="//@networknode.2" patternName="assignAppointment_9" matchingNode="//@networknode.3"/>
+    </ports>
+    <type xmi:type="ecore:EClass" href="platform:/resource/audiologymodel/model/audiologymodel.ecore#//Timeslot"/>
+  </networknode>
+  <networknode xmi:type="hipe.network:ReferenceNode" name="AudiologyBooking_waitingList_0_reference" inputPort="//@networknode.39/@ports/@port.0 //@networknode.5/@ports/@port.0" patternName="assignAppointment_5">
+    <ports xmi:type="hipe.network:Ports">
+      <port xmi:type="hipe.network:SimplePort" portSlot="RIGHT" portTarget="//@networknode.6" patternName="assignAppointment_5" matchingNode="//@networknode.4"/>
+    </ports>
+    <type xmi:type="ecore:EReference" href="platform:/resource/audiologymodel/model/audiologymodel.ecore#//AudiologyBooking/waitingList"/>
+    <srcType xmi:type="ecore:EClass" href="platform:/resource/audiologymodel/model/audiologymodel.ecore#//AudiologyBooking"/>
+    <trgType xmi:type="ecore:EClass" href="platform:/resource/audiologymodel/model/audiologymodel.ecore#//AppointmentRequest"/>
+  </networknode>
+  <networknode xmi:type="hipe.network:ObjectNode" name="AppointmentRequest_object" patternName="assignAppointment_10" dispatchnode="//@networknode.0">
+    <ports xmi:type="hipe.network:Ports">
+      <port xmi:type="hipe.network:ConstraintPort" portSlot="RIGHT" portTarget="//@networknode.4" patternName="assignAppointment_10" matchingNode="//@networknode.5" initializationCode="" constraintName="check_constraint_1" predicateCode="request.getDurationSlots()>0">
+        <indices>0</indices>
+        <types xmi:type="ecore:EClass" href="platform:/resource/audiologymodel/model/audiologymodel.ecore#//AppointmentRequest"/>
+        <nodeNames>request</nodeNames>
+        <attributes xmi:type="ecore:EAttribute" href="platform:/resource/audiologymodel/model/audiologymodel.ecore#//AppointmentRequest/durationSlots"/>
+        <pattern xmi:type="HiPEPattern:HiPEPartialPattern" href="hipe-patterns.xmi#//@patterns.16"/>
+      </port>
+      <port xmi:type="hipe.network:SimplePort" portSlot="RIGHT" portTarget="//@networknode.22" patternName="assignAppointment_10" matchingNode="//@networknode.5"/>
+    </ports>
+    <type xmi:type="ecore:EClass" href="platform:/resource/audiologymodel/model/audiologymodel.ecore#//AppointmentRequest"/>
+  </networknode>
+  <networknode xmi:type="hipe.network:JunctionNode" name="assignAppointment_2_junction" inputPort="//@networknode.2/@ports/@port.0 //@networknode.4/@ports/@port.0" patternName="assignAppointment_2" overlaps="//@networknode.6/@allOverlaps.0" mappings="//@networknode.6/@allMappings.0">
+    <ports xmi:type="hipe.network:Ports">
+      <port xmi:type="hipe.network:ConstraintPort" portTarget="//@networknode.20" patternName="assignAppointment_2" matchingNode="//@networknode.6" initializationCode="" constraintName="check_constraint_2" predicateCode="startSlot.getStartIndex() + request.getDurationSlots() &lt;= 32.0">
+        <indices>1</indices>
+        <indices>2</indices>
+        <types xmi:type="ecore:EClass" href="platform:/resource/audiologymodel/model/audiologymodel.ecore#//Timeslot"/>
+        <types xmi:type="ecore:EClass" href="platform:/resource/audiologymodel/model/audiologymodel.ecore#//AppointmentRequest"/>
+        <nodeNames>startSlot</nodeNames>
+        <nodeNames>request</nodeNames>
+        <attributes xmi:type="ecore:EAttribute" href="platform:/resource/audiologymodel/model/audiologymodel.ecore#//AppointmentRequest/durationSlots"/>
+        <attributes xmi:type="ecore:EAttribute" href="platform:/resource/audiologymodel/model/audiologymodel.ecore#//Timeslot/startIndex"/>
+        <pattern xmi:type="HiPEPattern:HiPEPartialPattern" href="hipe-patterns.xmi#//@patterns.8"/>
+      </port>
+    </ports>
+    <allOverlaps xmi:type="hipe.network:Overlaps">
+      <overlap xmi:type="hipe.network:Overlap"/>
+    </allOverlaps>
+    <allMappings xmi:type="hipe.network:Mappings">
+      <mapping xmi:type="hipe.network:Mapping"/>
+      <mapping xmi:type="hipe.network:Mapping" index="1"/>
+      <mapping xmi:type="hipe.network:Mapping" origin="RIGHT" index="1"/>
+    </allMappings>
+  </networknode>
+  <networknode xmi:type="hipe.network:ReferenceNode" name="PlanningDay_week_0_reference" inputPort="//@networknode.8/@ports/@port.0 //@networknode.9/@ports/@port.0" patternName="assignAppointment_6">
+    <ports xmi:type="hipe.network:Ports">
+      <port xmi:type="hipe.network:SimplePort" portTarget="//@networknode.19" patternName="assignAppointment_6" matchingNode="//@networknode.7"/>
+    </ports>
+    <type xmi:type="ecore:EReference" href="platform:/resource/audiologymodel/model/audiologymodel.ecore#//PlanningDay/week"/>
+    <srcType xmi:type="ecore:EClass" href="platform:/resource/audiologymodel/model/audiologymodel.ecore#//PlanningDay"/>
+    <trgType xmi:type="ecore:EClass" href="platform:/resource/audiologymodel/model/audiologymodel.ecore#//PlanningWeek"/>
+  </networknode>
+  <networknode xmi:type="hipe.network:ObjectNode" name="PlanningDay_object" patternName="assignAppointment_11" dispatchnode="//@networknode.0">
+    <ports xmi:type="hipe.network:Ports">
+      <port xmi:type="hipe.network:SimplePort" portTarget="//@networknode.7" patternName="assignAppointment_11" matchingNode="//@networknode.8"/>
+      <port xmi:type="hipe.network:SimplePort" portSlot="RIGHT" portTarget="//@networknode.12" patternName="assignAppointment_11" matchingNode="//@networknode.8"/>
+      <port xmi:type="hipe.network:SimplePort" portSlot="RIGHT" portTarget="//@networknode.13" patternName="assignAppointment_11" matchingNode="//@networknode.8"/>
+      <port xmi:type="hipe.network:SimplePort" portSlot="RIGHT" portTarget="//@networknode.14" patternName="assignAppointment_11" matchingNode="//@networknode.8"/>
+    </ports>
+    <type xmi:type="ecore:EClass" href="platform:/resource/audiologymodel/model/audiologymodel.ecore#//PlanningDay"/>
+  </networknode>
+  <networknode xmi:type="hipe.network:ObjectNode" name="PlanningWeek_object" patternName="assignAppointment_12" dispatchnode="//@networknode.0">
+    <ports xmi:type="hipe.network:Ports">
+      <port xmi:type="hipe.network:SimplePort" portSlot="RIGHT" portTarget="//@networknode.7" patternName="assignAppointment_12" matchingNode="//@networknode.9"/>
+      <port xmi:type="hipe.network:SimplePort" portSlot="RIGHT" portTarget="//@networknode.35" patternName="assignAppointment_12" matchingNode="//@networknode.9"/>
+    </ports>
+    <type xmi:type="ecore:EClass" href="platform:/resource/audiologymodel/model/audiologymodel.ecore#//PlanningWeek"/>
+  </networknode>
+  <networknode xmi:type="hipe.network:ReferenceNode" name="AudiologyBooking_staff_0_reference" inputPort="//@networknode.38/@ports/@port.1 //@networknode.11/@ports/@port.0" patternName="assignAppointment_triangle_13">
+    <ports xmi:type="hipe.network:Ports">
+      <port xmi:type="hipe.network:SimplePort" portTarget="//@networknode.18" patternName="assignAppointment_triangle_13" matchingNode="//@networknode.10"/>
+      <port xmi:type="hipe.network:SimplePort" portSlot="CENTER" portTarget="//@networknode.27" patternName="assignAppointment_triangle_13" matchingNode="//@networknode.10"/>
+      <port xmi:type="hipe.network:SimplePort" portSlot="CENTER" portTarget="//@networknode.30" patternName="assignAppointment_triangle_13" matchingNode="//@networknode.10"/>
+      <port xmi:type="hipe.network:SimplePort" portTarget="//@networknode.33" patternName="assignAppointment_triangle_13" matchingNode="//@networknode.10"/>
+      <port xmi:type="hipe.network:SimplePort" portTarget="//@networknode.36" patternName="assignAppointment_triangle_13" matchingNode="//@networknode.10"/>
+    </ports>
+    <type xmi:type="ecore:EReference" href="platform:/resource/audiologymodel/model/audiologymodel.ecore#//AudiologyBooking/staff"/>
+    <srcType xmi:type="ecore:EClass" href="platform:/resource/audiologymodel/model/audiologymodel.ecore#//AudiologyBooking"/>
+    <trgType xmi:type="ecore:EClass" href="platform:/resource/audiologymodel/model/audiologymodel.ecore#//StaffMember"/>
+  </networknode>
+  <networknode xmi:type="hipe.network:ObjectNode" name="StaffMember_object" patternName="assignAppointment_triangle_16" dispatchnode="//@networknode.0">
+    <ports xmi:type="hipe.network:Ports">
+      <port xmi:type="hipe.network:SimplePort" portSlot="RIGHT" portTarget="//@networknode.10" patternName="assignAppointment_triangle_16" matchingNode="//@networknode.11"/>
+      <port xmi:type="hipe.network:SimplePort" portTarget="//@networknode.12" patternName="assignAppointment_triangle_16" matchingNode="//@networknode.11"/>
+    </ports>
+    <type xmi:type="ecore:EClass" href="platform:/resource/audiologymodel/model/audiologymodel.ecore#//StaffMember"/>
+  </networknode>
+  <networknode xmi:type="hipe.network:ReferenceNode" name="StaffMember_workingDays_0_reference" inputPort="//@networknode.11/@ports/@port.1 //@networknode.8/@ports/@port.1" patternName="assignAppointment_triangle_14">
+    <ports xmi:type="hipe.network:Ports">
+      <port xmi:type="hipe.network:SimplePort" portSlot="CENTER" portTarget="//@networknode.18" patternName="assignAppointment_triangle_14" matchingNode="//@networknode.12"/>
+      <port xmi:type="hipe.network:SimplePort" portSlot="RIGHT" portTarget="//@networknode.27" patternName="assignAppointment_triangle_14" matchingNode="//@networknode.12"/>
+      <port xmi:type="hipe.network:SimplePort" portSlot="RIGHT" portTarget="//@networknode.30" patternName="assignAppointment_triangle_14" matchingNode="//@networknode.12"/>
+      <port xmi:type="hipe.network:SimplePort" portSlot="CENTER" portTarget="//@networknode.33" patternName="assignAppointment_triangle_14" matchingNode="//@networknode.12"/>
+    </ports>
+    <type xmi:type="ecore:EReference" href="platform:/resource/audiologymodel/model/audiologymodel.ecore#//StaffMember/workingDays"/>
+    <srcType xmi:type="ecore:EClass" href="platform:/resource/audiologymodel/model/audiologymodel.ecore#//StaffMember"/>
+    <trgType xmi:type="ecore:EClass" href="platform:/resource/audiologymodel/model/audiologymodel.ecore#//PlanningDay"/>
+  </networknode>
+  <networknode xmi:type="hipe.network:ReferenceNode" name="AudiologyBooking_days_0_reference" inputPort="//@networknode.39/@ports/@port.1 //@networknode.8/@ports/@port.2" patternName="assignAppointment_triangle_17">
+    <ports xmi:type="hipe.network:Ports">
+      <port xmi:type="hipe.network:SimplePort" portTarget="//@networknode.17" patternName="assignAppointment_triangle_17" matchingNode="//@networknode.13"/>
+      <port xmi:type="hipe.network:SimplePort" portTarget="//@networknode.24" patternName="assignAppointment_triangle_17" matchingNode="//@networknode.13"/>
+      <port xmi:type="hipe.network:SimplePort" portTarget="//@networknode.27" patternName="assignAppointment_triangle_17" matchingNode="//@networknode.13"/>
+      <port xmi:type="hipe.network:SimplePort" portTarget="//@networknode.30" patternName="assignAppointment_triangle_17" matchingNode="//@networknode.13"/>
+      <port xmi:type="hipe.network:SimplePort" portTarget="//@networknode.32" patternName="assignAppointment_triangle_17" matchingNode="//@networknode.13"/>
+    </ports>
+    <type xmi:type="ecore:EReference" href="platform:/resource/audiologymodel/model/audiologymodel.ecore#//AudiologyBooking/days"/>
+    <srcType xmi:type="ecore:EClass" href="platform:/resource/audiologymodel/model/audiologymodel.ecore#//AudiologyBooking"/>
+    <trgType xmi:type="ecore:EClass" href="platform:/resource/audiologymodel/model/audiologymodel.ecore#//PlanningDay"/>
+  </networknode>
+  <networknode xmi:type="hipe.network:ReferenceNode" name="Room_openDays_0_reference" inputPort="//@networknode.15/@ports/@port.0 //@networknode.8/@ports/@port.3" patternName="assignAppointment_triangle_18">
+    <ports xmi:type="hipe.network:Ports">
+      <port xmi:type="hipe.network:SimplePort" portSlot="CENTER" portTarget="//@networknode.17" patternName="assignAppointment_triangle_18" matchingNode="//@networknode.14"/>
+      <port xmi:type="hipe.network:SimplePort" portSlot="CENTER" portTarget="//@networknode.24" patternName="assignAppointment_triangle_18" matchingNode="//@networknode.14"/>
+      <port xmi:type="hipe.network:SimplePort" portSlot="CENTER" portTarget="//@networknode.32" patternName="assignAppointment_triangle_18" matchingNode="//@networknode.14"/>
+    </ports>
+    <type xmi:type="ecore:EReference" href="platform:/resource/audiologymodel/model/audiologymodel.ecore#//Room/openDays"/>
+    <srcType xmi:type="ecore:EClass" href="platform:/resource/audiologymodel/model/audiologymodel.ecore#//Room"/>
+    <trgType xmi:type="ecore:EClass" href="platform:/resource/audiologymodel/model/audiologymodel.ecore#//PlanningDay"/>
+  </networknode>
+  <networknode xmi:type="hipe.network:ObjectNode" name="Room_object" patternName="assignAppointment_triangle_20" dispatchnode="//@networknode.0">
+    <ports xmi:type="hipe.network:Ports">
+      <port xmi:type="hipe.network:SimplePort" portTarget="//@networknode.14" patternName="assignAppointment_triangle_20" matchingNode="//@networknode.15"/>
+      <port xmi:type="hipe.network:SimplePort" portSlot="RIGHT" portTarget="//@networknode.16" patternName="assignAppointment_triangle_20" matchingNode="//@networknode.15"/>
+    </ports>
+    <type xmi:type="ecore:EClass" href="platform:/resource/audiologymodel/model/audiologymodel.ecore#//Room"/>
+  </networknode>
+  <networknode xmi:type="hipe.network:ReferenceNode" name="AudiologyBooking_rooms_0_reference" inputPort="//@networknode.38/@ports/@port.2 //@networknode.15/@ports/@port.1" patternName="assignAppointment_triangle_19">
+    <ports xmi:type="hipe.network:Ports">
+      <port xmi:type="hipe.network:SimplePort" portSlot="RIGHT" portTarget="//@networknode.17" patternName="assignAppointment_triangle_19" matchingNode="//@networknode.16"/>
+      <port xmi:type="hipe.network:SimplePort" portSlot="RIGHT" portTarget="//@networknode.24" patternName="assignAppointment_triangle_19" matchingNode="//@networknode.16"/>
+      <port xmi:type="hipe.network:SimplePort" portSlot="RIGHT" portTarget="//@networknode.32" patternName="assignAppointment_triangle_19" matchingNode="//@networknode.16"/>
+    </ports>
+    <type xmi:type="ecore:EReference" href="platform:/resource/audiologymodel/model/audiologymodel.ecore#//AudiologyBooking/rooms"/>
+    <srcType xmi:type="ecore:EClass" href="platform:/resource/audiologymodel/model/audiologymodel.ecore#//AudiologyBooking"/>
+    <trgType xmi:type="ecore:EClass" href="platform:/resource/audiologymodel/model/audiologymodel.ecore#//Room"/>
+  </networknode>
+  <networknode xmi:type="hipe.network:TriangleJunctionNode" name="assignAppointment_triangle_1_triangleJunction" inputPort="//@networknode.13/@ports/@port.0 //@networknode.14/@ports/@port.0 //@networknode.16/@ports/@port.0" patternName="assignAppointment_triangle_1" overlaps="//@networknode.17/@allOverlaps.0" mappings="//@networknode.17/@allMappings.0" centerLeftOverlaps="//@networknode.17/@allOverlaps.1" centerLeftMappings="//@networknode.17/@allMappings.1" rightCenterOverlaps="//@networknode.17/@allOverlaps.2" rightCenterMappings="//@networknode.17/@allMappings.2" leftHalfMatchOverlaps="//@networknode.17/@allOverlaps.3" leftHalfMatchMappings="//@networknode.17/@allMappings.3" centerHalfMatchOverlaps="//@networknode.17/@allOverlaps.4" centerHalfMatchMappings="//@networknode.17/@allMappings.4" rightHalfMatchOverlaps="//@networknode.17/@allOverlaps.5" rightHalfMatchMappings="//@networknode.17/@allMappings.5" fullOverlaps="//@networknode.17/@allOverlaps.6">
+    <ports xmi:type="hipe.network:Ports">
+      <port xmi:type="hipe.network:SimplePort" portSlot="RIGHT" portTarget="//@networknode.18" patternName="assignAppointment_triangle_1" matchingNode="//@networknode.17"/>
+    </ports>
+    <allOverlaps xmi:type="hipe.network:Overlaps" name="left2right">
+      <overlap xmi:type="hipe.network:Overlap"/>
+    </allOverlaps>
+    <allOverlaps xmi:type="hipe.network:Overlaps" name="center2left">
+      <overlap xmi:type="hipe.network:Overlap" leftIndex="1" rightIndex="1"/>
+    </allOverlaps>
+    <allOverlaps xmi:type="hipe.network:Overlaps" name="right2center">
+      <overlap xmi:type="hipe.network:Overlap" leftIndex="1"/>
+    </allOverlaps>
+    <allOverlaps xmi:type="hipe.network:Overlaps" name="left2HalfMatch">
+      <overlap xmi:type="hipe.network:Overlap"/>
+      <overlap xmi:type="hipe.network:Overlap" leftIndex="1" rightIndex="1"/>
+    </allOverlaps>
+    <allOverlaps xmi:type="hipe.network:Overlaps" name="center2HalfMatch">
+      <overlap xmi:type="hipe.network:Overlap" leftIndex="1" rightIndex="1"/>
+      <overlap xmi:type="hipe.network:Overlap" rightIndex="2"/>
+    </allOverlaps>
+    <allOverlaps xmi:type="hipe.network:Overlaps" name="right2HalfMatch">
+      <overlap xmi:type="hipe.network:Overlap"/>
+      <overlap xmi:type="hipe.network:Overlap" leftIndex="1" rightIndex="2"/>
+    </allOverlaps>
+    <allOverlaps xmi:type="hipe.network:Overlaps" name="fullMatch">
+      <overlap xmi:type="hipe.network:Overlap"/>
+      <overlap xmi:type="hipe.network:Overlap" leftIndex="1" rightIndex="1"/>
+      <overlap xmi:type="hipe.network:Overlap" leftIndex="2" rightIndex="2"/>
+    </allOverlaps>
+    <allMappings xmi:type="hipe.network:Mappings" name="left2right">
+      <mapping xmi:type="hipe.network:Mapping"/>
+      <mapping xmi:type="hipe.network:Mapping" index="1"/>
+      <mapping xmi:type="hipe.network:Mapping" origin="RIGHT" index="1"/>
+    </allMappings>
+    <allMappings xmi:type="hipe.network:Mappings" name="center2left">
+      <mapping xmi:type="hipe.network:Mapping" origin="RIGHT"/>
+      <mapping xmi:type="hipe.network:Mapping" index="1"/>
+      <mapping xmi:type="hipe.network:Mapping"/>
+    </allMappings>
+    <allMappings xmi:type="hipe.network:Mappings" name="right2center">
+      <mapping xmi:type="hipe.network:Mapping"/>
+      <mapping xmi:type="hipe.network:Mapping" origin="RIGHT" index="1"/>
+      <mapping xmi:type="hipe.network:Mapping" index="1"/>
+    </allMappings>
+    <allMappings xmi:type="hipe.network:Mappings" name="left2HalfMatch">
+      <mapping xmi:type="hipe.network:Mapping"/>
+      <mapping xmi:type="hipe.network:Mapping" index="1"/>
+      <mapping xmi:type="hipe.network:Mapping" origin="RIGHT" index="2"/>
+    </allMappings>
+    <allMappings xmi:type="hipe.network:Mappings" name="center2HalfMatch">
+      <mapping xmi:type="hipe.network:Mapping" origin="RIGHT"/>
+      <mapping xmi:type="hipe.network:Mapping" index="1"/>
+      <mapping xmi:type="hipe.network:Mapping"/>
+    </allMappings>
+    <allMappings xmi:type="hipe.network:Mappings" name="right2HalfMatch">
+      <mapping xmi:type="hipe.network:Mapping"/>
+      <mapping xmi:type="hipe.network:Mapping" origin="RIGHT" index="1"/>
+      <mapping xmi:type="hipe.network:Mapping" index="1"/>
+    </allMappings>
+  </networknode>
+  <networknode xmi:type="hipe.network:TriangleJunctionNode" name="assignAppointment_triangle_0_triangleJunction" inputPort="//@networknode.10/@ports/@port.0 //@networknode.12/@ports/@port.0 //@networknode.17/@ports/@port.0" patternName="assignAppointment_triangle_0" overlaps="//@networknode.18/@allOverlaps.0" mappings="//@networknode.18/@allMappings.0" centerLeftOverlaps="//@networknode.18/@allOverlaps.1" centerLeftMappings="//@networknode.18/@allMappings.1" rightCenterOverlaps="//@networknode.18/@allOverlaps.2" rightCenterMappings="//@networknode.18/@allMappings.2" leftHalfMatchOverlaps="//@networknode.18/@allOverlaps.3" leftHalfMatchMappings="//@networknode.18/@allMappings.3" centerHalfMatchOverlaps="//@networknode.18/@allOverlaps.4" centerHalfMatchMappings="//@networknode.18/@allMappings.4" rightHalfMatchOverlaps="//@networknode.18/@allOverlaps.5" rightHalfMatchMappings="//@networknode.18/@allMappings.5" fullOverlaps="//@networknode.18/@allOverlaps.6">
+    <ports xmi:type="hipe.network:Ports">
+      <port xmi:type="hipe.network:SimplePort" portSlot="RIGHT" portTarget="//@networknode.19" patternName="assignAppointment_triangle_0" matchingNode="//@networknode.18"/>
+    </ports>
+    <allOverlaps xmi:type="hipe.network:Overlaps" name="left2right">
+      <overlap xmi:type="hipe.network:Overlap"/>
+    </allOverlaps>
+    <allOverlaps xmi:type="hipe.network:Overlaps" name="center2left">
+      <overlap xmi:type="hipe.network:Overlap" rightIndex="1"/>
+    </allOverlaps>
+    <allOverlaps xmi:type="hipe.network:Overlaps" name="right2center">
+      <overlap xmi:type="hipe.network:Overlap" leftIndex="1" rightIndex="1"/>
+    </allOverlaps>
+    <allOverlaps xmi:type="hipe.network:Overlaps" name="left2HalfMatch">
+      <overlap xmi:type="hipe.network:Overlap"/>
+      <overlap xmi:type="hipe.network:Overlap" leftIndex="1" rightIndex="1"/>
+    </allOverlaps>
+    <allOverlaps xmi:type="hipe.network:Overlaps" name="center2HalfMatch">
+      <overlap xmi:type="hipe.network:Overlap" rightIndex="1"/>
+      <overlap xmi:type="hipe.network:Overlap" leftIndex="1" rightIndex="2"/>
+    </allOverlaps>
+    <allOverlaps xmi:type="hipe.network:Overlaps" name="right2HalfMatch">
+      <overlap xmi:type="hipe.network:Overlap"/>
+      <overlap xmi:type="hipe.network:Overlap" leftIndex="1" rightIndex="2"/>
+    </allOverlaps>
+    <allOverlaps xmi:type="hipe.network:Overlaps" name="fullMatch">
+      <overlap xmi:type="hipe.network:Overlap"/>
+      <overlap xmi:type="hipe.network:Overlap" leftIndex="1" rightIndex="1"/>
+      <overlap xmi:type="hipe.network:Overlap" leftIndex="2" rightIndex="2"/>
+      <overlap xmi:type="hipe.network:Overlap" leftIndex="3" rightIndex="3"/>
+    </allOverlaps>
+    <allMappings xmi:type="hipe.network:Mappings" name="left2right">
+      <mapping xmi:type="hipe.network:Mapping"/>
+      <mapping xmi:type="hipe.network:Mapping" index="1"/>
+      <mapping xmi:type="hipe.network:Mapping" origin="RIGHT" index="1"/>
+      <mapping xmi:type="hipe.network:Mapping" origin="RIGHT" index="2"/>
+    </allMappings>
+    <allMappings xmi:type="hipe.network:Mappings" name="center2left">
+      <mapping xmi:type="hipe.network:Mapping" origin="RIGHT"/>
+      <mapping xmi:type="hipe.network:Mapping"/>
+      <mapping xmi:type="hipe.network:Mapping" index="1"/>
+    </allMappings>
+    <allMappings xmi:type="hipe.network:Mappings" name="right2center">
+      <mapping xmi:type="hipe.network:Mapping"/>
+      <mapping xmi:type="hipe.network:Mapping" origin="RIGHT"/>
+      <mapping xmi:type="hipe.network:Mapping" index="1"/>
+      <mapping xmi:type="hipe.network:Mapping" index="2"/>
+    </allMappings>
+    <allMappings xmi:type="hipe.network:Mappings" name="left2HalfMatch">
+      <mapping xmi:type="hipe.network:Mapping"/>
+      <mapping xmi:type="hipe.network:Mapping" index="1"/>
+      <mapping xmi:type="hipe.network:Mapping" origin="RIGHT" index="2"/>
+      <mapping xmi:type="hipe.network:Mapping" origin="RIGHT" index="3"/>
+    </allMappings>
+    <allMappings xmi:type="hipe.network:Mappings" name="center2HalfMatch">
+      <mapping xmi:type="hipe.network:Mapping" origin="RIGHT"/>
+      <mapping xmi:type="hipe.network:Mapping"/>
+      <mapping xmi:type="hipe.network:Mapping" index="1"/>
+      <mapping xmi:type="hipe.network:Mapping" origin="RIGHT" index="3"/>
+    </allMappings>
+    <allMappings xmi:type="hipe.network:Mappings" name="right2HalfMatch">
+      <mapping xmi:type="hipe.network:Mapping"/>
+      <mapping xmi:type="hipe.network:Mapping" origin="RIGHT" index="1"/>
+      <mapping xmi:type="hipe.network:Mapping" index="1"/>
+      <mapping xmi:type="hipe.network:Mapping" index="2"/>
+    </allMappings>
+  </networknode>
+  <networknode xmi:type="hipe.network:JunctionNode" name="assignAppointment_3_junction" inputPort="//@networknode.7/@ports/@port.0 //@networknode.18/@ports/@port.0" patternName="assignAppointment_3" overlaps="//@networknode.19/@allOverlaps.0" mappings="//@networknode.19/@allMappings.0">
+    <ports xmi:type="hipe.network:Ports">
+      <port xmi:type="hipe.network:SimplePort" portSlot="RIGHT" portTarget="//@networknode.20" patternName="assignAppointment_3" matchingNode="//@networknode.19"/>
+    </ports>
+    <allOverlaps xmi:type="hipe.network:Overlaps">
+      <overlap xmi:type="hipe.network:Overlap" rightIndex="2"/>
+    </allOverlaps>
+    <allMappings xmi:type="hipe.network:Mappings">
+      <mapping xmi:type="hipe.network:Mapping"/>
+      <mapping xmi:type="hipe.network:Mapping" index="1"/>
+      <mapping xmi:type="hipe.network:Mapping" origin="RIGHT"/>
+      <mapping xmi:type="hipe.network:Mapping" origin="RIGHT" index="1"/>
+      <mapping xmi:type="hipe.network:Mapping" origin="RIGHT" index="3"/>
+    </allMappings>
+  </networknode>
+  <networknode xmi:type="hipe.network:JunctionNode" name="assignAppointment_1_junction" inputPort="//@networknode.6/@ports/@port.0 //@networknode.19/@ports/@port.0" patternName="assignAppointment_1" overlaps="//@networknode.20/@allOverlaps.0" mappings="//@networknode.20/@allMappings.0">
+    <ports xmi:type="hipe.network:Ports">
+      <port xmi:type="hipe.network:ConstraintPort" portSlot="CENTER" portTarget="//@networknode.21" patternName="assignAppointment_1" matchingNode="//@networknode.20" initializationCode="" constraintName="check_constraint_3" predicateCode="staffMember.getBand()>=request.getStaffBandRequirement() &amp;&amp; staffMember.isArtsFlag()==request.isArtsFlag() &amp;&amp; room.getRoomType().ordinal()==request.getRoomRequirement().ordinal() &amp;&amp; planningDay.getDayIndex()>=request.getBookFromDayIndex() &amp;&amp; startSlot.getStartIndex()>=staffMember.getAvailableFromSlot() &amp;&amp; startSlot.getStartIndex()>=room.getAvailableFromSlot() &amp;&amp; startSlot.getStartIndex() + request.getDurationSlots() &lt;= staffMember.getAvailableToSlot() &amp;&amp; startSlot.getStartIndex() + request.getDurationSlots() &lt;= room.getAvailableToSlot()">
+        <indices>6</indices>
+        <indices>3</indices>
+        <indices>1</indices>
+        <indices>2</indices>
+        <indices>5</indices>
+        <types xmi:type="ecore:EClass" href="platform:/resource/audiologymodel/model/audiologymodel.ecore#//Room"/>
+        <types xmi:type="ecore:EClass" href="platform:/resource/audiologymodel/model/audiologymodel.ecore#//PlanningDay"/>
+        <types xmi:type="ecore:EClass" href="platform:/resource/audiologymodel/model/audiologymodel.ecore#//Timeslot"/>
+        <types xmi:type="ecore:EClass" href="platform:/resource/audiologymodel/model/audiologymodel.ecore#//AppointmentRequest"/>
+        <types xmi:type="ecore:EClass" href="platform:/resource/audiologymodel/model/audiologymodel.ecore#//StaffMember"/>
+        <nodeNames>room</nodeNames>
+        <nodeNames>planningDay</nodeNames>
+        <nodeNames>startSlot</nodeNames>
+        <nodeNames>request</nodeNames>
+        <nodeNames>staffMember</nodeNames>
+        <attributes xmi:type="ecore:EAttribute" href="platform:/resource/audiologymodel/model/audiologymodel.ecore#//StaffMember/band"/>
+        <attributes xmi:type="ecore:EAttribute" href="platform:/resource/audiologymodel/model/audiologymodel.ecore#//AppointmentRequest/staffBandRequirement"/>
+        <attributes xmi:type="ecore:EAttribute" href="platform:/resource/audiologymodel/model/audiologymodel.ecore#//StaffMember/artsFlag"/>
+        <attributes xmi:type="ecore:EAttribute" href="platform:/resource/audiologymodel/model/audiologymodel.ecore#//AppointmentRequest/artsFlag"/>
+        <attributes xmi:type="ecore:EAttribute" href="platform:/resource/audiologymodel/model/audiologymodel.ecore#//Room/roomType"/>
+        <attributes xmi:type="ecore:EAttribute" href="platform:/resource/audiologymodel/model/audiologymodel.ecore#//AppointmentRequest/roomRequirement"/>
+        <attributes xmi:type="ecore:EAttribute" href="platform:/resource/audiologymodel/model/audiologymodel.ecore#//PlanningDay/dayIndex"/>
+        <attributes xmi:type="ecore:EAttribute" href="platform:/resource/audiologymodel/model/audiologymodel.ecore#//AppointmentRequest/bookFromDayIndex"/>
+        <attributes xmi:type="ecore:EAttribute" href="platform:/resource/audiologymodel/model/audiologymodel.ecore#//Timeslot/startIndex"/>
+        <attributes xmi:type="ecore:EAttribute" href="platform:/resource/audiologymodel/model/audiologymodel.ecore#//StaffMember/availableFromSlot"/>
+        <attributes xmi:type="ecore:EAttribute" href="platform:/resource/audiologymodel/model/audiologymodel.ecore#//Room/availableFromSlot"/>
+        <attributes xmi:type="ecore:EAttribute" href="platform:/resource/audiologymodel/model/audiologymodel.ecore#//AppointmentRequest/durationSlots"/>
+        <attributes xmi:type="ecore:EAttribute" href="platform:/resource/audiologymodel/model/audiologymodel.ecore#//StaffMember/availableToSlot"/>
+        <attributes xmi:type="ecore:EAttribute" href="platform:/resource/audiologymodel/model/audiologymodel.ecore#//Room/availableToSlot"/>
+        <pattern xmi:type="HiPEPattern:HiPEPartialPattern" href="hipe-patterns.xmi#//@patterns.7"/>
+      </port>
+    </ports>
+    <allOverlaps xmi:type="hipe.network:Overlaps">
+      <overlap xmi:type="hipe.network:Overlap" rightIndex="2"/>
+    </allOverlaps>
+    <allMappings xmi:type="hipe.network:Mappings">
+      <mapping xmi:type="hipe.network:Mapping"/>
+      <mapping xmi:type="hipe.network:Mapping" index="1"/>
+      <mapping xmi:type="hipe.network:Mapping" index="2"/>
+      <mapping xmi:type="hipe.network:Mapping" origin="RIGHT"/>
+      <mapping xmi:type="hipe.network:Mapping" origin="RIGHT" index="1"/>
+      <mapping xmi:type="hipe.network:Mapping" origin="RIGHT" index="3"/>
+      <mapping xmi:type="hipe.network:Mapping" origin="RIGHT" index="4"/>
+    </allMappings>
+  </networknode>
+  <networknode xmi:type="hipe.network:ProductionNode" name="assignAppointment_production" inputPort="//@networknode.20/@ports/@port.0" patternName="assignAppointment">
+    <labelToIndex xmi:type="hipe.network:StringToIntegerMapEntry" key="booking" value="0"/>
+    <labelToIndex xmi:type="hipe.network:StringToIntegerMapEntry" key="planningDay" value="3"/>
+    <labelToIndex xmi:type="hipe.network:StringToIntegerMapEntry" key="planningWeek" value="4"/>
+    <labelToIndex xmi:type="hipe.network:StringToIntegerMapEntry" key="request" value="2"/>
+    <labelToIndex xmi:type="hipe.network:StringToIntegerMapEntry" key="room" value="6"/>
+    <labelToIndex xmi:type="hipe.network:StringToIntegerMapEntry" key="staffMember" value="5"/>
+    <labelToIndex xmi:type="hipe.network:StringToIntegerMapEntry" key="startSlot" value="1"/>
+  </networknode>
+  <networknode xmi:type="hipe.network:ReferenceNode" name="AudiologyBooking_waitingList_1_reference" inputPort="//@networknode.39/@ports/@port.2 //@networknode.5/@ports/@port.1" patternName="requestTuple_21">
+    <ports xmi:type="hipe.network:Ports">
+      <port xmi:type="hipe.network:SimplePort" portSlot="CENTER" portTarget="//@networknode.23" patternName="requestTuple_21" matchingNode="//@networknode.22"/>
+    </ports>
+    <type xmi:type="ecore:EReference" href="platform:/resource/audiologymodel/model/audiologymodel.ecore#//AudiologyBooking/waitingList"/>
+    <srcType xmi:type="ecore:EClass" href="platform:/resource/audiologymodel/model/audiologymodel.ecore#//AudiologyBooking"/>
+    <trgType xmi:type="ecore:EClass" href="platform:/resource/audiologymodel/model/audiologymodel.ecore#//AppointmentRequest"/>
+  </networknode>
+  <networknode xmi:type="hipe.network:ProductionNode" name="requestTuple_production" inputPort="//@networknode.22/@ports/@port.0" patternName="requestTuple">
+    <labelToIndex xmi:type="hipe.network:StringToIntegerMapEntry" key="booking" value="0"/>
+    <labelToIndex xmi:type="hipe.network:StringToIntegerMapEntry" key="request" value="1"/>
+  </networknode>
+  <networknode xmi:type="hipe.network:TriangleJunctionNode" name="roomDaySlotTuple_triangle_0_triangleJunction" inputPort="//@networknode.13/@ports/@port.1 //@networknode.14/@ports/@port.1 //@networknode.16/@ports/@port.1" patternName="roomDaySlotTuple_triangle_0" overlaps="//@networknode.24/@allOverlaps.0" mappings="//@networknode.24/@allMappings.0" centerLeftOverlaps="//@networknode.24/@allOverlaps.1" centerLeftMappings="//@networknode.24/@allMappings.1" rightCenterOverlaps="//@networknode.24/@allOverlaps.2" rightCenterMappings="//@networknode.24/@allMappings.2" leftHalfMatchOverlaps="//@networknode.24/@allOverlaps.3" leftHalfMatchMappings="//@networknode.24/@allMappings.3" centerHalfMatchOverlaps="//@networknode.24/@allOverlaps.4" centerHalfMatchMappings="//@networknode.24/@allMappings.4" rightHalfMatchOverlaps="//@networknode.24/@allOverlaps.5" rightHalfMatchMappings="//@networknode.24/@allMappings.5" fullOverlaps="//@networknode.24/@allOverlaps.6">
+    <ports xmi:type="hipe.network:Ports">
+      <port xmi:type="hipe.network:SimplePort" portSlot="RIGHT" portTarget="//@networknode.25" patternName="roomDaySlotTuple_triangle_0" matchingNode="//@networknode.24"/>
+    </ports>
+    <allOverlaps xmi:type="hipe.network:Overlaps" name="left2right">
+      <overlap xmi:type="hipe.network:Overlap"/>
+    </allOverlaps>
+    <allOverlaps xmi:type="hipe.network:Overlaps" name="center2left">
+      <overlap xmi:type="hipe.network:Overlap" leftIndex="1" rightIndex="1"/>
+    </allOverlaps>
+    <allOverlaps xmi:type="hipe.network:Overlaps" name="right2center">
+      <overlap xmi:type="hipe.network:Overlap" leftIndex="1"/>
+    </allOverlaps>
+    <allOverlaps xmi:type="hipe.network:Overlaps" name="left2HalfMatch">
+      <overlap xmi:type="hipe.network:Overlap"/>
+      <overlap xmi:type="hipe.network:Overlap" leftIndex="1" rightIndex="1"/>
+    </allOverlaps>
+    <allOverlaps xmi:type="hipe.network:Overlaps" name="center2HalfMatch">
+      <overlap xmi:type="hipe.network:Overlap" leftIndex="1" rightIndex="1"/>
+      <overlap xmi:type="hipe.network:Overlap" rightIndex="2"/>
+    </allOverlaps>
+    <allOverlaps xmi:type="hipe.network:Overlaps" name="right2HalfMatch">
+      <overlap xmi:type="hipe.network:Overlap"/>
+      <overlap xmi:type="hipe.network:Overlap" leftIndex="1" rightIndex="2"/>
+    </allOverlaps>
+    <allOverlaps xmi:type="hipe.network:Overlaps" name="fullMatch">
+      <overlap xmi:type="hipe.network:Overlap"/>
+      <overlap xmi:type="hipe.network:Overlap" leftIndex="1" rightIndex="1"/>
+      <overlap xmi:type="hipe.network:Overlap" leftIndex="2" rightIndex="2"/>
+    </allOverlaps>
+    <allMappings xmi:type="hipe.network:Mappings" name="left2right">
+      <mapping xmi:type="hipe.network:Mapping"/>
+      <mapping xmi:type="hipe.network:Mapping" index="1"/>
+      <mapping xmi:type="hipe.network:Mapping" origin="RIGHT" index="1"/>
+    </allMappings>
+    <allMappings xmi:type="hipe.network:Mappings" name="center2left">
+      <mapping xmi:type="hipe.network:Mapping" origin="RIGHT"/>
+      <mapping xmi:type="hipe.network:Mapping" index="1"/>
+      <mapping xmi:type="hipe.network:Mapping"/>
+    </allMappings>
+    <allMappings xmi:type="hipe.network:Mappings" name="right2center">
+      <mapping xmi:type="hipe.network:Mapping"/>
+      <mapping xmi:type="hipe.network:Mapping" origin="RIGHT" index="1"/>
+      <mapping xmi:type="hipe.network:Mapping" index="1"/>
+    </allMappings>
+    <allMappings xmi:type="hipe.network:Mappings" name="left2HalfMatch">
+      <mapping xmi:type="hipe.network:Mapping"/>
+      <mapping xmi:type="hipe.network:Mapping" index="1"/>
+      <mapping xmi:type="hipe.network:Mapping" origin="RIGHT" index="2"/>
+    </allMappings>
+    <allMappings xmi:type="hipe.network:Mappings" name="center2HalfMatch">
+      <mapping xmi:type="hipe.network:Mapping" origin="RIGHT"/>
+      <mapping xmi:type="hipe.network:Mapping" index="1"/>
+      <mapping xmi:type="hipe.network:Mapping"/>
+    </allMappings>
+    <allMappings xmi:type="hipe.network:Mappings" name="right2HalfMatch">
+      <mapping xmi:type="hipe.network:Mapping"/>
+      <mapping xmi:type="hipe.network:Mapping" origin="RIGHT" index="1"/>
+      <mapping xmi:type="hipe.network:Mapping" index="1"/>
+    </allMappings>
+  </networknode>
+  <networknode xmi:type="hipe.network:JunctionNode" name="roomDaySlotTuple_24_junction" inputPort="//@networknode.2/@ports/@port.1 //@networknode.24/@ports/@port.0" patternName="roomDaySlotTuple_24" overlaps="//@networknode.25/@allOverlaps.0" mappings="//@networknode.25/@allMappings.0">
+    <ports xmi:type="hipe.network:Ports">
+      <port xmi:type="hipe.network:SimplePort" portSlot="CENTER" portTarget="//@networknode.26" patternName="roomDaySlotTuple_24" matchingNode="//@networknode.25"/>
+    </ports>
+    <allOverlaps xmi:type="hipe.network:Overlaps">
+      <overlap xmi:type="hipe.network:Overlap"/>
+    </allOverlaps>
+    <allMappings xmi:type="hipe.network:Mappings">
+      <mapping xmi:type="hipe.network:Mapping"/>
+      <mapping xmi:type="hipe.network:Mapping" index="1"/>
+      <mapping xmi:type="hipe.network:Mapping" origin="RIGHT" index="1"/>
+      <mapping xmi:type="hipe.network:Mapping" origin="RIGHT" index="2"/>
+    </allMappings>
+  </networknode>
+  <networknode xmi:type="hipe.network:ProductionNode" name="roomDaySlotTuple_production" inputPort="//@networknode.25/@ports/@port.0" patternName="roomDaySlotTuple">
+    <labelToIndex xmi:type="hipe.network:StringToIntegerMapEntry" key="booking" value="0"/>
+    <labelToIndex xmi:type="hipe.network:StringToIntegerMapEntry" key="interval" value="1"/>
+    <labelToIndex xmi:type="hipe.network:StringToIntegerMapEntry" key="planningDay" value="2"/>
+    <labelToIndex xmi:type="hipe.network:StringToIntegerMapEntry" key="room" value="3"/>
+  </networknode>
+  <networknode xmi:type="hipe.network:TriangleJunctionNode" name="staffDaySlotTuple_triangle_0_triangleJunction" inputPort="//@networknode.13/@ports/@port.2 //@networknode.10/@ports/@port.1 //@networknode.12/@ports/@port.1" patternName="staffDaySlotTuple_triangle_0" overlaps="//@networknode.27/@allOverlaps.0" mappings="//@networknode.27/@allMappings.0" centerLeftOverlaps="//@networknode.27/@allOverlaps.1" centerLeftMappings="//@networknode.27/@allMappings.1" rightCenterOverlaps="//@networknode.27/@allOverlaps.2" rightCenterMappings="//@networknode.27/@allMappings.2" leftHalfMatchOverlaps="//@networknode.27/@allOverlaps.3" leftHalfMatchMappings="//@networknode.27/@allMappings.3" centerHalfMatchOverlaps="//@networknode.27/@allOverlaps.4" centerHalfMatchMappings="//@networknode.27/@allMappings.4" rightHalfMatchOverlaps="//@networknode.27/@allOverlaps.5" rightHalfMatchMappings="//@networknode.27/@allMappings.5" fullOverlaps="//@networknode.27/@allOverlaps.6">
+    <ports xmi:type="hipe.network:Ports">
+      <port xmi:type="hipe.network:SimplePort" portSlot="RIGHT" portTarget="//@networknode.28" patternName="staffDaySlotTuple_triangle_0" matchingNode="//@networknode.27"/>
+    </ports>
+    <allOverlaps xmi:type="hipe.network:Overlaps" name="left2right">
+      <overlap xmi:type="hipe.network:Overlap" leftIndex="1" rightIndex="1"/>
+    </allOverlaps>
+    <allOverlaps xmi:type="hipe.network:Overlaps" name="center2left">
+      <overlap xmi:type="hipe.network:Overlap"/>
+    </allOverlaps>
+    <allOverlaps xmi:type="hipe.network:Overlaps" name="right2center">
+      <overlap xmi:type="hipe.network:Overlap" rightIndex="1"/>
+    </allOverlaps>
+    <allOverlaps xmi:type="hipe.network:Overlaps" name="left2HalfMatch">
+      <overlap xmi:type="hipe.network:Overlap"/>
+      <overlap xmi:type="hipe.network:Overlap" leftIndex="1" rightIndex="1"/>
+    </allOverlaps>
+    <allOverlaps xmi:type="hipe.network:Overlaps" name="center2HalfMatch">
+      <overlap xmi:type="hipe.network:Overlap"/>
+      <overlap xmi:type="hipe.network:Overlap" leftIndex="1" rightIndex="2"/>
+    </allOverlaps>
+    <allOverlaps xmi:type="hipe.network:Overlaps" name="right2HalfMatch">
+      <overlap xmi:type="hipe.network:Overlap" leftIndex="1" rightIndex="1"/>
+      <overlap xmi:type="hipe.network:Overlap" rightIndex="2"/>
+    </allOverlaps>
+    <allOverlaps xmi:type="hipe.network:Overlaps" name="fullMatch">
+      <overlap xmi:type="hipe.network:Overlap"/>
+      <overlap xmi:type="hipe.network:Overlap" leftIndex="1" rightIndex="1"/>
+      <overlap xmi:type="hipe.network:Overlap" leftIndex="2" rightIndex="2"/>
+    </allOverlaps>
+    <allMappings xmi:type="hipe.network:Mappings" name="left2right">
+      <mapping xmi:type="hipe.network:Mapping"/>
+      <mapping xmi:type="hipe.network:Mapping" index="1"/>
+      <mapping xmi:type="hipe.network:Mapping" origin="RIGHT"/>
+    </allMappings>
+    <allMappings xmi:type="hipe.network:Mappings" name="center2left">
+      <mapping xmi:type="hipe.network:Mapping"/>
+      <mapping xmi:type="hipe.network:Mapping" origin="RIGHT" index="1"/>
+      <mapping xmi:type="hipe.network:Mapping" index="1"/>
+    </allMappings>
+    <allMappings xmi:type="hipe.network:Mappings" name="right2center">
+      <mapping xmi:type="hipe.network:Mapping" origin="RIGHT"/>
+      <mapping xmi:type="hipe.network:Mapping" index="1"/>
+      <mapping xmi:type="hipe.network:Mapping"/>
+    </allMappings>
+    <allMappings xmi:type="hipe.network:Mappings" name="left2HalfMatch">
+      <mapping xmi:type="hipe.network:Mapping"/>
+      <mapping xmi:type="hipe.network:Mapping" index="1"/>
+      <mapping xmi:type="hipe.network:Mapping" origin="RIGHT" index="2"/>
+    </allMappings>
+    <allMappings xmi:type="hipe.network:Mappings" name="center2HalfMatch">
+      <mapping xmi:type="hipe.network:Mapping"/>
+      <mapping xmi:type="hipe.network:Mapping" origin="RIGHT" index="1"/>
+      <mapping xmi:type="hipe.network:Mapping" index="1"/>
+    </allMappings>
+    <allMappings xmi:type="hipe.network:Mappings" name="right2HalfMatch">
+      <mapping xmi:type="hipe.network:Mapping" origin="RIGHT"/>
+      <mapping xmi:type="hipe.network:Mapping" index="1"/>
+      <mapping xmi:type="hipe.network:Mapping"/>
+    </allMappings>
+  </networknode>
+  <networknode xmi:type="hipe.network:JunctionNode" name="staffDaySlotTuple_34_junction" inputPort="//@networknode.2/@ports/@port.2 //@networknode.27/@ports/@port.0" patternName="staffDaySlotTuple_34" overlaps="//@networknode.28/@allOverlaps.0" mappings="//@networknode.28/@allMappings.0">
+    <ports xmi:type="hipe.network:Ports">
+      <port xmi:type="hipe.network:SimplePort" portSlot="CENTER" portTarget="//@networknode.29" patternName="staffDaySlotTuple_34" matchingNode="//@networknode.28"/>
+    </ports>
+    <allOverlaps xmi:type="hipe.network:Overlaps">
+      <overlap xmi:type="hipe.network:Overlap"/>
+    </allOverlaps>
+    <allMappings xmi:type="hipe.network:Mappings">
+      <mapping xmi:type="hipe.network:Mapping"/>
+      <mapping xmi:type="hipe.network:Mapping" index="1"/>
+      <mapping xmi:type="hipe.network:Mapping" origin="RIGHT" index="1"/>
+      <mapping xmi:type="hipe.network:Mapping" origin="RIGHT" index="2"/>
+    </allMappings>
+  </networknode>
+  <networknode xmi:type="hipe.network:ProductionNode" name="staffDaySlotTuple_production" inputPort="//@networknode.28/@ports/@port.0" patternName="staffDaySlotTuple">
+    <labelToIndex xmi:type="hipe.network:StringToIntegerMapEntry" key="booking" value="0"/>
+    <labelToIndex xmi:type="hipe.network:StringToIntegerMapEntry" key="interval" value="1"/>
+    <labelToIndex xmi:type="hipe.network:StringToIntegerMapEntry" key="planningDay" value="2"/>
+    <labelToIndex xmi:type="hipe.network:StringToIntegerMapEntry" key="staffMember" value="3"/>
+  </networknode>
+  <networknode xmi:type="hipe.network:TriangleJunctionNode" name="staffDayTuple_triangle_0_triangleJunction" inputPort="//@networknode.13/@ports/@port.3 //@networknode.10/@ports/@port.2 //@networknode.12/@ports/@port.2" patternName="staffDayTuple_triangle_0" overlaps="//@networknode.30/@allOverlaps.0" mappings="//@networknode.30/@allMappings.0" centerLeftOverlaps="//@networknode.30/@allOverlaps.1" centerLeftMappings="//@networknode.30/@allMappings.1" rightCenterOverlaps="//@networknode.30/@allOverlaps.2" rightCenterMappings="//@networknode.30/@allMappings.2" leftHalfMatchOverlaps="//@networknode.30/@allOverlaps.3" leftHalfMatchMappings="//@networknode.30/@allMappings.3" centerHalfMatchOverlaps="//@networknode.30/@allOverlaps.4" centerHalfMatchMappings="//@networknode.30/@allMappings.4" rightHalfMatchOverlaps="//@networknode.30/@allOverlaps.5" rightHalfMatchMappings="//@networknode.30/@allMappings.5" fullOverlaps="//@networknode.30/@allOverlaps.6">
+    <ports xmi:type="hipe.network:Ports">
+      <port xmi:type="hipe.network:SimplePort" portSlot="CENTER" portTarget="//@networknode.31" patternName="staffDayTuple_triangle_0" matchingNode="//@networknode.30"/>
+    </ports>
+    <allOverlaps xmi:type="hipe.network:Overlaps" name="left2right">
+      <overlap xmi:type="hipe.network:Overlap" leftIndex="1" rightIndex="1"/>
+    </allOverlaps>
+    <allOverlaps xmi:type="hipe.network:Overlaps" name="center2left">
+      <overlap xmi:type="hipe.network:Overlap"/>
+    </allOverlaps>
+    <allOverlaps xmi:type="hipe.network:Overlaps" name="right2center">
+      <overlap xmi:type="hipe.network:Overlap" rightIndex="1"/>
+    </allOverlaps>
+    <allOverlaps xmi:type="hipe.network:Overlaps" name="left2HalfMatch">
+      <overlap xmi:type="hipe.network:Overlap"/>
+      <overlap xmi:type="hipe.network:Overlap" leftIndex="1" rightIndex="1"/>
+    </allOverlaps>
+    <allOverlaps xmi:type="hipe.network:Overlaps" name="center2HalfMatch">
+      <overlap xmi:type="hipe.network:Overlap"/>
+      <overlap xmi:type="hipe.network:Overlap" leftIndex="1" rightIndex="2"/>
+    </allOverlaps>
+    <allOverlaps xmi:type="hipe.network:Overlaps" name="right2HalfMatch">
+      <overlap xmi:type="hipe.network:Overlap" leftIndex="1" rightIndex="1"/>
+      <overlap xmi:type="hipe.network:Overlap" rightIndex="2"/>
+    </allOverlaps>
+    <allOverlaps xmi:type="hipe.network:Overlaps" name="fullMatch">
+      <overlap xmi:type="hipe.network:Overlap"/>
+      <overlap xmi:type="hipe.network:Overlap" leftIndex="1" rightIndex="1"/>
+      <overlap xmi:type="hipe.network:Overlap" leftIndex="2" rightIndex="2"/>
+    </allOverlaps>
+    <allMappings xmi:type="hipe.network:Mappings" name="left2right">
+      <mapping xmi:type="hipe.network:Mapping"/>
+      <mapping xmi:type="hipe.network:Mapping" index="1"/>
+      <mapping xmi:type="hipe.network:Mapping" origin="RIGHT"/>
+    </allMappings>
+    <allMappings xmi:type="hipe.network:Mappings" name="center2left">
+      <mapping xmi:type="hipe.network:Mapping"/>
+      <mapping xmi:type="hipe.network:Mapping" origin="RIGHT" index="1"/>
+      <mapping xmi:type="hipe.network:Mapping" index="1"/>
+    </allMappings>
+    <allMappings xmi:type="hipe.network:Mappings" name="right2center">
+      <mapping xmi:type="hipe.network:Mapping" origin="RIGHT"/>
+      <mapping xmi:type="hipe.network:Mapping" index="1"/>
+      <mapping xmi:type="hipe.network:Mapping"/>
+    </allMappings>
+    <allMappings xmi:type="hipe.network:Mappings" name="left2HalfMatch">
+      <mapping xmi:type="hipe.network:Mapping"/>
+      <mapping xmi:type="hipe.network:Mapping" index="1"/>
+      <mapping xmi:type="hipe.network:Mapping" origin="RIGHT" index="2"/>
+    </allMappings>
+    <allMappings xmi:type="hipe.network:Mappings" name="center2HalfMatch">
+      <mapping xmi:type="hipe.network:Mapping"/>
+      <mapping xmi:type="hipe.network:Mapping" origin="RIGHT" index="1"/>
+      <mapping xmi:type="hipe.network:Mapping" index="1"/>
+    </allMappings>
+    <allMappings xmi:type="hipe.network:Mappings" name="right2HalfMatch">
+      <mapping xmi:type="hipe.network:Mapping" origin="RIGHT"/>
+      <mapping xmi:type="hipe.network:Mapping" index="1"/>
+      <mapping xmi:type="hipe.network:Mapping"/>
+    </allMappings>
+  </networknode>
+  <networknode xmi:type="hipe.network:ProductionNode" name="staffDayTuple_production" inputPort="//@networknode.30/@ports/@port.0" patternName="staffDayTuple">
+    <labelToIndex xmi:type="hipe.network:StringToIntegerMapEntry" key="booking" value="0"/>
+    <labelToIndex xmi:type="hipe.network:StringToIntegerMapEntry" key="planningDay" value="1"/>
+    <labelToIndex xmi:type="hipe.network:StringToIntegerMapEntry" key="staffMember" value="2"/>
+  </networknode>
+  <networknode xmi:type="hipe.network:TriangleJunctionNode" name="staffRoomDayTuple_triangle_1_triangleJunction" inputPort="//@networknode.13/@ports/@port.4 //@networknode.14/@ports/@port.2 //@networknode.16/@ports/@port.2" patternName="staffRoomDayTuple_triangle_1" overlaps="//@networknode.32/@allOverlaps.0" mappings="//@networknode.32/@allMappings.0" centerLeftOverlaps="//@networknode.32/@allOverlaps.1" centerLeftMappings="//@networknode.32/@allMappings.1" rightCenterOverlaps="//@networknode.32/@allOverlaps.2" rightCenterMappings="//@networknode.32/@allMappings.2" leftHalfMatchOverlaps="//@networknode.32/@allOverlaps.3" leftHalfMatchMappings="//@networknode.32/@allMappings.3" centerHalfMatchOverlaps="//@networknode.32/@allOverlaps.4" centerHalfMatchMappings="//@networknode.32/@allMappings.4" rightHalfMatchOverlaps="//@networknode.32/@allOverlaps.5" rightHalfMatchMappings="//@networknode.32/@allMappings.5" fullOverlaps="//@networknode.32/@allOverlaps.6">
+    <ports xmi:type="hipe.network:Ports">
+      <port xmi:type="hipe.network:SimplePort" portSlot="RIGHT" portTarget="//@networknode.33" patternName="staffRoomDayTuple_triangle_1" matchingNode="//@networknode.32"/>
+    </ports>
+    <allOverlaps xmi:type="hipe.network:Overlaps" name="left2right">
+      <overlap xmi:type="hipe.network:Overlap"/>
+    </allOverlaps>
+    <allOverlaps xmi:type="hipe.network:Overlaps" name="center2left">
+      <overlap xmi:type="hipe.network:Overlap" leftIndex="1" rightIndex="1"/>
+    </allOverlaps>
+    <allOverlaps xmi:type="hipe.network:Overlaps" name="right2center">
+      <overlap xmi:type="hipe.network:Overlap" leftIndex="1"/>
+    </allOverlaps>
+    <allOverlaps xmi:type="hipe.network:Overlaps" name="left2HalfMatch">
+      <overlap xmi:type="hipe.network:Overlap"/>
+      <overlap xmi:type="hipe.network:Overlap" leftIndex="1" rightIndex="1"/>
+    </allOverlaps>
+    <allOverlaps xmi:type="hipe.network:Overlaps" name="center2HalfMatch">
+      <overlap xmi:type="hipe.network:Overlap" leftIndex="1" rightIndex="1"/>
+      <overlap xmi:type="hipe.network:Overlap" rightIndex="2"/>
+    </allOverlaps>
+    <allOverlaps xmi:type="hipe.network:Overlaps" name="right2HalfMatch">
+      <overlap xmi:type="hipe.network:Overlap"/>
+      <overlap xmi:type="hipe.network:Overlap" leftIndex="1" rightIndex="2"/>
+    </allOverlaps>
+    <allOverlaps xmi:type="hipe.network:Overlaps" name="fullMatch">
+      <overlap xmi:type="hipe.network:Overlap"/>
+      <overlap xmi:type="hipe.network:Overlap" leftIndex="1" rightIndex="1"/>
+      <overlap xmi:type="hipe.network:Overlap" leftIndex="2" rightIndex="2"/>
+    </allOverlaps>
+    <allMappings xmi:type="hipe.network:Mappings" name="left2right">
+      <mapping xmi:type="hipe.network:Mapping"/>
+      <mapping xmi:type="hipe.network:Mapping" index="1"/>
+      <mapping xmi:type="hipe.network:Mapping" origin="RIGHT" index="1"/>
+    </allMappings>
+    <allMappings xmi:type="hipe.network:Mappings" name="center2left">
+      <mapping xmi:type="hipe.network:Mapping" origin="RIGHT"/>
+      <mapping xmi:type="hipe.network:Mapping" index="1"/>
+      <mapping xmi:type="hipe.network:Mapping"/>
+    </allMappings>
+    <allMappings xmi:type="hipe.network:Mappings" name="right2center">
+      <mapping xmi:type="hipe.network:Mapping"/>
+      <mapping xmi:type="hipe.network:Mapping" origin="RIGHT" index="1"/>
+      <mapping xmi:type="hipe.network:Mapping" index="1"/>
+    </allMappings>
+    <allMappings xmi:type="hipe.network:Mappings" name="left2HalfMatch">
+      <mapping xmi:type="hipe.network:Mapping"/>
+      <mapping xmi:type="hipe.network:Mapping" index="1"/>
+      <mapping xmi:type="hipe.network:Mapping" origin="RIGHT" index="2"/>
+    </allMappings>
+    <allMappings xmi:type="hipe.network:Mappings" name="center2HalfMatch">
+      <mapping xmi:type="hipe.network:Mapping" origin="RIGHT"/>
+      <mapping xmi:type="hipe.network:Mapping" index="1"/>
+      <mapping xmi:type="hipe.network:Mapping"/>
+    </allMappings>
+    <allMappings xmi:type="hipe.network:Mappings" name="right2HalfMatch">
+      <mapping xmi:type="hipe.network:Mapping"/>
+      <mapping xmi:type="hipe.network:Mapping" origin="RIGHT" index="1"/>
+      <mapping xmi:type="hipe.network:Mapping" index="1"/>
+    </allMappings>
+  </networknode>
+  <networknode xmi:type="hipe.network:TriangleJunctionNode" name="staffRoomDayTuple_triangle_0_triangleJunction" inputPort="//@networknode.10/@ports/@port.3 //@networknode.12/@ports/@port.3 //@networknode.32/@ports/@port.0" patternName="staffRoomDayTuple_triangle_0" overlaps="//@networknode.33/@allOverlaps.0" mappings="//@networknode.33/@allMappings.0" centerLeftOverlaps="//@networknode.33/@allOverlaps.1" centerLeftMappings="//@networknode.33/@allMappings.1" rightCenterOverlaps="//@networknode.33/@allOverlaps.2" rightCenterMappings="//@networknode.33/@allMappings.2" leftHalfMatchOverlaps="//@networknode.33/@allOverlaps.3" leftHalfMatchMappings="//@networknode.33/@allMappings.3" centerHalfMatchOverlaps="//@networknode.33/@allOverlaps.4" centerHalfMatchMappings="//@networknode.33/@allMappings.4" rightHalfMatchOverlaps="//@networknode.33/@allOverlaps.5" rightHalfMatchMappings="//@networknode.33/@allMappings.5" fullOverlaps="//@networknode.33/@allOverlaps.6">
+    <ports xmi:type="hipe.network:Ports">
+      <port xmi:type="hipe.network:SimplePort" portSlot="CENTER" portTarget="//@networknode.34" patternName="staffRoomDayTuple_triangle_0" matchingNode="//@networknode.33"/>
+    </ports>
+    <allOverlaps xmi:type="hipe.network:Overlaps" name="left2right">
+      <overlap xmi:type="hipe.network:Overlap"/>
+    </allOverlaps>
+    <allOverlaps xmi:type="hipe.network:Overlaps" name="center2left">
+      <overlap xmi:type="hipe.network:Overlap" rightIndex="1"/>
+    </allOverlaps>
+    <allOverlaps xmi:type="hipe.network:Overlaps" name="right2center">
+      <overlap xmi:type="hipe.network:Overlap" leftIndex="1" rightIndex="1"/>
+    </allOverlaps>
+    <allOverlaps xmi:type="hipe.network:Overlaps" name="left2HalfMatch">
+      <overlap xmi:type="hipe.network:Overlap"/>
+      <overlap xmi:type="hipe.network:Overlap" leftIndex="1" rightIndex="1"/>
+    </allOverlaps>
+    <allOverlaps xmi:type="hipe.network:Overlaps" name="center2HalfMatch">
+      <overlap xmi:type="hipe.network:Overlap" rightIndex="1"/>
+      <overlap xmi:type="hipe.network:Overlap" leftIndex="1" rightIndex="2"/>
+    </allOverlaps>
+    <allOverlaps xmi:type="hipe.network:Overlaps" name="right2HalfMatch">
+      <overlap xmi:type="hipe.network:Overlap"/>
+      <overlap xmi:type="hipe.network:Overlap" leftIndex="1" rightIndex="2"/>
+    </allOverlaps>
+    <allOverlaps xmi:type="hipe.network:Overlaps" name="fullMatch">
+      <overlap xmi:type="hipe.network:Overlap"/>
+      <overlap xmi:type="hipe.network:Overlap" leftIndex="1" rightIndex="1"/>
+      <overlap xmi:type="hipe.network:Overlap" leftIndex="2" rightIndex="2"/>
+      <overlap xmi:type="hipe.network:Overlap" leftIndex="3" rightIndex="3"/>
+    </allOverlaps>
+    <allMappings xmi:type="hipe.network:Mappings" name="left2right">
+      <mapping xmi:type="hipe.network:Mapping"/>
+      <mapping xmi:type="hipe.network:Mapping" index="1"/>
+      <mapping xmi:type="hipe.network:Mapping" origin="RIGHT" index="1"/>
+      <mapping xmi:type="hipe.network:Mapping" origin="RIGHT" index="2"/>
+    </allMappings>
+    <allMappings xmi:type="hipe.network:Mappings" name="center2left">
+      <mapping xmi:type="hipe.network:Mapping" origin="RIGHT"/>
+      <mapping xmi:type="hipe.network:Mapping"/>
+      <mapping xmi:type="hipe.network:Mapping" index="1"/>
+    </allMappings>
+    <allMappings xmi:type="hipe.network:Mappings" name="right2center">
+      <mapping xmi:type="hipe.network:Mapping"/>
+      <mapping xmi:type="hipe.network:Mapping" origin="RIGHT"/>
+      <mapping xmi:type="hipe.network:Mapping" index="1"/>
+      <mapping xmi:type="hipe.network:Mapping" index="2"/>
+    </allMappings>
+    <allMappings xmi:type="hipe.network:Mappings" name="left2HalfMatch">
+      <mapping xmi:type="hipe.network:Mapping"/>
+      <mapping xmi:type="hipe.network:Mapping" index="1"/>
+      <mapping xmi:type="hipe.network:Mapping" origin="RIGHT" index="2"/>
+      <mapping xmi:type="hipe.network:Mapping" origin="RIGHT" index="3"/>
+    </allMappings>
+    <allMappings xmi:type="hipe.network:Mappings" name="center2HalfMatch">
+      <mapping xmi:type="hipe.network:Mapping" origin="RIGHT"/>
+      <mapping xmi:type="hipe.network:Mapping"/>
+      <mapping xmi:type="hipe.network:Mapping" index="1"/>
+      <mapping xmi:type="hipe.network:Mapping" origin="RIGHT" index="3"/>
+    </allMappings>
+    <allMappings xmi:type="hipe.network:Mappings" name="right2HalfMatch">
+      <mapping xmi:type="hipe.network:Mapping"/>
+      <mapping xmi:type="hipe.network:Mapping" origin="RIGHT" index="1"/>
+      <mapping xmi:type="hipe.network:Mapping" index="1"/>
+      <mapping xmi:type="hipe.network:Mapping" index="2"/>
+    </allMappings>
+  </networknode>
+  <networknode xmi:type="hipe.network:ProductionNode" name="staffRoomDayTuple_production" inputPort="//@networknode.33/@ports/@port.0" patternName="staffRoomDayTuple">
+    <labelToIndex xmi:type="hipe.network:StringToIntegerMapEntry" key="booking" value="0"/>
+    <labelToIndex xmi:type="hipe.network:StringToIntegerMapEntry" key="planningDay" value="2"/>
+    <labelToIndex xmi:type="hipe.network:StringToIntegerMapEntry" key="room" value="3"/>
+    <labelToIndex xmi:type="hipe.network:StringToIntegerMapEntry" key="staffMember" value="1"/>
+  </networknode>
+  <networknode xmi:type="hipe.network:ReferenceNode" name="AudiologyBooking_weeks_0_reference" inputPort="//@networknode.38/@ports/@port.3 //@networknode.9/@ports/@port.1" patternName="staffWeekTuple_64">
+    <ports xmi:type="hipe.network:Ports">
+      <port xmi:type="hipe.network:SimplePort" portSlot="RIGHT" portTarget="//@networknode.36" patternName="staffWeekTuple_64" matchingNode="//@networknode.35"/>
+    </ports>
+    <type xmi:type="ecore:EReference" href="platform:/resource/audiologymodel/model/audiologymodel.ecore#//AudiologyBooking/weeks"/>
+    <srcType xmi:type="ecore:EClass" href="platform:/resource/audiologymodel/model/audiologymodel.ecore#//AudiologyBooking"/>
+    <trgType xmi:type="ecore:EClass" href="platform:/resource/audiologymodel/model/audiologymodel.ecore#//PlanningWeek"/>
+  </networknode>
+  <networknode xmi:type="hipe.network:JunctionNode" name="staffWeekTuple_62_junction" inputPort="//@networknode.10/@ports/@port.4 //@networknode.35/@ports/@port.0" patternName="staffWeekTuple_62" overlaps="//@networknode.36/@allOverlaps.0" mappings="//@networknode.36/@allMappings.0">
+    <ports xmi:type="hipe.network:Ports">
+      <port xmi:type="hipe.network:SimplePort" portSlot="CENTER" portTarget="//@networknode.37" patternName="staffWeekTuple_62" matchingNode="//@networknode.36"/>
+    </ports>
+    <allOverlaps xmi:type="hipe.network:Overlaps">
+      <overlap xmi:type="hipe.network:Overlap"/>
+    </allOverlaps>
+    <allMappings xmi:type="hipe.network:Mappings">
+      <mapping xmi:type="hipe.network:Mapping"/>
+      <mapping xmi:type="hipe.network:Mapping" index="1"/>
+      <mapping xmi:type="hipe.network:Mapping" origin="RIGHT" index="1"/>
+    </allMappings>
+  </networknode>
+  <networknode xmi:type="hipe.network:ProductionNode" name="staffWeekTuple_production" inputPort="//@networknode.36/@ports/@port.0" patternName="staffWeekTuple">
+    <labelToIndex xmi:type="hipe.network:StringToIntegerMapEntry" key="booking" value="0"/>
+    <labelToIndex xmi:type="hipe.network:StringToIntegerMapEntry" key="planningWeek" value="2"/>
+    <labelToIndex xmi:type="hipe.network:StringToIntegerMapEntry" key="staffMember" value="1"/>
+  </networknode>
+  <networknode xmi:type="hipe.network:ObjectNode" name="AudiologyBooking_object_SP0" patternName="assignAppointment_8" dispatchnode="//@networknode.0">
+    <ports xmi:type="hipe.network:Ports">
+      <port xmi:type="hipe.network:SimplePort" portTarget="//@networknode.2" patternName="assignAppointment_8" matchingNode="//@networknode.38"/>
+      <port xmi:type="hipe.network:SimplePort" portTarget="//@networknode.10" patternName="assignAppointment_8" matchingNode="//@networknode.38"/>
+      <port xmi:type="hipe.network:SimplePort" portTarget="//@networknode.16" patternName="assignAppointment_8" matchingNode="//@networknode.38"/>
+      <port xmi:type="hipe.network:SimplePort" portTarget="//@networknode.35" patternName="assignAppointment_8" matchingNode="//@networknode.38"/>
+    </ports>
+    <type xmi:type="ecore:EClass" href="platform:/resource/audiologymodel/model/audiologymodel.ecore#//AudiologyBooking"/>
+  </networknode>
+  <networknode xmi:type="hipe.network:ObjectNode" name="AudiologyBooking_object_SP1" patternName="assignAppointment_8" dispatchnode="//@networknode.0">
+    <ports xmi:type="hipe.network:Ports">
+      <port xmi:type="hipe.network:SimplePort" portTarget="//@networknode.4" patternName="assignAppointment_8" matchingNode="//@networknode.39"/>
+      <port xmi:type="hipe.network:SimplePort" portTarget="//@networknode.13" patternName="assignAppointment_8" matchingNode="//@networknode.39"/>
+      <port xmi:type="hipe.network:SimplePort" portTarget="//@networknode.22" patternName="assignAppointment_8" matchingNode="//@networknode.39"/>
+    </ports>
+    <type xmi:type="ecore:EClass" href="platform:/resource/audiologymodel/model/audiologymodel.ecore#//AudiologyBooking"/>
+  </networknode>
+</hipe.network:HiPENetwork>

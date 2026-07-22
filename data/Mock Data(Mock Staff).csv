@@ -1,0 +1,13 @@
+Staff Number,Band,Working Days,Weekly Hours,Arts Flag
+0,5,Monday,24,0
+1,5,"Monday, Tuesday, Wednesday",24,0
+2,5,"Tuesday, Wednesday",12,0
+3,5,"Wednesday, Thursday, Friday",24,0
+4,5,"Tuesday, Thursday, Friday",24,0
+5,6,"Tuesday, Wednesday, Thursday ",6,0
+6,6,"Monday, Tuesday, Thursday",24,0
+7,6,"Tuesday, Thursday, Friday",24,0
+8,7,"Monday, Wednesday, Thursday, Friday",24,0
+9,7,"Tuesday, Wednesday, Thursday, Friday",16,0
+10,7,Friday,24,1
+11,8,"Tuesday, Thursday",10,1
