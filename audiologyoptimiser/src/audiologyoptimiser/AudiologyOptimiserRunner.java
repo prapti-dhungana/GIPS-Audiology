@@ -67,10 +67,7 @@ public final class AudiologyOptimiserRunner {
                     AudiologymodelPackage.eINSTANCE
             );
 
-            System.out.println(
-                    "platform:/resource/audiologymodel/ -> "
-                            + modelProjectUri
-            );
+            System.out.println("platform:/resource/audiologymodel/ -> "+ modelProjectUri);
 
             api = new AudiologyoptimiserGipsAPI();
             URI inputUri = URI.createFileURI(inputPath.toString());
