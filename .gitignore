@@ -1,0 +1,34 @@
+# Eclipse workspace files
+.metadata/
+.metadata_old/
+.recommenders/
+RemoteSystemsTempFiles/
+Servers/
+
+
+# Java / Eclipse build output
+**/bin/
+**/target/
+*.class
+
+# Generated GIPS / Gurobi solver output
+audiology.lp
+**/audiology.lp
+gurobi.log
+*.mps
+*.sol
+*.ilp
+
+# Generated scheduling results
+audiologymodel/model/AudiologyBooking_optimised.xmi
+audiologymodel/model/AudiologySchedule.csv
+
+
+# Temporary and operating-system files
+*.tmp
+*.bak
+*.swp
+*~
+.DS_Store
+Thumbs.db
+Desktop.ini
