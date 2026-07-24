@@ -19,6 +19,17 @@ gurobi.log
 *.sol
 *.ilp
 
+src-gen
+gen
+xtend-gen
+bin
+!/**/.gitkeep
+*.log
+/**/*.log
+**/trace_cache.bin
+*.lp
+
+
 # Generated scheduling results
 audiologymodel/model/AudiologyBooking_optimised.xmi
 audiologymodel/model/AudiologySchedule.csv
