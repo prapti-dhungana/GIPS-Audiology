@@ -13,8 +13,8 @@ import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
 import org.emoflon.smartemf.persistence.SmartEMFResourceFactoryImpl;
 
-import mwemetamodel.MwemetamodelPackage;
-import mwemetamodel.Root;
+import audiologymodel.AudiologymodelPackage;
+import audiologymodel.AudiologyBooking;
 
 /**
  * File utilities for loading and saving files.
@@ -118,7 +118,7 @@ public class FileUtils {
 	 * @param path  Output (XMI) path for the model to be saved at.
 	 * @throws IOException Throws an IOException if the file could not be written.
 	 */
-	public static void save(final Root model, final String path) throws IOException {
+	public static void save(final AudiologyBooking model, final String path) throws IOException {
 		Objects.requireNonNull(model);
 		Objects.requireNonNull(path);
 		final Resource r = saveAndReturn(model, path);
@@ -134,14 +134,14 @@ public class FileUtils {
 	 * @return Respective resource of the model.
 	 * @throws IOException Throws an IOException if the file could not be written.
 	 */
-	public static Resource saveAndReturn(final Root model, final String path) throws IOException {
+	public static Resource saveAndReturn(final AudiologyBooking model, final String path) throws IOException {
 		Objects.requireNonNull(model);
 		Objects.requireNonNull(path);
 
 		final URI uri = URI.createFileURI(path);
 		final ResourceSet rs = new ResourceSetImpl();
 		rs.getResourceFactoryRegistry().getExtensionToFactoryMap().put("xmi", new SmartEMFResourceFactoryImpl("../"));
-		rs.getPackageRegistry().put(MwemetamodelPackage.eNS_URI, MwemetamodelPackage.eINSTANCE);
+		rs.getPackageRegistry().put(AudiologymodelPackage.eNS_URI, AudiologymodelPackage.eINSTANCE);
 		final Resource r = rs.createResource(uri);
 		r.getContents().add(model);
 		r.save(null);
@@ -160,7 +160,7 @@ public class FileUtils {
 		final ResourceSet resourceSet = new ResourceSetImpl();
 		final Resource.Factory.Registry reg = Resource.Factory.Registry.INSTANCE;
 		reg.getExtensionToFactoryMap().put("xmi", new SmartEMFResourceFactoryImpl("../"));
-		resourceSet.getPackageRegistry().put(MwemetamodelPackage.eNS_URI, MwemetamodelPackage.eINSTANCE);
+		resourceSet.getPackageRegistry().put(AudiologymodelPackage.eNS_URI, AudiologymodelPackage.eINSTANCE);
 		resourceSet.getResource(pathUri, true);
 		return resourceSet.getResources().getFirst();
 	}

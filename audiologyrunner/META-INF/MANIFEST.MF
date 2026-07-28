@@ -3,7 +3,13 @@ Bundle-ManifestVersion: 2
 Bundle-Name: Audiologyrunner
 Bundle-SymbolicName: audiologyrunner
 Bundle-Version: 1.0.0.qualifier
+Import-Package: hipe.engine.config,
+ org.emoflon.gips.core.api,
+ org.emoflon.gips.core.milp,
+ org.emoflon.smartemf.persistence
 Require-Bundle: org.eclipse.swt,
- org.eclipse.jface
+ org.eclipse.jface,
+ audiologymodel;bundle-version="0.1.0",
+ audiologyoptimiser;bundle-version="1.0.0"
 Automatic-Module-Name: audiologyrunner
 Bundle-RequiredExecutionEnvironment: JavaSE-21

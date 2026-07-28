@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/bin/bash 
 
 #
 # This script can be used to run the GIPS MWE.
@@ -16,9 +16,9 @@ function setup {
     echo "# Script info: Applying GIPS XMI workarounds."
 
     # Extract XMI files
-    unzip -qq -o $JAR "mwegipsl/hipe/*/hipe-network.xmi"
-    unzip -qq -o $JAR "mwegipsl/api/*/gips-model.xmi"
-    unzip -qq -o $JAR "mwegipsl/api/ibex-patterns.xmi"
+    unzip -qq -o $JAR "audiologyoptimiser/hipe/*/hipe-network.xmi"
+    unzip -qq -o $JAR "audiologyoptimiser/api/*/gips-model.xmi"
+    unzip -qq -o $JAR "audiologyoptimiser/api/ibex-patterns.xmi"
 }
 
 function run_experiment {
@@ -35,7 +35,7 @@ function run_experiment {
 }
 
 function cleanup {
-    rm -r ./mwegipsl
+    rm -r ./audiologyoptimiser
 }
 
 function run_wrap_all {
@@ -43,7 +43,7 @@ function run_wrap_all {
     setup
 
     # Actual run
-    export ARGS="$numberOfGuests $numberOfHosts"
+    export ARGS="$inputModelPath $outputModelPath"
 
     echo "# Script info: Using ARGS: $ARGS"
     run_experiment
@@ -59,14 +59,14 @@ function run_wrap_all {
 source env.sh
 
 # Config
-export JAR="gips-mwe.jar"
+export JAR="gips-audiology.jar"
 export outputFolder="output"
 mkdir -p $outputFolder
 
 # Arguments: for this example, we use hard-coded arguments
 
-export numberOfGuests=2
-export numberOfHosts=2
+export inputModelPath="../../audiologymodel/model/AudiologyBooking_small.xmi"
+export outputModelPath="./optimized_model.xmi"
 
 # Run wrapping function
 export RUN_NAME=$(date +%Y-%m-%d"_"%H-%M-%S)

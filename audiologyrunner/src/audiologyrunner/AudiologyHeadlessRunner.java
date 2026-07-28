@@ -1,32 +1,33 @@
-package mwerunner;
+package audiologyrunner;
 
 import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Path;
 import java.util.Objects;
 import java.util.logging.Logger;
 
 import org.emoflon.gips.core.milp.SolverOutput;
 
-import mwegipsl.api.gips.MwegipslGipsAPI;
-import mwemetamodel.MweModelGenerator;
-import mwerunner.utils.LoggerUtils;
-import mwerunner.utils.XmiSetupUtil;
+import audiologyoptimiser.api.gips.AudiologyoptimiserGipsAPI;
+import audiologyrunner.utils.LoggerUtils;
+import audiologyrunner.utils.XmiSetupUtils;
 
-public class MweHeadlessRunner {
+public class AudiologyHeadlessRunner {
 
 	/**
 	 * Logger for system outputs.
 	 */
-	protected static final Logger logger = Logger.getLogger(MweHeadlessRunner.class.getName());
+	protected static final Logger logger = Logger.getLogger(AudiologyHeadlessRunner.class.getName());
 
 	/**
 	 * Input model path.
 	 */
-	private static final String inputModelPath = "./initial_model.xmi";
+	private static String inputModelPath = "./initial_model.xmi";
 
 	/**
 	 * Output model path.
 	 */
-	private static final String outputModelPath = "./optimized_model.xmi";
+	private static String outputModelPath = "./optimized_model.xmi";
 
 	/**
 	 * Main method to run the complete project. First argument is the number of
@@ -47,25 +48,35 @@ public class MweHeadlessRunner {
 		// Parse arguments
 		// 0: number of guests to generate
 		// 1: number of hosts to generate
-		final int numberOfGuests = Integer.valueOf(args[0]);
-		final int numberOfHosts = Integer.valueOf(args[1]);
+		// final int numberOfGuests = Integer.valueOf(args[0]);
+		// final int numberOfHosts = Integer.valueOf(args[1]);
+		
+		//temporary hard coded paths
+		inputModelPath = Path.of(args[0]).toAbsolutePath().normalize().toString();
+		outputModelPath = Path.of(args[1]).toAbsolutePath().normalize().toString();
 
 		// Generate the corresponding model
-		final MweModelGenerator gen = new MweModelGenerator();
-		for (int i = 0; i < numberOfGuests; i++) {
-			gen.genGuestNode("guest_" + i);
+		if (!Files.isRegularFile(Path.of(inputModelPath))) {
+			throw new IllegalArgumentException(
+					"Input XMI model does not exist: " + inputModelPath);
 		}
-		for (int j = 0; j < numberOfHosts; j++) {
-			// We allow one guest per host for now
-			gen.genHostNode("host_" + j, 1);
-		}
-
+		
+		
 		// Persist initial model
-		gen.persistModel(inputModelPath);
+		final Path outputParent = Path.of(outputModelPath).getParent();
+
+		if (outputParent != null) {
+			try {
+				Files.createDirectories(outputParent);
+			} catch (final IOException e) {
+				throw new IllegalStateException(
+						"Could not create output directory: " + outputParent, e);
+			}
+		}
 
 		// Initialize GIPS
-		final MwegipslGipsAPI api = new MwegipslGipsAPI();
-		XmiSetupUtil.checkIfEclipseOrJarSetup(api, inputModelPath);
+		final AudiologyoptimiserGipsAPI api = new AudiologyoptimiserGipsAPI();
+		XmiSetupUtils.checkIfEclipseOrJarSetup(api, inputModelPath);
 
 		// Build MILP problem
 		api.buildProblem(true, true);

@@ -1,24 +1,29 @@
 package audiologyrunner.utils;
 
 import java.util.Objects;
+import java.io.File;
+import java.nio.file.Path;
 
+import org.eclipse.emf.ecore.EPackage;
+import org.eclipse.emf.ecore.plugin.EcorePlugin;
 import org.eclipse.emf.common.util.URI;
 import org.emoflon.gips.core.api.GipsEngineAPI;
 
 import hipe.engine.config.HiPEPathOptions;
-import mwegipsl.api.gips.MwegipslGipsAPI;
+import audiologyoptimiser.api.gips.AudiologyoptimiserGipsAPI;
+import audiologymodel.AudiologymodelPackage;
 
 /**
  * XMI setup utilities for the GIPS APIs.
  * 
  * @author Maximilian Kratz {@literal <maximilian.kratz@es.tu-darmstadt.de>}
  */
-public class XmiSetupUtil {
+public class XmiSetupUtils {
 
 	/**
 	 * No public instances of this class allowed.
 	 */
-	private XmiSetupUtil() {
+	private XmiSetupUtils() {
 	}
 
 	/**
@@ -35,14 +40,14 @@ public class XmiSetupUtil {
 			throw new IllegalArgumentException("Given model path was null or blank.");
 		}
 
-		if (gipsApi instanceof MwegipslGipsAPI) {
+		if (gipsApi instanceof AudiologyoptimiserGipsAPI) {
 			setup( //
 					gipsApi, //
-					"./mwegipsl/hipe/engine/hipe-network.xmi", //
-					"mwegipsl.hipe.engine.HiPEEngine", //
-					"./mwegipsl/api/gips/gips-model.xmi", //
+					"./audiologyoptimiser/hipe/engine/hipe-network.xmi", //
+					"audiologyoptimiser.hipe.engine.HiPEEngine", //
+					"./audiologyoptimiser/api/gips/gips-model.xmi", //
 					modelPath, //
-					"./mwegipsl/api/ibex-patterns.xmi" //
+					"./audiologyoptimiser/api/ibex-patterns.xmi" //
 			);
 		} else {
 			throw new IllegalArgumentException("Given GIPS API was not supported.");
