@@ -171,16 +171,16 @@ mapping roomUsedByStaff to staffRoomDayTuple;
 
 // Every appointment request is scheduled exactly once.
 constraint with requestTuple {
-    mappings.assignAppt->filter(
-        element.nodes.request == context.nodes.request)->sum(element.value)== 1
+    mappings.assignAppt->join(
+        request, request)->sum(element.value)== 1
 }
 
 // A staff member covers at most one appointment in each 15-minute interval.
 constraint with staffDaySlotTuple {
-    mappings.assignAppt->filter(
-        element.nodes.staffMember == context.nodes.staffMember
-        & element.nodes.planningDay == context.nodes.planningDay
-        & element.nodes.startSlot.startIndex
+    mappings.assignAppt->join(
+        (staffMember, staffMember),
+        (planningDay, planningDay)) -> filter (
+         element.nodes.startSlot.startIndex) 
             <= context.nodes.interval.startIndex
         & context.nodes.interval.startIndex
             < element.nodes.startSlot.startIndex
@@ -191,10 +191,10 @@ constraint with staffDaySlotTuple {
 
 // A room contains at most one appointment in each 15-minute interval.
 constraint with roomDaySlotTuple {
-    mappings.assignAppt->filter(
-        element.nodes.room == context.nodes.room
-        & element.nodes.planningDay == context.nodes.planningDay
-        & element.nodes.startSlot.startIndex
+    mappings.assignAppt->join(
+        (room, room),
+        (planningDay, planningDay)) -> filter (
+        element.nodes.startSlot.startIndex) 
             <= context.nodes.interval.startIndex
         & context.nodes.interval.startIndex
             < element.nodes.startSlot.startIndex
@@ -205,37 +205,37 @@ constraint with roomDaySlotTuple {
 
 // roomUsedByStaff is 1 exactly when this staff/room/day tuple is used.
 constraint with roomUsedByStaff {
-    mappings.assignAppt->filter(
-        element.nodes.staffMember == context.nodes.staffMember
-        & element.nodes.room == context.nodes.room
-        & element.nodes.planningDay == context.nodes.planningDay
+    mappings.assignAppt->join(
+        (staffMember, staffMember),
+        (room, room),
+        (planningDay, planning Day)) 
     )->sum(element.value)
     >= context.value
 
     &
 
-    mappings.assignAppt->filter(
-        element.nodes.staffMember == context.nodes.staffMember
-        & element.nodes.room == context.nodes.room
-        & element.nodes.planningDay == context.nodes.planningDay
+    mappings.assignAppt->join(
+        (staffMember, staffMember)
+        (room, room)
+        (planningDay, planningDay))
     )->sum(element.value)
     <= 100 * context.value
 }
 
 // A staff member uses at most one room during one planning day.
 constraint with staffDayTuple {
-    mappings.roomUsedByStaff->filter(
-        element.nodes.staffMember == context.nodes.staffMember
-        & element.nodes.planningDay == context.nodes.planningDay
+    mappings.roomUsedByStaff->join(
+        (staffMember, staffMember), 
+        (planningDay, planningDay)) 
     )->sum(element.value)
     <= 1
 }
 
 // Weekly patient-facing duration may not exceed StaffMember.weeklyHours.
 constraint with staffWeekTuple {
-    mappings.assignAppt->filter(
-        element.nodes.staffMember == context.nodes.staffMember
-        & element.nodes.planningWeek == context.nodes.planningWeek
+    mappings.assignAppt->join(
+        (staffMember, staffMember), 
+        (planningWeek, planningWeek))
     )->sum(
         element.nodes.request.durationSlots
         * 15
