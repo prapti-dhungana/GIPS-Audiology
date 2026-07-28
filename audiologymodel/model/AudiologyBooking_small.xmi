@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<audiologymodel:AudiologyBooking xmlns:audiologymodel="http://www.example.org/audiologymodel" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmi:version="2.0">
+<audiologymodel:AudiologyBooking xmlns:audiologymodel="platform:/resource/audiologymodel/model/audiologymodel.ecore" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmi:version="2.0">
   <waitingList number="1" roomRequirement="BOOTH" staffBandRequirement="6" appointmentType="0" durationSlots="4" artsFlag="false" bookFromDayIndex="0" idealDayIndex="-98" />
   <waitingList number="2" roomRequirement="ROOM" staffBandRequirement="5" appointmentType="0" durationSlots="4" artsFlag="false" bookFromDayIndex="0" idealDayIndex="-131" />
   <waitingList number="4" roomRequirement="BOOTH" staffBandRequirement="5" appointmentType="0" durationSlots="1" artsFlag="false" bookFromDayIndex="0" idealDayIndex="-374" />
