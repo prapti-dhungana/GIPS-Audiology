@@ -13,13 +13,12 @@ config {
     randomSeed := true [value := 0];
     presolve := auto;
 //    debugOutput := false;
-    debugOutput := true;
+//    debugOutput := true;
 
-   lpOutput := true [
-        path := "audiology.lp"
-    ];
+//   lpOutput := true [
+//        path := "audiology.lp"
+//    ];
 
-    threadCount := true [value := 4];
 }
 
 
@@ -220,10 +219,43 @@ constraint with staffWeekTuple {
 
 
 // Objective: minimise total scheduling delay.
-function delayCostV2 with assignAppt {
-    (context.nodes.planningDay.dayIndex - context.nodes.request.idealDayIndex) * context.value
+// Appointment type weights: type 0 = 4.0, type 1 = 2.0, type 2 = 1.5, type 3 = 1.0.
+// Objective: minimise total scheduling delay.
+function type0DelayCost with AppointmentRequest {
+    mappings.assignAppt
+        ->filter(element.nodes.request == context
+            & context.appointmentType == 0
+            & element.nodes.planningDay.dayIndex > context.idealDayIndex)
+        ->sum((element.nodes.planningDay.dayIndex - context.idealDayIndex) * element.value)
+}
+
+function type1DelayCost with AppointmentRequest {
+    mappings.assignAppt
+        ->filter(element.nodes.request == context
+            & context.appointmentType == 1
+            & element.nodes.planningDay.dayIndex > context.idealDayIndex)
+        ->sum((element.nodes.planningDay.dayIndex - context.idealDayIndex) * element.value)
+}
+
+function type2DelayCost with AppointmentRequest {
+    mappings.assignAppt
+        ->filter(element.nodes.request == context
+            & context.appointmentType == 2
+            & element.nodes.planningDay.dayIndex > context.idealDayIndex)
+        ->sum((element.nodes.planningDay.dayIndex - context.idealDayIndex) * element.value)
+}
+
+function type3DelayCost with AppointmentRequest {
+    mappings.assignAppt
+        ->filter(element.nodes.request == context
+            & context.appointmentType == 3
+            & element.nodes.planningDay.dayIndex > context.idealDayIndex)
+        ->sum((element.nodes.planningDay.dayIndex - context.idealDayIndex) * element.value)
 }
 
 objective : min {
-    functions.delayCostV2
+    4.0 * functions.type0DelayCost +
+    2.0 * functions.type1DelayCost +
+    1.5 * functions.type2DelayCost +
+    1.0 * functions.type3DelayCost
 }
