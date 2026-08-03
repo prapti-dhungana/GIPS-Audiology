@@ -38,8 +38,8 @@ public class AudiologyHeadlessRunner {
 	 */
 	public static void main(final String[] args) {
 		Objects.requireNonNull(args);
-		if (args.length != 2) {
-			throw new IllegalArgumentException("Number of given arguments must be equal to 2.");
+		if (args.length != 3) {
+			throw new IllegalArgumentException("Number of given arguments must be equal to 3.");
 		}
 
 		// Configure logging
@@ -54,6 +54,11 @@ public class AudiologyHeadlessRunner {
 		//temporary hard coded paths
 		inputModelPath = Path.of(args[0]).toAbsolutePath().normalize().toString();
 		outputModelPath = Path.of(args[1]).toAbsolutePath().normalize().toString();
+		final int numberOfRuns = Integer.valueOf(args[2]);
+
+		if (numberOfRuns <= 0) {
+			throw new IllegalArgumentException("Number of runs must be greater than zero.");
+		}
 
 		// Generate the corresponding model
 		if (!Files.isRegularFile(Path.of(inputModelPath))) {
@@ -74,35 +79,45 @@ public class AudiologyHeadlessRunner {
 			}
 		}
 
-		// Initialize GIPS
-		final AudiologyoptimiserGipsAPI api = new AudiologyoptimiserGipsAPI();
-		XmiSetupUtils.checkIfEclipseOrJarSetup(api, inputModelPath);
+		for (int run = 1; run <= numberOfRuns; run++) {
+			logger.info("GIPS run " + run + " of " + numberOfRuns + " started.");
+			final long startTime = System.nanoTime();
 
-		// Build MILP problem
-		api.buildProblem(true, true);
+			// Initialize GIPS
+			final AudiologyoptimiserGipsAPI api = new AudiologyoptimiserGipsAPI();
+			XmiSetupUtils.checkIfEclipseOrJarSetup(api, inputModelPath);
 
-		// Solve MILP problem
-		try (final SolverOutput output = api.solveProblemTimed()) {
-			if (output.solutionCount() == 0) {
-				api.terminate();
-				logger.warning("No solution found. Aborting.");
-				throw new InternalError("No solution found!");
+			// Build MILP problem
+			api.buildProblem(true, true);
+
+			// Solve MILP problem
+			try (final SolverOutput output = api.solveProblemTimed()) {
+				if (output.solutionCount() == 0) {
+					api.terminate();
+					logger.warning("No solution found. Aborting.");
+					throw new InternalError("No solution found!");
+				}
+				logger.info("=> Objective value: " + output.objectiveValue());
+			} catch (final OutOfMemoryError err) {
+				logger.warning("GIPS solving threw an OOM error. GIPS now terminates the Java process.");
+				System.exit(1);
 			}
-			logger.info("=> Objective value: " + output.objectiveValue());
-		} catch (final OutOfMemoryError err) {
-			logger.warning("GIPS solving threw an OOM error. GIPS now terminates the Java process.");
-			System.exit(1);
-		}
 
-		// Apply solution with GIPS
-		api.applyAllNonZeroMappings();
+			// Apply solution with GIPS
+			api.applyAllNonZeroMappings();
 
-		// Persist model
-		try {
-			api.saveResult(outputModelPath);
-		} catch (final IOException e) {
-			e.printStackTrace();
-			System.exit(1);
+			// Persist model
+			try {
+				api.saveResult(outputModelPath);
+			} catch (final IOException e) {
+				e.printStackTrace();
+				System.exit(1);
+			}
+
+			api.terminate();
+
+			final double runTime = (System.nanoTime() - startTime) / 1_000_000_000.0;
+			logger.info("=> Run time: " + runTime + " seconds.");
 		}
 
 		// Finish
