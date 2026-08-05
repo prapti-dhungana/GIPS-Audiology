@@ -19,11 +19,16 @@ function setup {
     unzip -qq -o $JAR "audiologyoptimiser/hipe/*/hipe-network.xmi"
     unzip -qq -o $JAR "audiologyoptimiser/api/*/gips-model.xmi"
     unzip -qq -o $JAR "audiologyoptimiser/api/ibex-patterns.xmi"
+
+    # Copy extracted files into bin for HiPE
+    mkdir -p ./bin
+    rm -rf ./bin/audiologyoptimiser
+    cp -r ./audiologyoptimiser ./bin/
 }
 
 function run_experiment {
     # Execute the program itself and save its output to log file
-    java -Xmx1g -XX:+ExitOnOutOfMemoryError -jar $JAR $ARGS
+    java -Xmx8g -XX:+ExitOnOutOfMemoryError -jar $JAR $ARGS
 
     # Move Gurobi's log file to the repetition's output folder
     mv Gurobi*.log $outputFolder
@@ -36,6 +41,7 @@ function run_experiment {
 
 function cleanup {
     rm -r ./audiologyoptimiser
+    rm -rf ./bin/audiologyoptimiser
 }
 
 function run_wrap_all {
@@ -43,7 +49,7 @@ function run_wrap_all {
     setup
 
     # Actual run
-    export ARGS="$inputModelPath $outputModelPath"
+    export ARGS="$inputModelPath $outputModelPath $numberOfRuns"
 
     echo "# Script info: Using ARGS: $ARGS"
     run_experiment
@@ -59,7 +65,7 @@ function run_wrap_all {
 source env.sh
 
 # Config
-export JAR="gips-audiology.jar"
+export JAR="gips-audiology-headless.jar"
 export outputFolder="output"
 mkdir -p $outputFolder
 
@@ -67,6 +73,7 @@ mkdir -p $outputFolder
 
 export inputModelPath="../../audiologymodel/model/AudiologyBooking_small.xmi"
 export outputModelPath="./optimized_model.xmi"
+export numberOfRuns="10"
 
 # Run wrapping function
 export RUN_NAME=$(date +%Y-%m-%d"_"%H-%M-%S)
