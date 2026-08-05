@@ -70,10 +70,10 @@ export outputFolder="output"
 mkdir -p $outputFolder
 
 # Arguments: for this example, we use hard-coded arguments
-
-export inputModelPath="../../audiologymodel/model/AudiologyBooking_small.xmi"
-export outputModelPath="./optimized_model.xmi"
-export numberOfRuns="10"
+export numberOfAppointments="${1:-100}"
+export inputModelPath="../../audiologymodel/model/AudiologyBooking_${numberOfAppointments}.xmi"
+export outputModelPath="./optimized_model_${numberOfAppointments}.xmi"
+export numberOfRuns="${2:-10}"
 
 # Run wrapping function
 export RUN_NAME=$(date +%Y-%m-%d"_"%H-%M-%S)
