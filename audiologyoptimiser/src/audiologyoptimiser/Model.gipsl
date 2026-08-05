@@ -255,7 +255,7 @@ function type3DelayCost with AppointmentRequest {
 
 objective : min {
     4.0 * functions.type0DelayCost +
-    2.0 * functions.type1DelayCost +
-    1.5 * functions.type2DelayCost +
+    3.0 * functions.type1DelayCost +
+    2.0 * functions.type2DelayCost +
     1.0 * functions.type3DelayCost
 }
