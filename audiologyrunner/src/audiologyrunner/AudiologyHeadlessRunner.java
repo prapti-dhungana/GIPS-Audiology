@@ -94,7 +94,9 @@ public class AudiologyHeadlessRunner {
 			// Solve MILP problem
 			try (final SolverOutput output = api.solveProblemTimed()) {
 				logger.info("=> Solver status: " + output.status());
-				logger.info("=> Constraints violated: " + output.validationLog().isNotValid());
+				
+				final String validation = output.toString();
+				logger.info("=> Constraints violated: " + (validation.contains("Constant_Constraint_Violation") || validation.contains("Variable_Constraint_Violation")));
 				
 				if (output.solutionCount() == 0) {
 					api.terminate();
