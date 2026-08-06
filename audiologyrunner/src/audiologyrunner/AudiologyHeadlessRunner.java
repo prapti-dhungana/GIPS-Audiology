@@ -11,6 +11,7 @@ import org.emoflon.gips.core.milp.SolverOutput;
 import audiologyoptimiser.api.gips.AudiologyoptimiserGipsAPI;
 import audiologyrunner.utils.LoggerUtils;
 import audiologyrunner.utils.XmiSetupUtils;
+import audiologymodel.AudiologyBooking;
 
 public class AudiologyHeadlessRunner {
 
@@ -92,6 +93,9 @@ public class AudiologyHeadlessRunner {
 
 			// Solve MILP problem
 			try (final SolverOutput output = api.solveProblemTimed()) {
+				logger.info("=> Solver status: " + output.status());
+				logger.info("=> Constraints violated: " + output.validationLog().isNotValid());
+				
 				if (output.solutionCount() == 0) {
 					api.terminate();
 					logger.warning("No solution found. Aborting.");
@@ -105,6 +109,13 @@ public class AudiologyHeadlessRunner {
 
 			// Apply solution with GIPS
 			api.applyAllNonZeroMappings();
+			
+			//checks for unmapped appointments
+			final AudiologyBooking booking = (AudiologyBooking) api.getResourceSet().getResources().get(0).getContents().get(0);
+			final long bookedAppointments = booking.getAppointmentAssignments().stream().map(assignment -> assignment.getRequest()).filter(Objects::nonNull).distinct().count();
+
+			logger.info("=> Appointments booked: " + bookedAppointments);
+			logger.info("=> Appointments not booked: " + (booking.getWaitingList().size() - bookedAppointments));
 
 			// Persist model
 			try {
