@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<xsd:schema xmlns:audiologymodel="http://www.example.org/audiologymodel" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsd="http://www.w3.org/2001/XMLSchema" targetNamespace="http://www.example.org/audiologymodel">
+<xsd:schema xmlns:audiologymodel="platform:/resource/audiologymodel/model/audiologymodel.ecore" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsd="http://www.w3.org/2001/XMLSchema" targetNamespace="platform:/resource/audiologymodel/model/audiologymodel.ecore">
   <xsd:import namespace="http://www.omg.org/XMI" schemaLocation="platform:/plugin/org.eclipse.emf.ecore/model/XMI.xsd"/>
   <xsd:simpleType name="Days">
     <xsd:restriction base="xsd:NCName">
@@ -45,6 +45,7 @@
     <xsd:attribute name="artsFlag" type="xsd:boolean"/>
     <xsd:attribute name="bookFromDayIndex" type="xsd:int"/>
     <xsd:attribute name="idealDayIndex" type="xsd:int"/>
+    <xsd:attribute name="priorityWeight" type="xsd:int"/>
   </xsd:complexType>
   <xsd:element name="AppointmentRequest" type="audiologymodel:AppointmentRequest"/>
   <xsd:complexType name="StaffMember">

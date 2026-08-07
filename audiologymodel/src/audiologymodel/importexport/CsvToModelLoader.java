@@ -157,7 +157,9 @@ public final class CsvToModelLoader {
                     toRoomType(required(row, "Room Requirement")));
             request.setStaffBandRequirement(
                     requiredInt(row, "Staff Band Requirement"));
-            request.setAppointmentType(requiredInt(row, "Appointment Type"));
+            int appointmentType = requiredInt(row, "Appointment Type");
+            request.setAppointmentType(appointmentType);
+            request.setPriorityWeight(toPriorityWeight(appointmentType));
             request.setArtsFlag(parseBoolean01(required(row, "Arts Flag")));
 
             int durationMinutes = requiredInt(row, "Appointment Duration");
@@ -332,6 +334,17 @@ public final class CsvToModelLoader {
             case "0", "false", "no" -> false;
             default -> throw new IllegalArgumentException(
                     "Expected 0/1 or true/false, but found: " + value);
+        };
+    }
+
+    private static int toPriorityWeight(int appointmentType) {
+        return switch (appointmentType) {
+            case 0 -> 4;
+            case 1 -> 3;
+            case 2 -> 2;
+            case 3 -> 1;
+            default -> throw new IllegalArgumentException(
+                    "Unknown appointment type: " + appointmentType);
         };
     }
 

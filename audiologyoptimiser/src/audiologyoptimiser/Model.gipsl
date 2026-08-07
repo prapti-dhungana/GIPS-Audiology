@@ -202,7 +202,7 @@ constraint with roomUsedByStaff {
     	-> sum(element.value) >= context.value
 			&
 			mappings.assignAppt->join((staffMember, staffMember), (room, room), (planningDay, planningDay))
-			-> sum(element.value) <= 100 * context.value
+			-> sum(element.value) <= 32 * context.value
 }
 
 // A staff member uses at most one room during one planning day.
@@ -219,43 +219,24 @@ constraint with staffWeekTuple {
 
 
 // Objective: minimise total scheduling delay.
-// Appointment type weights: type 0 = 4.0, type 1 = 2.0, type 2 = 1.5, type 3 = 1.0.
-// Objective: minimise total scheduling delay.
-function type0DelayCost with AppointmentRequest {
+// Appointment type weights: type 0 = 4.0, type 1 = 3.0, type 2 = 2, type 3 = 1.0.
+function weightedDelayCost with requestTuple {
     mappings.assignAppt
-        ->filter(element.nodes.request == context
-            & context.appointmentType == 0
-            & element.nodes.planningDay.dayIndex > context.idealDayIndex)
-        ->sum((element.nodes.planningDay.dayIndex - context.idealDayIndex) * element.value)
-}
-
-function type1DelayCost with AppointmentRequest {
-    mappings.assignAppt
-        ->filter(element.nodes.request == context
-            & context.appointmentType == 1
-            & element.nodes.planningDay.dayIndex > context.idealDayIndex)
-        ->sum((element.nodes.planningDay.dayIndex - context.idealDayIndex) * element.value)
-}
-
-function type2DelayCost with AppointmentRequest {
-    mappings.assignAppt
-        ->filter(element.nodes.request == context
-            & context.appointmentType == 2
-            & element.nodes.planningDay.dayIndex > context.idealDayIndex)
-        ->sum((element.nodes.planningDay.dayIndex - context.idealDayIndex) * element.value)
-}
-
-function type3DelayCost with AppointmentRequest {
-    mappings.assignAppt
-        ->filter(element.nodes.request == context
-            & context.appointmentType == 3
-            & element.nodes.planningDay.dayIndex > context.idealDayIndex)
-        ->sum((element.nodes.planningDay.dayIndex - context.idealDayIndex) * element.value)
+        ->join((request, request))
+        ->filter(
+            element.nodes.planningDay.dayIndex
+                > context.nodes.request.idealDayIndex
+        )
+        ->sum(
+            (
+                element.nodes.planningDay.dayIndex
+                - context.nodes.request.idealDayIndex
+            )
+            * context.nodes.request.priorityWeight
+            * element.value
+        )
 }
 
 objective : min {
-    4.0 * functions.type0DelayCost +
-    3.0 * functions.type1DelayCost +
-    2.0 * functions.type2DelayCost +
-    1.0 * functions.type3DelayCost
+    functions.weightedDelayCost
 }
