@@ -13,6 +13,7 @@ import org.emoflon.gips.core.milp.SolverOutput;
 import audiologymodel.AudiologyBooking;
 import audiologymodel.Room;
 import audiologymodel.StaffMember;
+import audiologymodel.importexport.ScheduleCsvExporter;
 import audiologyoptimiser.api.gips.AudiologyoptimiserGipsAPI;
 import audiologyrunner.utils.LoggerUtils;
 import audiologyrunner.utils.XmiSetupUtils;
@@ -85,6 +86,11 @@ public class AudiologyHeadlessRunner {
 		}
 
 		for (int run = 1; run <= numberOfRuns; run++) {
+			final Path runOutputModelPath =
+					addRunNumber(Path.of(outputModelPath), run);
+			final Path scheduleCsvPath =
+					changeExtension(runOutputModelPath, ".csv");
+
 			logger.info("GIPS run " + run + " of " + numberOfRuns + " started.");
 			final long startTime = System.nanoTime();
 			long phaseStart;
@@ -105,7 +111,7 @@ public class AudiologyHeadlessRunner {
 			logger.info("=> Building MILP problem...");
 			phaseStart = System.nanoTime();
 
-			api.buildProblem(true, true);
+			api.buildProblem(true, false);
 
 			final double buildTime =
 					(System.nanoTime() - phaseStart) / 1_000_000_000.0;
@@ -188,7 +194,14 @@ public class AudiologyHeadlessRunner {
 			phaseStart = System.nanoTime();
 
 			try {
-				api.saveResult(outputModelPath);
+				api.saveResult(runOutputModelPath.toString());
+				ScheduleCsvExporter.export(
+						runOutputModelPath,
+						scheduleCsvPath);
+				logger.info("=> Optimized model saved to: "
+						+ runOutputModelPath);
+				logger.info("=> Readable schedule saved to: "
+						+ scheduleCsvPath);
 			} catch (final IOException e) {
 				e.printStackTrace();
 				System.exit(1);
@@ -217,6 +230,39 @@ public class AudiologyHeadlessRunner {
 		// Finish
 		logger.info("GIPS run finished.");
 		System.exit(0);
+	}
+
+	private static Path addRunNumber(
+			final Path path,
+			final int run) {
+
+		final String fileName = path.getFileName().toString();
+		final int extensionIndex = fileName.lastIndexOf('.');
+		final String name =
+				extensionIndex > 0
+						? fileName.substring(0, extensionIndex)
+						: fileName;
+		final String extension =
+				extensionIndex > 0
+						? fileName.substring(extensionIndex)
+						: "";
+
+		return path.resolveSibling(
+				name + "_" + run + extension);
+	}
+
+	private static Path changeExtension(
+			final Path path,
+			final String extension) {
+
+		final String fileName = path.getFileName().toString();
+		final int extensionIndex = fileName.lastIndexOf('.');
+		final String name =
+				extensionIndex > 0
+						? fileName.substring(0, extensionIndex)
+						: fileName;
+
+		return path.resolveSibling(name + extension);
 	}
 
 	private static void printUtilisation(final AudiologyBooking booking) {

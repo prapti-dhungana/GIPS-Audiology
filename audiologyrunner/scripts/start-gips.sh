@@ -28,14 +28,18 @@ function setup {
 
 function run_experiment {
     # Execute the program itself and save its output to log file
-    java -Xmx8g -XX:+ExitOnOutOfMemoryError -jar $JAR $ARGS
+    java \
+        -Xms16g \
+        -Xmx24g \
+        -XX:+ExitOnOutOfMemoryError \
+        -jar "$JAR" $ARGS
 
     # Move Gurobi's log file to the repetition's output folder
     mv Gurobi*.log $outputFolder
 
     # Move JDK's crash log file to output folder (if any)
     if [ $(ls hs_err_*.log 2>/dev/null | wc -l) -gt 0 ]; then
-    	mv hs_err_*.log $outputFolder
+        mv hs_err_*.log $outputFolder
     fi
 }
 
@@ -72,7 +76,7 @@ mkdir -p $outputFolder
 # Arguments: for this example, we use hard-coded arguments
 export numberOfAppointments="${1:-100}"
 export inputModelPath="../../audiologymodel/model/AudiologyBooking_${numberOfAppointments}.xmi"
-export outputModelPath="./optimized_model_${numberOfAppointments}.xmi"
+export outputModelPath="./$outputFolder/optimized_model_${numberOfAppointments}.xmi"
 export numberOfRuns="${2:-10}"
 
 # Run wrapping function
